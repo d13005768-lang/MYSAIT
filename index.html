@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -24,8 +24,6 @@ body {
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
-
-/* BACKGROUND */
 
 body::before {
     content: "";
@@ -92,7 +90,6 @@ header {
     font-size: 12px;
     letter-spacing: 4px;
     margin-bottom: 25px;
-
     opacity: 0;
     animation: fadeUp .8s forwards;
 }
@@ -102,7 +99,6 @@ h1 {
     line-height: .85;
     letter-spacing: -7px;
     max-width: 1000px;
-
     opacity: 0;
     animation: fadeUp .8s .1s forwards;
 }
@@ -113,7 +109,6 @@ h1 {
     line-height: 1.7;
     font-size: 17px;
     margin-top: 35px;
-
     opacity: 0;
     animation: fadeUp .8s .2s forwards;
 }
@@ -158,11 +153,10 @@ h1 {
     border: 1px solid #252525;
     background: #111;
     cursor: pointer;
-
     opacity: 0;
     transform: translateY(40px);
-
     animation: cardIn .8s forwards;
+    transition: border-color .3s, transform .3s;
 }
 
 .card:nth-child(1) {
@@ -185,8 +179,13 @@ h1 {
     animation-delay: .5s;
 }
 
+.card:nth-child(6) {
+    animation-delay: .6s;
+}
+
 .card:hover {
     border-color: #6250c7;
+    transform: translateY(-5px);
 }
 
 .card-image {
@@ -259,7 +258,7 @@ h1 {
     transform: rotate(45deg);
 }
 
-/* DIFFERENT PREVIEWS */
+/* PREVIEWS */
 
 .card:nth-child(1) .card-image {
     background:
@@ -293,6 +292,18 @@ h1 {
     background:
         linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.4)),
         url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+}
+
+/* LUMÉ PREVIEW */
+
+.card:nth-child(6) .card-image {
+    background:
+        linear-gradient(
+            rgba(20, 10, 15, .15),
+            rgba(20, 10, 15, .65)
+        ),
+        url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80")
         center/cover;
 }
 
@@ -377,6 +388,12 @@ footer {
     border-radius: 50%;
     cursor: pointer;
     font-size: 16px;
+    transition: .2s;
+}
+
+.close:hover {
+    background: #444;
+    transform: rotate(90deg);
 }
 
 .demo iframe {
@@ -389,7 +406,6 @@ footer {
 /* ANIMATIONS */
 
 @keyframes fadeUp {
-
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -399,16 +415,13 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 @keyframes cardIn {
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 /* MOBILE */
@@ -430,6 +443,10 @@ footer {
     h1 {
         font-size: 65px;
         letter-spacing: -4px;
+    }
+
+    .hero-description {
+        font-size: 15px;
     }
 
     .projects {
@@ -466,243 +483,275 @@ footer {
     .demo-bar {
         height: 45px;
     }
-
 }
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-    <div class="logo">
-        MY<span>.</span>WORKS
-    </div>
+```
+<div class="logo">
+    MY<span>.</span>WORKS
+</div>
 
-    <div class="header-text">
-        WEB DESIGN · DEVELOPMENT · 2026
-    </div>
+<div class="header-text">
+    WEB DESIGN · DEVELOPMENT · 2026
+</div>
+```
 
 </header>
 
 <section class="hero">
 
-    <div class="eyebrow">
-        МОЁ ПОРТФОЛИО
-    </div>
+```
+<div class="eyebrow">
+    МОЁ ПОРТФОЛИО
+</div>
 
-    <h1>
-        Сайты,<br>
-        которые<br>
-        работают.
-    </h1>
+<h1>
+    Сайты,<br>
+    которые<br>
+    работают.
+</h1>
 
-    <p class="hero-description">
-        Пять демонстрационных проектов в разных стилях.
-        Нажмите на любой проект, чтобы открыть полноценную
-        интерактивную версию.
-    </p>
+<p class="hero-description">
+    Шесть демонстрационных проектов в разных стилях.
+    Нажмите на любой проект, чтобы открыть полноценную
+    интерактивную версию.
+</p>
+```
 
 </section>
 
 <section class="projects">
 
-    <div class="projects-top">
+```
+<div class="projects-top">
 
-        <div class="projects-title">
-            SELECTED WORKS
+    <div class="projects-title">
+        SELECTED WORKS
+    </div>
+
+    <div class="projects-count">
+        06 PROJECTS
+    </div>
+
+</div>
+
+<div class="grid">
+
+    <!-- 1 -->
+
+    <div class="card" onclick="openDemo('restaurant')">
+
+        <div class="card-image"></div>
+
+        <div class="card-info">
+
+            <div class="card-number">
+                01 / 06
+            </div>
+
+            <h2>NOIR</h2>
+
+            <p>
+                Премиальный ресторан
+            </p>
+
         </div>
 
-        <div class="projects-count">
-            05 PROJECTS
+        <div class="open">
+            ↗
         </div>
 
     </div>
 
-    <div class="grid">
+    <!-- 2 -->
 
-        <!-- 1 -->
+    <div class="card" onclick="openDemo('fitness')">
 
-        <div class="card" onclick="openDemo('restaurant')">
+        <div class="card-image"></div>
 
-            <div class="card-image"></div>
+        <div class="card-info">
 
-            <div class="card-info">
-
-                <div class="card-number">
-                    01 / 05
-                </div>
-
-                <h2>NOIR</h2>
-
-                <p>
-                    Премиальный ресторан
-                </p>
-
+            <div class="card-number">
+                02 / 06
             </div>
 
-            <div class="open">
-                ↗
-            </div>
+            <h2>FORMA</h2>
+
+            <p>
+                Фитнес-клуб
+            </p>
 
         </div>
 
-        <!-- 2 -->
-
-        <div class="card" onclick="openDemo('fitness')">
-
-            <div class="card-image"></div>
-
-            <div class="card-info">
-
-                <div class="card-number">
-                    02 / 05
-                </div>
-
-                <h2>FORMA</h2>
-
-                <p>
-                    Фитнес-клуб
-                </p>
-
-            </div>
-
-            <div class="open">
-                ↗
-            </div>
-
-        </div>
-
-        <!-- 3 -->
-
-        <div class="card" onclick="openDemo('interior')">
-
-            <div class="card-image"></div>
-
-            <div class="card-info">
-
-                <div class="card-number">
-                    03 / 05
-                </div>
-
-                <h2>CASA</h2>
-
-                <p>
-                    Студия интерьеров
-                </p>
-
-            </div>
-
-            <div class="open">
-                ↗
-            </div>
-
-        </div>
-
-        <!-- 4 -->
-
-        <div class="card" onclick="openDemo('nova')">
-
-            <div class="card-image"></div>
-
-            <div class="card-info">
-
-                <div class="card-number">
-                    04 / 05
-                </div>
-
-                <h2>NOVA</h2>
-
-                <p>
-                    AI / Technology
-                </p>
-
-            </div>
-
-            <div class="open">
-                ↗
-            </div>
-
-        </div>
-
-        <!-- 5 -->
-
-        <div class="card" onclick="openDemo('portfolio')">
-
-            <div class="card-image"></div>
-
-            <div class="card-info">
-
-                <div class="card-number">
-                    05 / 05
-                </div>
-
-                <h2>PORTFOLIO</h2>
-
-                <p>
-                    Персональный сайт
-                </p>
-
-            </div>
-
-            <div class="open">
-                ↗
-            </div>
-
+        <div class="open">
+            ↗
         </div>
 
     </div>
+
+    <!-- 3 -->
+
+    <div class="card" onclick="openDemo('interior')">
+
+        <div class="card-image"></div>
+
+        <div class="card-info">
+
+            <div class="card-number">
+                03 / 06
+            </div>
+
+            <h2>CASA</h2>
+
+            <p>
+                Студия интерьеров
+            </p>
+
+        </div>
+
+        <div class="open">
+            ↗
+        </div>
+
+    </div>
+
+    <!-- 4 -->
+
+    <div class="card" onclick="openDemo('nova')">
+
+        <div class="card-image"></div>
+
+        <div class="card-info">
+
+            <div class="card-number">
+                04 / 06
+            </div>
+
+            <h2>NOVA</h2>
+
+            <p>
+                AI / Technology
+            </p>
+
+        </div>
+
+        <div class="open">
+            ↗
+        </div>
+
+    </div>
+
+    <!-- 5 -->
+
+    <div class="card" onclick="openDemo('portfolio')">
+
+        <div class="card-image"></div>
+
+        <div class="card-info">
+
+            <div class="card-number">
+                05 / 06
+            </div>
+
+            <h2>PORTFOLIO</h2>
+
+            <p>
+                Персональный сайт
+            </p>
+
+        </div>
+
+        <div class="open">
+            ↗
+        </div>
+
+    </div>
+
+    <!-- 6 LUMÉ -->
+
+    <div class="card" onclick="openDemo('lume')">
+
+        <div class="card-image"></div>
+
+        <div class="card-info">
+
+            <div class="card-number">
+                06 / 06
+            </div>
+
+            <h2>LUMÉ</h2>
+
+            <p>
+                Beauty Studio
+            </p>
+
+        </div>
+
+        <div class="open">
+            ↗
+        </div>
+
+    </div>
+
+</div>
+```
 
 </section>
 
 <footer>
 
-    <div>
-        © 2026 MY.WORKS
-    </div>
+```
+<div>
+    © 2026 MY.WORKS
+</div>
 
-    <div>
-        Сайты на заказ
-    </div>
+<div>
+    Сайты на заказ
+</div>
+```
 
 </footer>
-
 
 <!-- DEMO -->
 
 <div class="demo" id="demo">
 
-    <div class="demo-window">
+```
+<div class="demo-window">
 
-        <div class="demo-bar">
+    <div class="demo-bar">
 
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
 
-            <div class="demo-title" id="demoTitle">
-                Demo Website
-            </div>
-
-            <button class="close" onclick="closeDemo()">
-                ×
-            </button>
-
+        <div class="demo-title" id="demoTitle">
+            Demo Website
         </div>
 
-        <iframe id="demoFrame"></iframe>
+        <button class="close" onclick="closeDemo()">
+            ×
+        </button>
 
     </div>
 
+    <iframe
+        id="demoFrame"
+        title="Демонстрация сайта">
+    </iframe>
+
+</div>
+```
+
 </div>
 
-
 <script>
-
-/*
-    СЮДА ПОЗЖЕ МОЖНО ПОСТАВИТЬ
-    ССЫЛКИ НА ТВОИ НАСТОЯЩИЕ ДЕМО-САЙТЫ.
-*/
 
 const demos = {
 
@@ -729,10 +778,16 @@ const demos = {
     portfolio: {
         title: "PORTFOLIO — Personal Website",
         url: "portfolio/index.html"
+    },
+
+    /* НОВЫЙ САЙТ */
+
+    lume: {
+        title: "LUMÉ — Beauty Studio",
+        url: "lume/index.html"
     }
 
 };
-
 
 function openDemo(name) {
 
@@ -751,7 +806,6 @@ function openDemo(name) {
     document.body.style.overflow = "hidden";
 }
 
-
 function closeDemo() {
 
     const windowDemo =
@@ -765,13 +819,9 @@ function closeDemo() {
     document.body.style.overflow = "";
 
     setTimeout(() => {
-
         frame.src = "";
-
     }, 350);
-
 }
-
 
 document.addEventListener("keydown", function(event) {
 
@@ -785,4 +835,3 @@ document.addEventListener("keydown", function(event) {
 
 </body>
 </html>
-```

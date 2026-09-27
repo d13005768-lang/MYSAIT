@@ -1,0 +1,746 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOIR — Ресторан</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #0d0c0b;
+    color: #f4efe6;
+    overflow-x: hidden;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background: rgba(13, 12, 11, .75);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+    font-size: 25px;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    color: #c9c2b8;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #d9ad68;
+}
+
+.reserve {
+    color: #0d0c0b;
+    background: #d9ad68;
+    padding: 12px 22px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.reserve:hover {
+    transform: translateY(-3px);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 130px 7%;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(13,12,11,.95),
+            rgba(13,12,11,.55),
+            rgba(13,12,11,.25)
+        ),
+        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+
+    transform: scale(1.05);
+    animation: heroZoom 10s ease-in-out infinite alternate;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+}
+
+.small {
+    color: #d9ad68;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+
+    opacity: 0;
+    animation: fadeUp 1s forwards;
+}
+
+h1 {
+    font-size: clamp(70px, 10vw, 150px);
+    line-height: .82;
+    font-weight: normal;
+    letter-spacing: -5px;
+    margin-bottom: 35px;
+
+    opacity: 0;
+    animation: fadeUp 1s .15s forwards;
+}
+
+.hero-text {
+    max-width: 530px;
+    color: #c6c0b8;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+
+    opacity: 0;
+    animation: fadeUp 1s .3s forwards;
+}
+
+.hero-button {
+    display: inline-block;
+    border: 1px solid #d9ad68;
+    color: #d9ad68;
+    padding: 16px 28px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    transition: .4s;
+
+    opacity: 0;
+    animation: fadeUp 1s .45s forwards;
+}
+
+.hero-button:hover {
+    background: #d9ad68;
+    color: #0d0c0b;
+}
+
+/* ABOUT */
+
+.about {
+    padding: 130px 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-image {
+    height: 600px;
+    background:
+        url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=80")
+        center/cover;
+}
+
+.about-content {
+    max-width: 550px;
+}
+
+.label {
+    color: #d9ad68;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: clamp(45px, 6vw, 80px);
+    font-weight: normal;
+    line-height: .95;
+    margin-bottom: 30px;
+}
+
+.about-content p {
+    color: #aaa39a;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* MENU */
+
+.menu {
+    padding: 130px 7%;
+    background: #131210;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 60px;
+}
+
+.menu-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 70px;
+}
+
+.menu-item {
+    padding: 30px 0;
+    border-bottom: 1px solid #302d29;
+    transition: .3s;
+}
+
+.menu-item:hover {
+    padding-left: 15px;
+    border-color: #d9ad68;
+}
+
+.menu-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.menu-item h3 {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.price {
+    color: #d9ad68;
+    font-family: Arial, sans-serif;
+}
+
+.menu-item p {
+    color: #777;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+/* GALLERY */
+
+.gallery {
+    padding: 130px 7%;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 15px;
+}
+
+.gallery-item {
+    background-size: cover;
+    background-position: center;
+    transition: .6s;
+    overflow: hidden;
+}
+
+.gallery-item:hover {
+    transform: scale(.97);
+}
+
+.gallery-item:nth-child(1) {
+    grid-row: span 2;
+    background-image:
+        url("https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1000&q=80");
+}
+
+.gallery-item:nth-child(2) {
+    background-image:
+        url("https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80");
+}
+
+.gallery-item:nth-child(3) {
+    background-image:
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80");
+}
+
+.gallery-item:nth-child(4) {
+    background-image:
+        url("https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80");
+}
+
+.gallery-item:nth-child(5) {
+    background-image:
+        url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80");
+}
+
+/* RESERVATION */
+
+.booking {
+    margin: 0 7% 120px;
+    padding: 90px 40px;
+    text-align: center;
+    background:
+        linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+        url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+.booking h2 {
+    font-size: clamp(45px, 6vw, 80px);
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.booking p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.booking-button {
+    display: inline-block;
+    background: #d9ad68;
+    color: #0d0c0b;
+    padding: 17px 30px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid #292724;
+    padding: 50px 7%;
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroZoom {
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    header {
+        padding: 18px 20px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .reserve {
+        padding: 10px 15px;
+    }
+
+    .hero {
+        padding: 130px 20px 80px;
+        min-height: 90vh;
+    }
+
+    h1 {
+        font-size: 70px;
+        letter-spacing: -3px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        padding: 80px 20px;
+        gap: 45px;
+    }
+
+    .about-image {
+        height: 450px;
+    }
+
+    .menu {
+        padding: 80px 20px;
+    }
+
+    .menu-header {
+        display: block;
+    }
+
+    .menu-list {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        padding: 80px 20px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 250px 180px 180px;
+    }
+
+    .gallery-item:nth-child(1) {
+        grid-row: span 2;
+    }
+
+    .booking {
+        margin: 0 20px 80px;
+        padding: 70px 20px;
+    }
+
+    footer {
+        padding: 35px 20px;
+        display: block;
+    }
+
+    footer div + div {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">NOIR</div>
+
+    <nav>
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#gallery">Атмосфера</a>
+        <a href="#booking">Контакты</a>
+    </nav>
+
+    <a href="#booking" class="reserve">
+        Забронировать
+    </a>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-content">
+
+        <div class="small">
+            РЕСТОРАН · МОСКВА · 2026
+        </div>
+
+        <h1>
+            ВКУС<br>
+            КОТОРЫЙ<br>
+            ПОМНЯТ.
+        </h1>
+
+        <p class="hero-text">
+            Авторская кухня, сезонные продукты и атмосфера,
+            созданная для особенных вечеров.
+        </p>
+
+        <a href="#booking" class="hero-button">
+            Забронировать стол
+        </a>
+
+    </div>
+
+</section>
+
+<section class="about reveal" id="about">
+
+    <div class="about-image"></div>
+
+    <div class="about-content">
+
+        <div class="label">
+            О РЕСТОРАНЕ
+        </div>
+
+        <h2 class="title">
+            Больше,<br>
+            чем ужин.
+        </h2>
+
+        <p>
+            NOIR — место, где современная гастрономия
+            встречается с классической элегантностью.
+            Мы создаём блюда из сезонных продуктов
+            и превращаем обычный вечер в событие.
+        </p>
+
+        <br>
+
+        <p>
+            Наша кухня постоянно развивается,
+            но одно остаётся неизменным —
+            внимание к каждой детали.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="menu reveal" id="menu">
+
+    <div class="menu-header">
+
+        <div>
+            <div class="label">МЕНЮ</div>
+
+            <h2 class="title">
+                Избранное
+            </h2>
+        </div>
+
+    </div>
+
+    <div class="menu-list">
+
+        <div class="menu-item">
+
+            <div class="menu-top">
+                <h3>Тартар из тунца</h3>
+                <div class="price">1 490 ₽</div>
+            </div>
+
+            <p>
+                Авокадо, юдзу, кунжут, хрустящий рис
+            </p>
+
+        </div>
+
+        <div class="menu-item">
+
+            <div class="menu-top">
+                <h3>Говядина Black Angus</h3>
+                <div class="price">2 890 ₽</div>
+            </div>
+
+            <p>
+                Печёный картофель, демиглас, зелёное масло
+            </p>
+
+        </div>
+
+        <div class="menu-item">
+
+            <div class="menu-top">
+                <h3>Паста с трюфелем</h3>
+                <div class="price">1 790 ₽</div>
+            </div>
+
+            <p>
+                Домашняя паста, пармезан, чёрный трюфель
+            </p>
+
+        </div>
+
+        <div class="menu-item">
+
+            <div class="menu-top">
+                <h3>Лосось</h3>
+                <div class="price">2 190 ₽</div>
+            </div>
+
+            <p>
+                Шпинат, соус шампань, красная икра
+            </p>
+
+        </div>
+
+        <div class="menu-item">
+
+            <div class="menu-top">
+                <h3>Стейк из цветной капусты</h3>
+                <div class="price">990 ₽</div>
+            </div>
+
+            <p>
+                Крем из кешью, зелень, масло чили
+            </p>
+
+        </div>
+
+        <div class="menu-item">
+
+            <div class="menu-top">
+                <h3>Шоколадный фондан</h3>
+                <div class="price">790 ₽</div>
+            </div>
+
+            <p>
+                Ванильное мороженое, солёная карамель
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="gallery reveal" id="gallery">
+
+    <div class="label">
+        АТМОСФЕРА
+    </div>
+
+    <h2 class="title">
+        Здесь хочется<br>
+        остаться.
+    </h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+
+    </div>
+
+</section>
+
+<section class="booking reveal" id="booking">
+
+    <h2>
+        Ваш стол<br>
+        уже ждёт.
+    </h2>
+
+    <p>
+        Бронируйте стол заранее и проведите вечер
+        в атмосфере NOIR.
+    </p>
+
+    <a href="#" class="booking-button">
+        Забронировать стол
+    </a>
+
+</section>
+
+<footer>
+
+    <div>
+        © 2026 NOIR
+    </div>
+
+    <div>
+        Москва · Улица Примерная, 12
+    </div>
+
+</footer>
+
+<script>
+
+const elements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+
+    elements.forEach(element => {
+
+        const position =
+            element.getBoundingClientRect().top;
+
+        const screenHeight =
+            window.innerHeight;
+
+        if (position < screenHeight - 100) {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,650 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOVA — AI Platform</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(5,5,5,.7);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid #1c1c1c;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #8cff00;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #8cff00;
+}
+
+.header-btn {
+    color: #050505;
+    background: #8cff00;
+    padding: 11px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 160px 7% 100px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: #8cff00;
+    filter: blur(180px);
+    opacity: .12;
+    right: -150px;
+    top: 100px;
+    animation: glowMove 6s infinite alternate;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+}
+
+.badge {
+    display: inline-block;
+    border: 1px solid #303030;
+    padding: 10px 15px;
+    border-radius: 30px;
+    color: #8cff00;
+    font-size: 12px;
+    margin-bottom: 25px;
+    animation: fadeUp .8s forwards;
+}
+
+h1 {
+    font-size: clamp(65px, 9vw, 140px);
+    line-height: .86;
+    letter-spacing: -7px;
+    margin-bottom: 35px;
+    animation: fadeUp .8s .1s both;
+}
+
+.hero-text {
+    max-width: 600px;
+    color: #888;
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    animation: fadeUp .8s .2s both;
+}
+
+.main-btn {
+    display: inline-block;
+    padding: 17px 27px;
+    border-radius: 50px;
+    background: #8cff00;
+    color: #050505;
+    text-decoration: none;
+    font-weight: bold;
+    animation: fadeUp .8s .3s both;
+    transition: .3s;
+}
+
+.main-btn:hover {
+    transform: scale(1.07);
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    position: absolute;
+    right: 6%;
+    bottom: 10%;
+    width: 370px;
+    padding: 25px;
+    border: 1px solid #292929;
+    border-radius: 25px;
+    background: rgba(18,18,18,.8);
+    backdrop-filter: blur(20px);
+    transform: rotate(5deg);
+    animation: floating 5s infinite ease-in-out;
+}
+
+.dashboard-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    color: #777;
+    font-size: 13px;
+}
+
+.dashboard-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 8px;
+    background: #252525;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress div {
+    height: 100%;
+    width: 76%;
+    background: #8cff00;
+}
+
+.ai-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.ai-box {
+    flex: 1;
+    padding: 18px;
+    background: #111;
+    border-radius: 15px;
+}
+
+.ai-box strong {
+    display: block;
+    font-size: 22px;
+    color: #8cff00;
+}
+
+.ai-box span {
+    color: #666;
+    font-size: 11px;
+}
+
+/* FEATURES */
+
+.section {
+    padding: 120px 7%;
+}
+
+.section-label {
+    color: #8cff00;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: clamp(45px, 6vw, 80px);
+    letter-spacing: -4px;
+    margin-bottom: 60px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.feature {
+    padding: 35px;
+    min-height: 300px;
+    border: 1px solid #242424;
+    border-radius: 25px;
+    background: #0d0d0d;
+    transition: .5s;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    border-color: #8cff00;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: #8cff00;
+    color: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    margin-bottom: 30px;
+}
+
+.feature h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.feature p {
+    color: #777;
+    line-height: 1.7;
+}
+
+/* STATS */
+
+.stats {
+    margin: 0 7%;
+    padding: 60px 0;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+}
+
+.stat-number {
+    color: #8cff00;
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.stat-text {
+    color: #666;
+    margin-top: 8px;
+}
+
+/* CTA */
+
+.cta {
+    margin: 120px 7%;
+    padding: 100px 40px;
+    border: 1px solid #282828;
+    border-radius: 35px;
+    text-align: center;
+    background:
+        radial-gradient(circle at center, rgba(140,255,0,.1), transparent 50%);
+}
+
+.cta h2 {
+    font-size: clamp(45px,7vw,90px);
+    letter-spacing: -5px;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 7%;
+    border-top: 1px solid #222;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: .8s;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floating {
+    0%,100% {
+        transform: rotate(5deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(5deg) translateY(-18px);
+    }
+}
+
+@keyframes glowMove {
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(-100px,80px);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    header {
+        padding: 18px 20px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 130px 20px 60px;
+        display: block;
+    }
+
+    h1 {
+        font-size: 70px;
+        letter-spacing: -4px;
+    }
+
+    .dashboard {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 70px;
+        transform: rotate(2deg);
+    }
+
+    .section {
+        padding: 80px 20px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        margin: 0 20px;
+        grid-template-columns: 1fr;
+    }
+
+    .cta {
+        margin: 70px 20px;
+        padding: 70px 20px;
+    }
+
+    footer {
+        padding: 35px 20px;
+        display: block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">NOVA<span>.</span></div>
+
+    <nav>
+        <a href="#features">Возможности</a>
+        <a href="#stats">Результаты</a>
+        <a href="#start">Начать</a>
+    </nav>
+
+    <a href="#start" class="header-btn">
+        Попробовать
+    </a>
+
+</header>
+
+<section class="hero">
+
+    <div class="glow"></div>
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✦ AI PLATFORM 2026
+        </div>
+
+        <h1>
+            БУДУЩЕЕ<br>
+            УЖЕ<br>
+            ЗДЕСЬ.
+        </h1>
+
+        <p class="hero-text">
+            NOVA помогает создавать, анализировать и
+            автоматизировать задачи с помощью искусственного
+            интеллекта.
+        </p>
+
+        <a href="#start" class="main-btn">
+            Начать бесплатно →
+        </a>
+
+    </div>
+
+    <div class="dashboard">
+
+        <div class="dashboard-top">
+            <span>NOVA AI</span>
+            <span>ONLINE ●</span>
+        </div>
+
+        <div class="dashboard-title">
+            Производительность
+        </div>
+
+        <div class="progress">
+            <div></div>
+        </div>
+
+        <div class="ai-row">
+
+            <div class="ai-box">
+                <strong>76%</strong>
+                <span>Эффективность</span>
+            </div>
+
+            <div class="ai-box">
+                <strong>2.4K</strong>
+                <span>Задач</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section reveal" id="features">
+
+    <div class="section-label">
+        ВОЗМОЖНОСТИ
+    </div>
+
+    <h2 class="section-title">
+        Один инструмент.<br>
+        Тысячи возможностей.
+    </h2>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <div class="icon">✦</div>
+
+            <h3>Генерация</h3>
+
+            <p>
+                Создавай тексты, идеи, изображения
+                и контент за считанные секунды.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">↗</div>
+
+            <h3>Аналитика</h3>
+
+            <p>
+                Анализируй данные и получай
+                понятные ответы без сложных таблиц.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">∞</div>
+
+            <h3>Автоматизация</h3>
+
+            <p>
+                Передавай рутинные задачи искусственному
+                интеллекту и экономь своё время.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats reveal" id="stats">
+
+    <div>
+        <div class="stat-number">98%</div>
+        <div class="stat-text">довольных пользователей</div>
+    </div>
+
+    <div>
+        <div class="stat-number">24/7</div>
+        <div class="stat-text">доступ к платформе</div>
+    </div>
+
+    <div>
+        <div class="stat-number">10K+</div>
+        <div class="stat-text">созданных проектов</div>
+    </div>
+
+</section>
+
+<section class="cta reveal" id="start">
+
+    <h2>
+        Попробуй NOVA.
+    </h2>
+
+    <p>
+        Начни использовать AI уже сегодня.
+    </p>
+
+    <a href="#" class="main-btn">
+        Создать аккаунт →
+    </a>
+
+</section>
+
+<footer>
+
+    <div>© 2026 NOVA.</div>
+
+    <div>AI · Technology · Future</div>
+
+</footer>
+
+<script>
+
+const elements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+
+    elements.forEach(element => {
+
+        const position =
+            element.getBoundingClientRect().top;
+
+        if (position < window.innerHeight - 100) {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+</script>
+
+</body>
+</html>
+```

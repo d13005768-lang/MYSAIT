@@ -1,0 +1,636 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CASA — Interior Studio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #eeeae2;
+    color: #24211d;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(238,234,226,.85);
+    backdrop-filter: blur(15px);
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    letter-spacing: 3px;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    color: #555;
+    text-decoration: none;
+    font-size: 13px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #a26f43;
+}
+
+.contact-btn {
+    background: #24211d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 140px 6% 70px;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content {
+    animation: reveal 1s forwards;
+}
+
+.label {
+    color: #a26f43;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: clamp(60px, 8vw, 120px);
+    line-height: .88;
+    letter-spacing: -6px;
+    margin-bottom: 30px;
+}
+
+.hero p {
+    max-width: 470px;
+    color: #777;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.hero-link {
+    color: #24211d;
+    text-decoration: none;
+    border-bottom: 1px solid #24211d;
+    padding-bottom: 5px;
+}
+
+.hero-image {
+    height: 720px;
+    background:
+        url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1300&q=85")
+        center/cover;
+    animation: imageIn 1.2s forwards;
+}
+
+/* INTRO */
+
+.intro {
+    padding: 130px 6%;
+    background: #24211d;
+    color: white;
+    text-align: center;
+}
+
+.intro h2 {
+    max-width: 900px;
+    margin: auto;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: clamp(40px,6vw,75px);
+    line-height: 1;
+}
+
+.intro span {
+    color: #c29b75;
+}
+
+/* PROJECTS */
+
+.projects {
+    padding: 130px 6%;
+}
+
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-family: Georgia, serif;
+    font-size: clamp(45px,6vw,80px);
+    font-weight: normal;
+    letter-spacing: -4px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 25px;
+}
+
+.project {
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+}
+
+.project:nth-child(2) {
+    margin-top: 120px;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    transition: .8s;
+}
+
+.project:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project:nth-child(1) .project-image {
+    background-image:
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85");
+}
+
+.project:nth-child(2) .project-image {
+    background-image:
+        url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85");
+}
+
+.project-info {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    padding: 20px;
+    background: rgba(255,255,255,.9);
+    backdrop-filter: blur(10px);
+}
+
+.project-info h3 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    color: #777;
+    font-size: 13px;
+}
+
+/* SERVICES */
+
+.services {
+    padding: 130px 6%;
+    background: #ddd7cc;
+}
+
+.service {
+    padding: 30px 0;
+    border-bottom: 1px solid #aaa39a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .4s;
+}
+
+.service:hover {
+    padding-left: 20px;
+}
+
+.service-number {
+    color: #a26f43;
+    font-size: 13px;
+}
+
+.service h3 {
+    font-family: Georgia, serif;
+    font-size: 35px;
+    font-weight: normal;
+}
+
+.service-arrow {
+    font-size: 30px;
+}
+
+/* CONTACT */
+
+.contact {
+    padding: 150px 6%;
+    text-align: center;
+}
+
+.contact h2 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: clamp(50px,8vw,110px);
+    line-height: .9;
+    letter-spacing: -6px;
+    margin-bottom: 30px;
+}
+
+.contact p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.contact a {
+    display: inline-block;
+    background: #24211d;
+    color: white;
+    padding: 17px 30px;
+    text-decoration: none;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 45px 6%;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 13px;
+}
+
+/* SCROLL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1s;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ANIMATIONS */
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes imageIn {
+    from {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    header {
+        padding: 18px 20px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        display: block;
+        padding: 120px 20px 60px;
+    }
+
+    h1 {
+        font-size: 70px;
+        letter-spacing: -4px;
+    }
+
+    .hero-image {
+        height: 500px;
+        margin-top: 60px;
+    }
+
+    .intro {
+        padding: 90px 20px;
+    }
+
+    .projects {
+        padding: 80px 20px;
+    }
+
+    .section-top {
+        display: block;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project,
+    .project:nth-child(2) {
+        margin-top: 0;
+        min-height: 500px;
+    }
+
+    .project-image {
+        min-height: 500px;
+    }
+
+    .services {
+        padding: 80px 20px;
+    }
+
+    .service h3 {
+        font-size: 25px;
+        margin: 0 15px;
+    }
+
+    .contact {
+        padding: 100px 20px;
+    }
+
+    footer {
+        padding: 35px 20px;
+        display: block;
+    }
+
+    footer div + div {
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">CASA</div>
+
+    <nav>
+        <a href="#studio">Студия</a>
+        <a href="#projects">Проекты</a>
+        <a href="#services">Услуги</a>
+        <a href="#contact">Контакты</a>
+    </nav>
+
+    <a href="#contact" class="contact-btn">
+        Обсудить проект
+    </a>
+
+</header>
+
+<section class="hero" id="studio">
+
+    <div class="hero-content">
+
+        <div class="label">
+            INTERIOR DESIGN STUDIO
+        </div>
+
+        <h1>
+            ПРОСТРАНСТВО<br>
+            С ХАРАКТЕРОМ.
+        </h1>
+
+        <p>
+            Создаём интерьеры, в которых архитектура,
+            материалы и свет работают как единое целое.
+        </p>
+
+        <a href="#projects" class="hero-link">
+            Смотреть проекты →
+        </a>
+
+    </div>
+
+    <div class="hero-image"></div>
+
+</section>
+
+<section class="intro reveal">
+
+    <h2>
+        Мы не просто создаём красивые интерьеры.
+        <span>Мы создаём пространство для жизни.</span>
+    </h2>
+
+</section>
+
+<section class="projects" id="projects">
+
+    <div class="section-top reveal">
+
+        <div>
+            <div class="label">ИЗБРАННЫЕ РАБОТЫ</div>
+
+            <h2 class="section-title">
+                Проекты
+            </h2>
+        </div>
+
+    </div>
+
+    <div class="projects-grid">
+
+        <div class="project reveal">
+
+            <div class="project-image"></div>
+
+            <div class="project-info">
+
+                <h3>Apartment 42</h3>
+
+                <p>
+                    Москва · 126 м² · 2026
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="project reveal">
+
+            <div class="project-image"></div>
+
+            <div class="project-info">
+
+                <h3>House in Forest</h3>
+
+                <p>
+                    Подмосковье · 240 м² · 2026
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="services" id="services">
+
+    <div class="label">
+        ЧТО МЫ ДЕЛАЕМ
+    </div>
+
+    <div class="service reveal">
+
+        <span class="service-number">01</span>
+
+        <h3>Дизайн интерьера</h3>
+
+        <span class="service-arrow">↗</span>
+
+    </div>
+
+    <div class="service reveal">
+
+        <span class="service-number">02</span>
+
+        <h3>Архитектура</h3>
+
+        <span class="service-arrow">↗</span>
+
+    </div>
+
+    <div class="service reveal">
+
+        <span class="service-number">03</span>
+
+        <h3>Авторский надзор</h3>
+
+        <span class="service-arrow">↗</span>
+
+    </div>
+
+    <div class="service reveal">
+
+        <span class="service-number">04</span>
+
+        <h3>Комплектация</h3>
+
+        <span class="service-arrow">↗</span>
+
+    </div>
+
+</section>
+
+<section class="contact reveal" id="contact">
+
+    <div class="label">
+        НОВЫЙ ПРОЕКТ
+    </div>
+
+    <h2>
+        Давайте<br>
+        создадим его.
+    </h2>
+
+    <p>
+        Расскажите о вашей идее — мы свяжемся с вами.
+    </p>
+
+    <a href="mailto:hello@casa-example.ru">
+        hello@casa-example.ru
+    </a>
+
+</section>
+
+<footer>
+
+    <div>© 2026 CASA Studio</div>
+
+    <div>Architecture · Interior · Design</div>
+
+</footer>
+
+<script>
+
+const elements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+
+    elements.forEach(element => {
+
+        const position =
+            element.getBoundingClientRect().top;
+
+        if (position < window.innerHeight - 100) {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+</script>
+
+</body>
+</html>
+```

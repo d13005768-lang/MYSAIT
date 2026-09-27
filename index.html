@@ -1,0 +1,788 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MY WORKS — Портфолио</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 700px;
+    height: 700px;
+    background: #5d35ff;
+    filter: blur(220px);
+    opacity: .12;
+    top: -300px;
+    left: -200px;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: #00e5ff;
+    filter: blur(220px);
+    opacity: .08;
+    right: -300px;
+    bottom: -300px;
+    pointer-events: none;
+}
+
+/* HEADER */
+
+header {
+    width: 100%;
+    padding: 28px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #8d6cff;
+}
+
+.header-text {
+    color: #777;
+    font-size: 13px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 100px 7% 80px;
+    position: relative;
+}
+
+.eyebrow {
+    color: #8d6cff;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+
+    opacity: 0;
+    animation: fadeUp .8s forwards;
+}
+
+h1 {
+    font-size: clamp(60px, 9vw, 135px);
+    line-height: .85;
+    letter-spacing: -7px;
+    max-width: 1000px;
+
+    opacity: 0;
+    animation: fadeUp .8s .1s forwards;
+}
+
+.hero-description {
+    max-width: 550px;
+    color: #777;
+    line-height: 1.7;
+    font-size: 17px;
+    margin-top: 35px;
+
+    opacity: 0;
+    animation: fadeUp .8s .2s forwards;
+}
+
+/* PROJECTS */
+
+.projects {
+    padding: 30px 7% 120px;
+}
+
+.projects-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 35px;
+}
+
+.projects-title {
+    font-size: 13px;
+    color: #777;
+    letter-spacing: 2px;
+}
+
+.projects-count {
+    color: #555;
+    font-size: 13px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* CARD */
+
+.card {
+    position: relative;
+    height: 430px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid #252525;
+    background: #111;
+    cursor: pointer;
+
+    opacity: 0;
+    transform: translateY(40px);
+
+    animation: cardIn .8s forwards;
+}
+
+.card:nth-child(1) {
+    animation-delay: .1s;
+}
+
+.card:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.card:nth-child(3) {
+    animation-delay: .3s;
+}
+
+.card:nth-child(4) {
+    animation-delay: .4s;
+}
+
+.card:nth-child(5) {
+    animation-delay: .5s;
+}
+
+.card:hover {
+    border-color: #6250c7;
+}
+
+.card-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: .8s;
+}
+
+.card:hover .card-image {
+    transform: scale(1.07);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.9),
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.1)
+        );
+}
+
+.card-info {
+    position: absolute;
+    z-index: 2;
+    left: 30px;
+    right: 30px;
+    bottom: 28px;
+}
+
+.card-number {
+    color: #aaa;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.card-info h2 {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.card-info p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.open {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: .3s;
+}
+
+.card:hover .open {
+    transform: rotate(45deg);
+}
+
+/* DIFFERENT PREVIEWS */
+
+.card:nth-child(1) .card-image {
+    background:
+        linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+}
+
+.card:nth-child(2) .card-image {
+    background:
+        linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+}
+
+.card:nth-child(3) .card-image {
+    background:
+        linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+}
+
+.card:nth-child(4) .card-image {
+    background:
+        linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+}
+
+.card:nth-child(5) .card-image {
+    background:
+        linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.4)),
+        url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80")
+        center/cover;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 40px 7%;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+    font-size: 12px;
+}
+
+/* DEMO WINDOW */
+
+.demo {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background: rgba(0,0,0,.9);
+    backdrop-filter: blur(20px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s;
+}
+
+.demo.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.demo-window {
+    width: 94vw;
+    height: 92vh;
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    transform: scale(.94);
+    transition: .4s;
+}
+
+.demo.active .demo-window {
+    transform: scale(1);
+}
+
+.demo-bar {
+    height: 48px;
+    background: #161616;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 7px;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #555;
+}
+
+.demo-title {
+    color: #777;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.close {
+    margin-left: auto;
+    border: none;
+    background: #292929;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.demo iframe {
+    width: 100%;
+    height: calc(100% - 48px);
+    border: none;
+    background: white;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes cardIn {
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    header {
+        padding: 20px;
+    }
+
+    .header-text {
+        display: none;
+    }
+
+    .hero {
+        padding: 70px 20px 60px;
+    }
+
+    h1 {
+        font-size: 65px;
+        letter-spacing: -4px;
+    }
+
+    .projects {
+        padding: 20px 20px 80px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        height: 400px;
+    }
+
+    .card-info h2 {
+        font-size: 32px;
+    }
+
+    footer {
+        padding: 30px 20px;
+        display: block;
+    }
+
+    footer div + div {
+        margin-top: 10px;
+    }
+
+    .demo-window {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .demo-bar {
+        height: 45px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        MY<span>.</span>WORKS
+    </div>
+
+    <div class="header-text">
+        WEB DESIGN · DEVELOPMENT · 2026
+    </div>
+
+</header>
+
+<section class="hero">
+
+    <div class="eyebrow">
+        МОЁ ПОРТФОЛИО
+    </div>
+
+    <h1>
+        Сайты,<br>
+        которые<br>
+        работают.
+    </h1>
+
+    <p class="hero-description">
+        Пять демонстрационных проектов в разных стилях.
+        Нажмите на любой проект, чтобы открыть полноценную
+        интерактивную версию.
+    </p>
+
+</section>
+
+<section class="projects">
+
+    <div class="projects-top">
+
+        <div class="projects-title">
+            SELECTED WORKS
+        </div>
+
+        <div class="projects-count">
+            05 PROJECTS
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <!-- 1 -->
+
+        <div class="card" onclick="openDemo('restaurant')">
+
+            <div class="card-image"></div>
+
+            <div class="card-info">
+
+                <div class="card-number">
+                    01 / 05
+                </div>
+
+                <h2>NOIR</h2>
+
+                <p>
+                    Премиальный ресторан
+                </p>
+
+            </div>
+
+            <div class="open">
+                ↗
+            </div>
+
+        </div>
+
+        <!-- 2 -->
+
+        <div class="card" onclick="openDemo('fitness')">
+
+            <div class="card-image"></div>
+
+            <div class="card-info">
+
+                <div class="card-number">
+                    02 / 05
+                </div>
+
+                <h2>FORMA</h2>
+
+                <p>
+                    Фитнес-клуб
+                </p>
+
+            </div>
+
+            <div class="open">
+                ↗
+            </div>
+
+        </div>
+
+        <!-- 3 -->
+
+        <div class="card" onclick="openDemo('interior')">
+
+            <div class="card-image"></div>
+
+            <div class="card-info">
+
+                <div class="card-number">
+                    03 / 05
+                </div>
+
+                <h2>CASA</h2>
+
+                <p>
+                    Студия интерьеров
+                </p>
+
+            </div>
+
+            <div class="open">
+                ↗
+            </div>
+
+        </div>
+
+        <!-- 4 -->
+
+        <div class="card" onclick="openDemo('nova')">
+
+            <div class="card-image"></div>
+
+            <div class="card-info">
+
+                <div class="card-number">
+                    04 / 05
+                </div>
+
+                <h2>NOVA</h2>
+
+                <p>
+                    AI / Technology
+                </p>
+
+            </div>
+
+            <div class="open">
+                ↗
+            </div>
+
+        </div>
+
+        <!-- 5 -->
+
+        <div class="card" onclick="openDemo('portfolio')">
+
+            <div class="card-image"></div>
+
+            <div class="card-info">
+
+                <div class="card-number">
+                    05 / 05
+                </div>
+
+                <h2>PORTFOLIO</h2>
+
+                <p>
+                    Персональный сайт
+                </p>
+
+            </div>
+
+            <div class="open">
+                ↗
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div>
+        © 2026 MY.WORKS
+    </div>
+
+    <div>
+        Сайты на заказ
+    </div>
+
+</footer>
+
+
+<!-- DEMO -->
+
+<div class="demo" id="demo">
+
+    <div class="demo-window">
+
+        <div class="demo-bar">
+
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+
+            <div class="demo-title" id="demoTitle">
+                Demo Website
+            </div>
+
+            <button class="close" onclick="closeDemo()">
+                ×
+            </button>
+
+        </div>
+
+        <iframe id="demoFrame"></iframe>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+    СЮДА ПОЗЖЕ МОЖНО ПОСТАВИТЬ
+    ССЫЛКИ НА ТВОИ НАСТОЯЩИЕ ДЕМО-САЙТЫ.
+*/
+
+const demos = {
+
+    restaurant: {
+        title: "NOIR — Restaurant",
+        url: "noir/index.html"
+    },
+
+    fitness: {
+        title: "FORMA — Fitness",
+        url: "forma/index.html"
+    },
+
+    interior: {
+        title: "CASA — Interior",
+        url: "casa/index.html"
+    },
+
+    nova: {
+        title: "NOVA — AI Platform",
+        url: "nova/index.html"
+    },
+
+    portfolio: {
+        title: "PORTFOLIO — Personal Website",
+        url: "portfolio/index.html"
+    }
+
+};
+
+
+function openDemo(name) {
+
+    const demo = demos[name];
+
+    if (!demo) return;
+
+    document.getElementById("demoTitle").textContent =
+        demo.title;
+
+    document.getElementById("demoFrame").src =
+        demo.url;
+
+    document.getElementById("demo").classList.add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeDemo() {
+
+    const windowDemo =
+        document.getElementById("demo");
+
+    const frame =
+        document.getElementById("demoFrame");
+
+    windowDemo.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+    setTimeout(() => {
+
+        frame.src = "";
+
+    }, 350);
+
+}
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeDemo();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```

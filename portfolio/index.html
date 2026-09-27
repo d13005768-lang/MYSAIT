@@ -1,0 +1,5145 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Моё портфолио</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+html{
+scroll-behavior:smooth
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#080808;
+color:white;
+overflow-x:hidden
+}
+
+button,input,textarea{
+font:inherit
+}
+
+button{
+cursor:pointer
+}
+
+header{
+padding:25px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:relative;
+z-index:20
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+transition:.3s
+}
+
+.logo:hover{
+color:#a3ff12
+}
+
+nav{
+display:flex;
+align-items:center;
+gap:28px
+}
+
+nav a{
+color:#aaa;
+text-decoration:none;
+transition:.3s
+}
+
+nav a:hover{
+color:white
+}
+
+.login-button{
+background:transparent;
+color:#a3ff12;
+border:1px solid #a3ff12;
+padding:10px 20px;
+border-radius:50px;
+font-weight:bold;
+transition:.3s
+}
+
+.login-button:hover{
+background:#a3ff12;
+color:#000
+}
+
+.menu-button{
+display:none;
+background:#151515;
+border:1px solid #292929;
+color:white;
+font-size:23px;
+width:45px;
+height:45px;
+border-radius:13px
+}
+
+.mobile-menu{
+display:none
+}
+
+.mobile-menu a,
+.mobile-menu button{
+display:block;
+width:100%;
+text-align:left;
+padding:15px;
+color:#aaa;
+text-decoration:none;
+background:none;
+border:0
+}
+
+.mobile-menu a:hover,
+.mobile-menu button:hover{
+color:#a3ff12
+}
+
+
+/* HERO */
+
+.hero{
+min-height:80vh;
+padding:100px 7%;
+display:flex;
+align-items:center
+}
+
+.hero-content{
+max-width:800px
+}
+
+.small-text{
+color:#a3ff12;
+font-size:18px;
+margin-bottom:20px
+}
+
+h1{
+font-size:clamp(55px,6vw,120px);
+line-height:.95;
+margin-bottom:30px
+}
+
+.description{
+color:#aaa;
+font-size:20px;
+line-height:1.6;
+max-width:650px;
+margin-bottom:40px
+}
+
+.button{
+display:inline-block;
+background:#a3ff12;
+color:#000;
+padding:18px 30px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s
+}
+
+.button:hover{
+transform:scale(1.05)
+}
+
+
+/* SECTIONS */
+
+.projects,
+.future-projects,
+.contacts,
+.account{
+padding:100px 7%
+}
+
+.section-title{
+font-size:55px;
+margin-bottom:50px
+}
+
+.cards,
+.future-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px
+}
+
+.card,
+.future-card{
+background:#151515;
+border:1px solid #292929;
+border-radius:25px;
+padding:35px;
+min-height:280px;
+transition:.3s;
+opacity:0;
+transform:translateY(35px)
+}
+
+.card.show,
+.future-card.show,
+.section-title.show{
+opacity:1;
+transform:translateY(0)
+}
+
+.card:hover,
+.future-card:hover{
+transform:translateY(-8px);
+border-color:#a3ff12
+}
+
+.card h3,
+.future-card h3{
+font-size:30px;
+margin-bottom:15px
+}
+
+.card p,
+.future-card p{
+color:#999;
+line-height:1.6;
+margin-bottom:25px
+}
+
+.price{
+color:#a3ff12;
+font-size:24px;
+font-weight:bold;
+margin-bottom:20px
+}
+
+.buy-button{
+background:#a3ff12;
+color:#000;
+padding:13px 22px;
+border-radius:50px;
+border:0;
+font-weight:bold;
+transition:.3s
+}
+
+.buy-button:hover{
+transform:scale(1.05)
+}
+
+.current-orders-button{
+background:#222;
+color:#a3ff12;
+padding:13px 20px;
+border-radius:50px;
+border:1px solid #333;
+font-weight:bold;
+transition:.3s
+}
+
+.current-orders-button:hover{
+border-color:#a3ff12;
+background:#a3ff12;
+color:#000
+}
+
+.service-buttons{
+display:flex;
+gap:10px;
+flex-wrap:wrap
+}
+
+.future-number{
+color:#a3ff12;
+font-size:13px;
+letter-spacing:2px;
+margin-bottom:25px
+}
+
+.status{
+display:inline-block;
+color:#a3ff12;
+border:1px solid #333;
+padding:8px 13px;
+border-radius:50px;
+font-size:13px
+}
+
+
+/* ACCOUNT */
+
+.account{
+display:none
+}
+
+.account.active{
+display:block
+}
+
+.account-shell{
+max-width:1250px;
+margin:0 auto
+}
+
+.account-heading{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+margin-bottom:35px
+}
+
+.account-heading-left{
+display:flex;
+align-items:center;
+gap:18px
+}
+
+.account-mark{
+width:58px;
+height:58px;
+border-radius:18px;
+background:#a3ff12;
+color:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+font-weight:bold
+}
+
+.account-heading h2{
+font-size:45px;
+margin-bottom:6px
+}
+
+.account-heading p{
+color:#666
+}
+
+.logout-button{
+background:#151515;
+color:#aaa;
+border:1px solid #292929;
+padding:12px 20px;
+border-radius:50px;
+transition:.3s
+}
+
+.logout-button:hover{
+color:white;
+border-color:#a3ff12
+}
+
+
+/* PROFILE */
+
+.profile-banner{
+position:relative;
+overflow:hidden;
+background:#151515;
+border:1px solid #292929;
+border-radius:30px;
+padding:35px;
+margin-bottom:25px
+}
+
+.profile-main{
+position:relative;
+z-index:2;
+display:flex;
+align-items:center;
+gap:25px
+}
+
+.avatar{
+width:105px;
+height:105px;
+min-width:105px;
+border-radius:30px;
+background:#a3ff12;
+color:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+font-weight:bold;
+overflow:hidden;
+border:3px solid #080808;
+box-shadow:0 0 0 1px #a3ff12
+}
+
+.avatar img{
+width:100%;
+height:100%;
+object-fit:cover
+}
+
+.profile-info h3{
+font-size:30px;
+margin-bottom:8px
+}
+
+.profile-info p{
+color:#777;
+margin-bottom:18px;
+word-break:break-word
+}
+
+.file-label{
+display:inline-block;
+background:#222;
+color:#aaa;
+padding:10px 16px;
+border-radius:50px;
+font-size:14px;
+cursor:pointer;
+transition:.3s
+}
+
+.file-label:hover{
+color:white;
+background:#292929
+}
+
+#avatarInput{
+display:none
+}
+
+
+/* ACCOUNT GRID */
+
+.account-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px
+}
+
+.account-card{
+background:#151515;
+border:1px solid #292929;
+border-radius:25px;
+padding:30px
+}
+
+.account-card.full{
+grid-column:1/-1
+}
+
+.account-card-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px
+}
+
+.account-card h3{
+font-size:24px
+}
+
+.card-label{
+color:#666;
+font-size:13px
+}
+
+
+/* FORMS */
+
+.form-group{
+margin-bottom:17px
+}
+
+.form-group label{
+display:block;
+color:#888;
+font-size:14px;
+margin-bottom:8px
+}
+
+.form-group input,
+.form-group textarea{
+width:100%;
+background:#080808;
+color:white;
+border:1px solid #292929;
+border-radius:14px;
+padding:14px;
+outline:none
+}
+
+.form-group textarea{
+resize:vertical;
+min-height:100px
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+border-color:#a3ff12
+}
+
+.save-button{
+background:#a3ff12;
+color:#000;
+border:0;
+padding:13px 22px;
+border-radius:50px;
+font-weight:bold
+}
+
+
+/* ORDERS */
+
+.orders,
+.payments{
+display:grid;
+gap:14px
+}
+
+.order,
+.payment{
+background:#080808;
+border:1px solid #292929;
+border-radius:20px;
+padding:20px;
+transition:.3s
+}
+
+.order:hover,
+.payment:hover{
+border-color:#a3ff12;
+transform:translateY(-2px)
+}
+
+.order-top,
+.payment-top{
+display:flex;
+justify-content:space-between;
+gap:15px
+}
+
+.order-name,
+.payment-name{
+font-weight:bold;
+font-size:18px
+}
+
+.order-price,
+.payment-price{
+color:#a3ff12;
+font-weight:bold;
+white-space:nowrap
+}
+
+.order-date,
+.payment-date{
+color:#666;
+font-size:13px;
+margin-top:7px
+}
+
+.order-status,
+.payment-status{
+display:inline-block;
+color:#a3ff12;
+font-size:13px;
+margin-top:10px
+}
+
+.order-actions{
+display:flex;
+gap:10px;
+margin-top:17px;
+flex-wrap:wrap
+}
+
+.order-pay{
+background:#a3ff12;
+color:#000;
+border:0;
+padding:10px 16px;
+border-radius:50px;
+font-weight:bold
+}
+
+.order-details,
+.order-open{
+background:#151515;
+color:#aaa;
+border:1px solid #292929;
+padding:10px 16px;
+border-radius:50px
+}
+
+.order-open{
+color:#a3ff12
+}
+
+.order-cancel{
+background:transparent;
+color:#777;
+border:1px solid #292929;
+padding:10px 16px;
+border-radius:50px
+}
+
+.order-cancel:hover{
+color:#ff6666;
+border-color:#ff6666
+}
+
+.order-paid{
+color:#a3ff12;
+border:1px solid #2c4014;
+background:#111808;
+padding:10px 16px;
+border-radius:50px;
+display:inline-block;
+font-size:13px
+}
+
+
+/* CURRENT ORDERS */
+
+.current-service-info{
+background:#080808;
+border:1px solid #292929;
+border-radius:18px;
+padding:18px;
+margin-bottom:20px
+}
+
+.current-service-name{
+font-size:20px;
+font-weight:bold;
+margin-bottom:7px
+}
+
+.current-service-text{
+color:#777;
+font-size:14px;
+line-height:1.5
+}
+
+.current-order{
+background:#080808;
+border:1px solid #292929;
+border-radius:18px;
+padding:18px;
+margin-bottom:12px
+}
+
+.current-order-top{
+display:flex;
+justify-content:space-between;
+gap:15px
+}
+
+.current-order-name{
+font-weight:bold;
+font-size:17px
+}
+
+.current-order-price{
+color:#a3ff12;
+font-weight:bold
+}
+
+.current-order-info{
+color:#666;
+font-size:13px;
+margin-top:8px
+}
+
+.current-order-buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+flex-wrap:wrap
+}
+
+.open-order-button{
+background:#a3ff12;
+color:#000;
+border:0;
+padding:10px 16px;
+border-radius:50px;
+font-weight:bold
+}
+
+.create-another{
+width:100%;
+margin-top:10px;
+background:#a3ff12;
+color:#000;
+border:0;
+padding:15px;
+border-radius:50px;
+font-weight:bold;
+transition:.3s
+}
+
+.create-another:hover{
+transform:scale(1.02)
+}
+
+.empty{
+color:#666;
+line-height:1.6;
+padding:10px 0
+}
+
+
+/* ORDER PAGE */
+
+.order-page{
+display:none;
+padding:70px 7%;
+border-top:1px solid #222
+}
+
+.order-page.active{
+display:block
+}
+
+.order-page-shell{
+max-width:1100px;
+margin:auto
+}
+
+.back-button{
+background:#151515;
+border:1px solid #292929;
+color:#aaa;
+padding:12px 20px;
+border-radius:50px;
+margin-bottom:30px;
+transition:.3s
+}
+
+.back-button:hover{
+color:#a3ff12;
+border-color:#a3ff12
+}
+
+.order-page-header{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:25px;
+margin-bottom:30px
+}
+
+.order-page-header h2{
+font-size:45px;
+margin-bottom:10px
+}
+
+.order-page-header p{
+color:#666
+}
+
+.order-page-id{
+color:#a3ff12;
+font-size:13px;
+margin-top:8px
+}
+
+
+/* PROGRESS */
+
+.progress-card{
+background:#151515;
+border:1px solid #292929;
+border-radius:25px;
+padding:30px;
+margin-bottom:25px
+}
+
+.progress-title{
+display:flex;
+justify-content:space-between;
+margin-bottom:25px;
+gap:15px
+}
+
+.progress-title h3{
+font-size:22px
+}
+
+.progress-percent{
+color:#a3ff12;
+font-weight:bold
+}
+
+.progress-bar{
+height:8px;
+background:#292929;
+border-radius:50px;
+overflow:hidden;
+margin-bottom:25px
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:#a3ff12;
+border-radius:50px;
+transition:1s
+}
+
+.steps{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px
+}
+
+.step{
+color:#555;
+font-size:13px;
+text-align:center
+}
+
+.step-dot{
+width:13px;
+height:13px;
+border-radius:50%;
+background:#292929;
+margin:0 auto 10px
+}
+
+.step.active{
+color:#a3ff12
+}
+
+.step.active .step-dot{
+background:#a3ff12;
+box-shadow:0 0 15px rgba(163,255,18,.35)
+}
+
+
+/* ORDER CONTENT */
+
+.order-content{
+display:grid;
+grid-template-columns:1.5fr 1fr;
+gap:25px
+}
+
+.order-chat-card,
+.order-files-card{
+background:#151515;
+border:1px solid #292929;
+border-radius:25px;
+padding:25px
+}
+
+.order-chat-card h3,
+.order-files-card h3{
+font-size:24px;
+margin-bottom:20px
+}
+
+
+/* CHAT */
+
+.chat{
+height:450px;
+display:flex;
+flex-direction:column
+}
+
+.chat-messages{
+flex:1;
+overflow-y:auto;
+padding:10px 3px;
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-bottom:15px
+}
+
+.message{
+max-width:80%;
+padding:13px 16px;
+border-radius:18px;
+line-height:1.5;
+font-size:14px
+}
+
+.message.client{
+align-self:flex-end;
+background:#a3ff12;
+color:#000;
+border-bottom-right-radius:5px
+}
+
+.message.admin{
+align-self:flex-start;
+background:#080808;
+border:1px solid #292929;
+color:#aaa;
+border-bottom-left-radius:5px
+}
+
+.message-time{
+font-size:10px;
+opacity:.55;
+margin-top:5px
+}
+
+.chat-form{
+display:flex;
+gap:10px
+}
+
+.chat-input{
+flex:1;
+background:#080808;
+border:1px solid #292929;
+color:white;
+border-radius:50px;
+padding:13px 17px;
+outline:none
+}
+
+.chat-input:focus{
+border-color:#a3ff12
+}
+
+.send-button{
+width:48px;
+height:48px;
+border:0;
+border-radius:50%;
+background:#a3ff12;
+color:#000;
+font-weight:bold
+}
+
+
+/* FILES */
+
+.files-list{
+display:grid;
+gap:10px;
+margin-bottom:20px
+}
+
+.file-item{
+display:flex;
+align-items:center;
+gap:12px;
+background:#080808;
+border:1px solid #292929;
+padding:14px;
+border-radius:15px
+}
+
+.file-icon{
+width:40px;
+height:40px;
+border-radius:12px;
+background:#222;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#a3ff12
+}
+
+.file-info{
+min-width:0;
+flex:1
+}
+
+.file-name{
+font-size:14px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+}
+
+.file-meta{
+font-size:11px;
+color:#666;
+margin-top:4px
+}
+
+.file-download{
+background:#222;
+color:#aaa;
+border:1px solid #292929;
+padding:8px 11px;
+border-radius:50%
+}
+
+.file-download:hover{
+color:#a3ff12;
+border-color:#a3ff12
+}
+
+.file-upload{
+width:100%;
+background:#a3ff12;
+color:#000;
+border:0;
+padding:13px;
+border-radius:50px;
+font-weight:bold
+}
+
+#orderFileInput{
+display:none
+}
+
+.file-note{
+color:#555;
+font-size:12px;
+line-height:1.5;
+margin-top:12px
+}
+
+
+/* ORDER INFO */
+
+.order-info{
+background:#080808;
+border:1px solid #292929;
+border-radius:20px;
+padding:20px;
+margin-top:25px
+}
+
+.order-info-row{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:9px 0;
+border-bottom:1px solid #191919;
+font-size:14px
+}
+
+.order-info-row:last-child{
+border-bottom:0
+}
+
+.order-info-label{
+color:#666
+}
+
+.order-info-value{
+text-align:right
+}
+
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.86);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:100;
+opacity:0;
+visibility:hidden;
+transition:.3s
+}
+
+.modal.active{
+opacity:1;
+visibility:visible
+}
+
+.modal-box{
+width:100%;
+max-width:500px;
+max-height:90vh;
+overflow:auto;
+background:#151515;
+border:1px solid #292929;
+border-radius:25px;
+padding:35px;
+position:relative;
+transform:translateY(25px) scale(.96);
+transition:.3s
+}
+
+.modal.active .modal-box{
+transform:translateY(0) scale(1)
+}
+
+.close{
+position:absolute;
+top:13px;
+right:18px;
+background:none;
+border:0;
+color:#777;
+font-size:30px
+}
+
+.close:hover{
+color:white
+}
+
+.modal-box h2{
+font-size:35px;
+margin-bottom:12px
+}
+
+.modal-description{
+color:#888;
+line-height:1.6;
+margin-bottom:25px
+}
+
+.modal-price{
+color:#a3ff12;
+font-size:27px;
+font-weight:bold;
+margin-bottom:20px
+}
+
+.modal-list{
+list-style:none;
+margin-bottom:25px
+}
+
+.modal-list li{
+color:#aaa;
+padding:7px 0
+}
+
+.modal-list li::before{
+content:"✓";
+color:#a3ff12;
+margin-right:10px
+}
+
+.switch-form{
+text-align:center;
+color:#777;
+margin-top:20px;
+font-size:14px
+}
+
+.switch-form button{
+border:0;
+background:none;
+color:#a3ff12
+}
+
+.error{
+display:none;
+color:#ff5c5c;
+font-size:14px;
+margin-bottom:15px
+}
+
+.error.show{
+display:block
+}
+
+.form-submit{
+width:100%;
+background:#a3ff12;
+color:#000;
+border:0;
+padding:15px;
+border-radius:50px;
+font-weight:bold
+}
+
+
+/* CONTACT */
+
+.contacts{
+border-top:1px solid #222
+}
+
+.contacts-box{
+max-width:700px
+}
+
+.contacts-box h2{
+font-size:55px;
+margin-bottom:20px
+}
+
+.contacts-box p{
+color:#999;
+font-size:20px;
+line-height:1.6;
+margin-bottom:30px
+}
+
+
+/* FOOTER */
+
+footer{
+padding:50px 7%;
+color:#777;
+border-top:1px solid #222
+}
+
+footer a{
+color:#a3ff12;
+text-decoration:none
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.order-content{
+grid-template-columns:1fr
+}
+
+}
+
+@media(max-width:800px){
+
+header{
+padding:20px
+}
+
+nav{
+display:none
+}
+
+.menu-button{
+display:block
+}
+
+.mobile-menu{
+position:absolute;
+top:75px;
+left:20px;
+right:20px;
+background:#151515;
+border:1px solid #292929;
+border-radius:20px;
+padding:15px;
+z-index:50
+}
+
+.mobile-menu.active{
+display:block
+}
+
+.hero{
+min-height:85vh;
+padding:80px 20px
+}
+
+.projects,
+.future-projects,
+.contacts,
+.account,
+.order-page{
+padding:70px 20px
+}
+
+.cards,
+.future-grid,
+.account-grid{
+grid-template-columns:1fr
+}
+
+.account-card.full{
+grid-column:auto
+}
+
+.section-title,
+.contacts-box h2{
+font-size:40px
+}
+
+.account-heading{
+align-items:flex-start;
+flex-direction:column;
+gap:20px
+}
+
+.account-heading h2{
+font-size:36px
+}
+
+.profile-main{
+align-items:flex-start;
+flex-direction:column
+}
+
+.avatar{
+width:90px;
+height:90px;
+min-width:90px
+}
+
+.order-top,
+.payment-top,
+.current-order-top{
+align-items:flex-start;
+flex-direction:column
+}
+
+.order-actions,
+.current-order-buttons{
+flex-direction:column
+}
+
+.order-actions button,
+.current-order-buttons button{
+width:100%
+}
+
+.service-buttons{
+flex-direction:column
+}
+
+.service-buttons button{
+width:100%
+}
+
+.order-page-header{
+flex-direction:column
+}
+
+.order-page-header h2{
+font-size:36px
+}
+
+.steps{
+grid-template-columns:1fr 1fr;
+gap:20px
+}
+
+}
+
+@media(max-width:450px){
+
+header{
+padding:18px 15px
+}
+
+.hero{
+padding:70px 15px
+}
+
+h1{
+font-size:50px
+}
+
+.description{
+font-size:17px
+}
+
+.projects,
+.future-projects,
+.contacts,
+.account,
+.order-page{
+padding:60px 15px
+}
+
+.section-title,
+.contacts-box h2{
+font-size:36px
+}
+
+.card,
+.future-card,
+.account-card,
+.profile-banner,
+.progress-card,
+.order-chat-card,
+.order-files-card{
+padding:25px;
+border-radius:20px
+}
+
+.profile-info h3{
+font-size:25px
+}
+
+.modal{
+padding:12px
+}
+
+.modal-box{
+padding:25px
+}
+
+.chat{
+height:400px
+}
+
+.message{
+max-width:90%
+}
+
+.chat-form{
+gap:7px
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+PORTFOLIO
+</div>
+
+<nav>
+
+<a href="#about">
+Обо мне
+</a>
+
+<a href="#services">
+Услуги
+</a>
+
+<a href="#future">
+Будущие проекты
+</a>
+
+<a href="#contact">
+Контакты
+</a>
+
+<button
+class="login-button"
+id="loginButton">
+Войти </button>
+
+</nav>
+
+<button
+class="menu-button"
+id="menuButton">
+☰ </button>
+
+<div
+class="mobile-menu"
+id="mobileMenu">
+
+<a href="#about">
+Обо мне
+</a>
+
+<a href="#services">
+Услуги
+</a>
+
+<a href="#future">
+Будущие проекты
+</a>
+
+<a href="#contact">
+Контакты
+</a>
+
+<button id="mobileLogin">
+Войти
+</button>
+
+</div>
+
+</header>
+
+<section
+class="hero"
+id="about">
+
+<div class="hero-content">
+
+<div class="small-text">
+WEB DESIGNER / DEVELOPER
+</div>
+
+<h1>
+Создаю сайты,<br>
+которые цепляют.
+</h1>
+
+<p class="description">
+Современный дизайн, анимации и удобный интерфейс.
+Здесь можно посмотреть мои услуги и заказать разработку сайта.
+</p>
+
+<a
+href="#services"
+class="button">
+Смотреть услуги </a>
+
+</div>
+
+</section>
+
+<section
+class="projects"
+id="services">
+
+<h2 class="section-title">
+Мои услуги
+</h2>
+
+<div class="cards">
+
+<div
+class="card"
+data-service-card="Сайт-визитка">
+
+<h3>
+Сайт-визитка
+</h3>
+
+<p>
+Современный одностраничный сайт для человека,
+специалиста или небольшого бизнеса.
+</p>
+
+<div class="price">
+5 000 ₽
+</div>
+
+<div class="service-buttons">
+
+<button
+class="buy-button"
+data-service="Сайт-визитка"
+data-price="5000">
+Заказать </button>
+
+<button
+class="current-orders-button"
+data-current-service="Сайт-визитка"
+style="display:none">
+Открыть текущие заказы </button>
+
+</div>
+
+</div>
+
+<div
+class="card"
+data-service-card="Landing Page">
+
+<h3>
+Landing Page
+</h3>
+
+<p>
+Современный продающий сайт для продукта,
+услуги или компании.
+</p>
+
+<div class="price">
+8 000 ₽
+</div>
+
+<div class="service-buttons">
+
+<button
+class="buy-button"
+data-service="Landing Page"
+data-price="8000">
+Заказать </button>
+
+<button
+class="current-orders-button"
+data-current-service="Landing Page"
+style="display:none">
+Открыть текущие заказы </button>
+
+</div>
+
+</div>
+
+<div
+class="card"
+data-service-card="Интернет-магазин">
+
+<h3>
+Интернет-магазин
+</h3>
+
+<p>
+Современный интернет-магазин с каталогом
+товаров и удобным интерфейсом.
+</p>
+
+<div class="price">
+15 000 ₽
+</div>
+
+<div class="service-buttons">
+
+<button
+class="buy-button"
+data-service="Интернет-магазин"
+data-price="15000">
+Заказать </button>
+
+<button
+class="current-orders-button"
+data-current-service="Интернет-магазин"
+style="display:none">
+Открыть текущие заказы </button>
+
+</div>
+
+</div>
+
+<div
+class="card"
+data-service-card="Индивидуальный сайт">
+
+<h3>
+Индивидуальный сайт
+</h3>
+
+<p>
+Сайт под индивидуальные требования,
+особый дизайн и необходимый функционал.
+</p>
+
+<div class="price">
+от 20 000 ₽
+</div>
+
+<div class="service-buttons">
+
+<button
+class="buy-button"
+data-service="Индивидуальный сайт"
+data-price="20000">
+Обсудить проект </button>
+
+<button
+class="current-orders-button"
+data-current-service="Индивидуальный сайт"
+style="display:none">
+Открыть текущие заказы </button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section
+class="future-projects"
+id="future">
+
+<h2 class="section-title">
+Будущие проекты
+</h2>
+
+<div class="future-grid">
+
+<div class="future-card">
+
+<div class="future-number">
+PROJECT 01
+</div>
+
+<h3>
+Новый веб-сервис
+</h3>
+
+<p>
+Большой проект с современным интерфейсом,
+анимациями и личным кабинетом.
+</p>
+
+<span class="status">
+В разработке
+</span>
+
+</div>
+
+<div class="future-card">
+
+<div class="future-number">
+PROJECT 02
+</div>
+
+<h3>
+Мобильное приложение
+</h3>
+
+<p>
+Идея приложения с удобным интерфейсом
+и современным пользовательским опытом.
+</p>
+
+<span class="status">
+В планах
+</span>
+
+</div>
+
+<div class="future-card">
+
+<div class="future-number">
+PROJECT 03
+</div>
+
+<h3>
+Онлайн-платформа
+</h3>
+
+<p>
+Платформа для работы с проектами,
+заказами и клиентами.
+</p>
+
+<span class="status">
+В планах
+</span>
+
+</div>
+
+<div class="future-card">
+
+<div class="future-number">
+PROJECT 04
+</div>
+
+<h3>
+Экспериментальный проект
+</h3>
+
+<p>
+Новый экспериментальный проект,
+который покажет мои навыки в разработке.
+</p>
+
+<span class="status">
+Идея
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ЛИЧНЫЙ КАБИНЕТ -->
+
+<section
+class="account"
+id="account">
+
+<div class="account-shell">
+
+<div class="account-heading">
+
+<div class="account-heading-left">
+
+<div class="account-mark">
+P
+</div>
+
+<div>
+
+<h2>
+Личный кабинет
+</h2>
+
+<p>
+Управление профилем и заказами
+</p>
+
+</div>
+
+</div>
+
+<button
+class="logout-button"
+id="logoutButton">
+Выйти </button>
+
+</div>
+
+<div class="profile-banner">
+
+<div class="profile-main">
+
+<div
+class="avatar"
+id="avatar">
+U
+</div>
+
+<div class="profile-info">
+
+<h3 id="profileName">
+—
+</h3>
+
+<p id="profileEmail">
+—
+</p>
+
+<label class="file-label">
+
+Изменить аватар
+
+<input
+type="file"
+id="avatarInput"
+accept="image/*">
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="account-grid">
+
+<div class="account-card">
+
+<div class="account-card-header">
+
+<h3>
+Профиль
+</h3>
+
+<span class="card-label">
+Личные данные
+</span>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Имя
+</label>
+
+<input
+type="text"
+id="editName"
+placeholder="Твоё имя">
+
+</div>
+
+<div class="form-group">
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="editEmail"
+placeholder="example@mail.com">
+
+</div>
+
+<button
+class="save-button"
+id="saveProfile">
+Сохранить изменения </button>
+
+</div>
+
+<div class="account-card">
+
+<div class="account-card-header">
+
+<h3>
+Статус
+</h3>
+
+<span class="card-label">
+Аккаунт
+</span>
+
+</div>
+
+<div
+style="color:#a3ff12;font-size:18px;margin-bottom:10px">
+● Аккаунт активен
+</div>
+
+<p
+style="color:#666;line-height:1.6">
+Заказы, сообщения и файлы сейчас сохраняются
+локально в браузере.
+</p>
+
+</div>
+
+<div class="account-card">
+
+<div class="account-card-header">
+
+<h3>
+Мои заказы
+</h3>
+
+<span
+class="card-label"
+id="ordersCount">
+0 заказов </span>
+
+</div>
+
+<div
+class="orders"
+id="orders">
+
+<div class="empty">
+Заказов пока нет.
+</div>
+
+</div>
+
+</div>
+
+<div class="account-card">
+
+<div class="account-card-header">
+
+<h3>
+История оплат
+</h3>
+
+<span class="card-label">
+Платежи
+</span>
+
+</div>
+
+<div
+class="payments"
+id="payments">
+
+<div class="empty">
+Оплат пока нет.
+</div>
+
+</div>
+
+</div>
+
+<div class="account-card full">
+
+<div class="account-card-header">
+
+<h3>
+Мои покупки
+</h3>
+
+<span class="card-label">
+Услуги
+</span>
+
+</div>
+
+<div
+id="purchases"
+class="orders">
+
+<div class="empty">
+Покупок пока нет.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- СТРАНИЦА КОНКРЕТНОГО ЗАКАЗА -->
+
+<section
+class="order-page"
+id="orderPage">
+
+<div class="order-page-shell">
+
+<button
+class="back-button"
+id="backToAccount">
+← Вернуться в личный кабинет </button>
+
+<div class="order-page-header">
+
+<div>
+
+<h2 id="orderPageTitle">
+Заказ
+</h2>
+
+<p id="orderPageSubtitle">
+Информация о заказе
+</p>
+
+<div
+class="order-page-id"
+id="orderPageId">
+</div>
+
+</div>
+
+</div>
+
+<!-- ПРОГРЕСС -->
+
+<div class="progress-card">
+
+<div class="progress-title">
+
+<h3>
+Этап выполнения
+</h3>
+
+<div
+class="progress-percent"
+id="progressPercent">
+0%
+</div>
+
+</div>
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+id="progressFill">
+</div>
+
+</div>
+
+<div class="steps">
+
+<div
+class="step active"
+data-step="1">
+
+<div class="step-dot">
+</div>
+
+Новый
+
+</div>
+
+<div
+class="step"
+data-step="2">
+
+<div class="step-dot">
+</div>
+
+В работе
+
+</div>
+
+<div
+class="step"
+data-step="3">
+
+<div class="step-dot">
+</div>
+
+На проверке
+
+</div>
+
+<div
+class="step"
+data-step="4">
+
+<div class="step-dot">
+</div>
+
+Завершён
+
+</div>
+
+</div>
+
+</div>
+
+<div class="order-content">
+
+<!-- ЧАТ -->
+
+<div class="order-chat-card">
+
+<h3>
+Чат по заказу
+</h3>
+
+<div class="chat">
+
+<div
+class="chat-messages"
+id="chatMessages">
+</div>
+
+<div class="chat-form">
+
+<input
+class="chat-input"
+id="chatInput"
+placeholder="Напиши сообщение...">
+
+<button
+class="send-button"
+id="sendMessage">
+➤ </button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ФАЙЛЫ -->
+
+<div class="order-files-card">
+
+<h3>
+Файлы проекта
+</h3>
+
+<div
+class="files-list"
+id="orderFiles">
+
+<div class="empty">
+Файлов пока нет.
+</div>
+
+</div>
+
+<label class="file-upload">
+
+Добавить файл
+
+<input
+type="file"
+id="orderFileInput">
+
+</label>
+
+<div class="file-note">
+Пока файлы сохраняются только в этом браузере.
+После подключения сервера здесь будет настоящая
+загрузка файлов для клиента и администратора.
+</div>
+
+<div class="order-info">
+
+<div class="order-info-row">
+
+<span class="order-info-label">
+Услуга
+</span>
+
+<span
+class="order-info-value"
+id="infoService">
+— </span>
+
+</div>
+
+<div class="order-info-row">
+
+<span class="order-info-label">
+Стоимость
+</span>
+
+<span
+class="order-info-value"
+id="infoPrice">
+— </span>
+
+</div>
+
+<div class="order-info-row">
+
+<span class="order-info-label">
+Дата
+</span>
+
+<span
+class="order-info-value"
+id="infoDate">
+— </span>
+
+</div>
+
+<div class="order-info-row">
+
+<span class="order-info-label">
+Статус
+</span>
+
+<span
+class="order-info-value"
+id="infoStatus">
+— </span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section
+class="contacts"
+id="contact">
+
+<div class="contacts-box">
+
+<h2>
+Контакты
+</h2>
+
+<p>
+Есть идея или нужен сайт?
+Напиши мне, и обсудим проект.
+</p>
+
+<a
+class="button"
+href="https://t.me/FlorraSoo_dizain"
+target="_blank"
+rel="noopener noreferrer">
+Написать в Telegram </a>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Моё портфолио
+
+<br><br>
+
+<a
+href="https://t.me/FlorraSoo_dizain"
+target="_blank"
+rel="noopener noreferrer">
+Telegram </a>
+
+</footer>
+
+<!-- ОКНО УСЛУГИ -->
+
+<div
+class="modal"
+id="serviceModal">
+
+<div class="modal-box">
+
+<button
+class="close"
+id="closeService">
+× </button>
+
+<h2 id="serviceTitle">
+Услуга
+</h2>
+
+<p
+class="modal-description"
+id="serviceDescription">
+</p>
+
+<div
+class="modal-price"
+id="servicePrice">
+</div>
+
+<ul class="modal-list">
+
+<li>
+Современный дизайн
+</li>
+
+<li>
+Адаптация под телефон
+</li>
+
+<li>
+Анимации
+</li>
+
+<li>
+Настройка страниц
+</li>
+
+<li>
+Помощь с публикацией
+</li>
+
+</ul>
+
+<button
+class="buy-button"
+id="createOrderButton">
+Создать заказ </button>
+
+</div>
+
+</div>
+
+<!-- ТЕКУЩИЕ ЗАКАЗЫ -->
+
+<div
+class="modal"
+id="currentOrdersModal">
+
+<div class="modal-box">
+
+<button
+class="close"
+id="closeCurrentOrders">
+× </button>
+
+<h2>
+Текущие заказы
+</h2>
+
+<div class="current-service-info">
+
+<div
+class="current-service-name"
+id="currentServiceName">
+</div>
+
+<div class="current-service-text">
+Здесь отображаются только незавершённые
+заказы этой услуги.
+</div>
+
+</div>
+
+<div
+id="currentOrdersList">
+</div>
+
+<button
+class="create-another"
+id="createAnotherOrder">
+Создать новый заказ </button>
+
+</div>
+
+</div>
+
+<!-- АВТОРИЗАЦИЯ -->
+
+<div
+class="modal"
+id="authModal">
+
+<div class="modal-box">
+
+<button
+class="close"
+id="closeAuth">
+× </button>
+
+<div id="loginForm">
+
+<h2>
+Вход
+</h2>
+
+<p class="modal-description">
+Войди в личный кабинет.
+</p>
+
+<div
+class="error"
+id="loginError">
+Неверный email или пароль.
+</div>
+
+<div class="form-group">
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="loginEmail"
+placeholder="example@mail.com">
+
+</div>
+
+<div class="form-group">
+
+<label>
+Пароль
+</label>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Введите пароль">
+
+</div>
+
+<button
+class="form-submit"
+id="loginSubmit">
+Войти </button>
+
+<div class="switch-form">
+
+Нет аккаунта?
+
+<button id="showRegister">
+Зарегистрироваться
+</button>
+
+</div>
+
+</div>
+
+<div
+id="registerForm"
+style="display:none">
+
+<h2>
+Регистрация
+</h2>
+
+<p class="modal-description">
+Создай аккаунт.
+</p>
+
+<div
+class="error"
+id="registerError">
+</div>
+
+<div class="form-group">
+
+<label>
+Имя
+</label>
+
+<input
+type="text"
+id="registerName"
+placeholder="Твоё имя">
+
+</div>
+
+<div class="form-group">
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="registerEmail"
+placeholder="example@mail.com">
+
+</div>
+
+<div class="form-group">
+
+<label>
+Пароль
+</label>
+
+<input
+type="password"
+id="registerPassword"
+placeholder="Минимум 6 символов">
+
+</div>
+
+<button
+class="form-submit"
+id="registerSubmit">
+Создать аккаунт </button>
+
+<div class="switch-form">
+
+Уже есть аккаунт?
+
+<button id="showLogin">
+Войти
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+
+/* ========================================
+   АНИМАЦИИ
+======================================== */
+
+const animatedElements=[
+
+...document.querySelectorAll(".section-title"),
+
+...document.querySelectorAll(".card"),
+
+...document.querySelectorAll(".future-card")
+
+];
+
+
+const animationObserver=
+new IntersectionObserver(
+
+entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}else{
+
+entry.target.classList.remove("show");
+
+}
+
+});
+
+},
+
+{threshold:.15}
+
+);
+
+
+animatedElements.forEach(element=>{
+animationObserver.observe(element);
+});
+
+
+/* ========================================
+   МОБИЛЬНОЕ МЕНЮ
+======================================== */
+
+const menuButton=
+document.getElementById("menuButton");
+
+const mobileMenu=
+document.getElementById("mobileMenu");
+
+
+menuButton.addEventListener(
+"click",
+()=>{
+
+mobileMenu.classList.toggle(
+"active"
+);
+
+});
+
+
+document
+.querySelectorAll(".mobile-menu a")
+.forEach(link=>{
+
+link.addEventListener(
+"click",
+()=>{
+
+mobileMenu.classList.remove(
+"active"
+);
+
+});
+
+});
+
+
+/* ========================================
+   ДАННЫЕ
+======================================== */
+
+const serviceDescriptions={
+
+"Сайт-визитка":
+"Одностраничный современный сайт для специалиста, человека или небольшого бизнеса.",
+
+"Landing Page":
+"Продающий сайт для презентации продукта, услуги или компании.",
+
+"Интернет-магазин":
+"Большой сайт с каталогом товаров и удобным интерфейсом для покупателей.",
+
+"Индивидуальный сайт":
+"Индивидуальная разработка сайта под конкретную задачу и необходимый функционал."
+
+};
+
+
+let selectedService="";
+let selectedPrice=0;
+
+let currentOrderId=null;
+
+
+/* ========================================
+   МОДАЛКИ
+======================================== */
+
+const serviceModal=
+document.getElementById(
+"serviceModal"
+);
+
+const currentOrdersModal=
+document.getElementById(
+"currentOrdersModal"
+);
+
+const authModal=
+document.getElementById(
+"authModal"
+);
+
+
+/* ========================================
+   АВТОРИЗАЦИЯ
+======================================== */
+
+function isLoggedIn(){
+
+return localStorage.getItem(
+"portfolioLoggedIn"
+)==="true";
+
+}
+
+
+/* ========================================
+   УСЛУГА
+======================================== */
+
+document
+.querySelectorAll(
+".buy-button[data-service]"
+)
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+selectedService=
+button.dataset.service;
+
+selectedPrice=
+Number(button.dataset.price);
+
+
+document.getElementById(
+"serviceTitle"
+).textContent=
+selectedService;
+
+
+document.getElementById(
+"serviceDescription"
+).textContent=
+serviceDescriptions[
+selectedService
+];
+
+
+document.getElementById(
+"servicePrice"
+).textContent=
+
+selectedService===
+"Индивидуальный сайт"
+
+?
+
+"от 20 000 ₽"
+
+:
+
+selectedPrice.toLocaleString(
+"ru-RU"
+)+" ₽";
+
+
+serviceModal.classList.add(
+"active"
+);
+
+});
+
+});
+
+
+/* ========================================
+   СОЗДАТЬ ЗАКАЗ
+======================================== */
+
+document
+.getElementById(
+"createOrderButton"
+)
+.addEventListener(
+"click",
+()=>{
+
+if(!isLoggedIn()){
+
+serviceModal.classList.remove(
+"active"
+);
+
+authModal.classList.add(
+"active"
+);
+
+return;
+
+}
+
+createOrder(
+selectedService,
+selectedPrice
+);
+
+});
+
+
+function createOrder(
+service,
+price
+){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+if(!user)return;
+
+
+if(!Array.isArray(user.orders)){
+user.orders=[];
+}
+
+
+const now=new Date();
+
+
+const order={
+
+id:
+"PF-"+
+Date.now()
+.toString()
+.slice(-8),
+
+name:service,
+
+price:price,
+
+date:
+now.toLocaleDateString(
+"ru-RU"
+)+
+" • "+
+now.toLocaleTimeString(
+"ru-RU",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+),
+
+status:"Новый",
+
+progress:1,
+
+messages:[
+
+{
+
+from:"admin",
+
+text:
+"Здравствуйте! Заказ создан. Скоро начнём работу.",
+
+time:
+now.toLocaleTimeString(
+"ru-RU",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+)
+
+}
+
+],
+
+files:[],
+
+createdAt:Date.now()
+
+};
+
+
+user.orders.unshift(order);
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+serviceModal.classList.remove(
+"active"
+);
+
+
+updateAccount();
+
+updateServiceButtons();
+
+
+alert(
+"Заказ создан!"
+);
+
+}
+
+
+/* ========================================
+   ТЕКУЩИЕ ЗАКАЗЫ
+======================================== */
+
+document
+.querySelectorAll(
+".current-orders-button"
+)
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+if(!isLoggedIn()){
+
+authModal.classList.add(
+"active"
+);
+
+return;
+
+}
+
+openCurrentOrders(
+button.dataset.currentService
+);
+
+});
+
+});
+
+
+function getUnfinishedOrders(
+service
+){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+if(
+!user ||
+!Array.isArray(user.orders)
+){
+
+return [];
+
+}
+
+
+return user.orders.filter(
+order=>
+
+order.name===service &&
+
+order.status!=="Оплачено" &&
+
+order.status!=="Завершён"
+
+);
+
+}
+
+
+function openCurrentOrders(
+service
+){
+
+const list=
+document.getElementById(
+"currentOrdersList"
+);
+
+
+document.getElementById(
+"currentServiceName"
+).textContent=
+service;
+
+
+const orders=
+getUnfinishedOrders(
+service
+);
+
+
+list.innerHTML="";
+
+
+if(orders.length===0){
+
+list.innerHTML=
+'<div class="empty">У этой услуги сейчас нет незавершённых заказов.</div>';
+
+}else{
+
+
+orders.forEach(order=>{
+
+const item=
+document.createElement(
+"div"
+);
+
+item.className=
+"current-order";
+
+
+item.innerHTML=
+
+'<div class="current-order-top">'+
+
+'<div class="current-order-name">'+
+"Заказ №"+order.id+
+'</div>'+
+
+'<div class="current-order-price">'+
+Number(order.price)
+.toLocaleString("ru-RU")+
+" ₽"+
+'</div>'+
+
+'</div>'+
+
+'<div class="current-order-info">'+
+"Создан: "+order.date+
+'</div>'+
+
+'<div class="current-order-info">'+
+"Статус: "+order.status+
+'</div>'+
+
+'<div class="current-order-buttons">'+
+
+'<button class="open-order-button" data-open-order="'+
+order.id+
+'">Открыть заказ</button>'+
+
+'</div>';
+
+
+list.appendChild(item);
+
+});
+
+}
+
+
+document
+.querySelectorAll(
+"[data-open-order]"
+)
+.forEach(()=>{});
+
+
+list
+.querySelectorAll(
+"[data-open-order]"
+)
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+openOrderPage(
+button.dataset.openOrder
+);
+
+currentOrdersModal.classList.remove(
+"active"
+);
+
+});
+
+});
+
+
+currentOrdersModal.classList.add(
+"active"
+);
+
+}
+
+
+/* ========================================
+   СОЗДАТЬ НОВЫЙ
+======================================== */
+
+document
+.getElementById(
+"createAnotherOrder"
+)
+.addEventListener(
+"click",
+()=>{
+
+const service=
+document.getElementById(
+"currentServiceName"
+).textContent;
+
+
+const card=
+document.querySelector(
+'[data-service-card="'+
+CSS.escape(service)+
+'"]'
+);
+
+
+if(card){
+
+const buyButton=
+card.querySelector(
+".buy-button"
+);
+
+
+selectedService=
+buyButton.dataset.service;
+
+selectedPrice=
+Number(
+buyButton.dataset.price
+);
+
+
+document.getElementById(
+"serviceTitle"
+).textContent=
+selectedService;
+
+
+document.getElementById(
+"serviceDescription"
+).textContent=
+serviceDescriptions[
+selectedService
+];
+
+
+document.getElementById(
+"servicePrice"
+).textContent=
+
+selectedService===
+"Индивидуальный сайт"
+
+?
+"от 20 000 ₽"
+:
+selectedPrice.toLocaleString(
+"ru-RU"
+)+" ₽";
+
+}
+
+
+currentOrdersModal.classList.remove(
+"active"
+);
+
+serviceModal.classList.add(
+"active"
+);
+
+});
+
+
+/* ========================================
+   СТРАНИЦА ЗАКАЗА
+======================================== */
+
+function openOrderPage(orderId){
+
+if(!isLoggedIn()){
+
+authModal.classList.add(
+"active"
+);
+
+return;
+
+}
+
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+const order=
+user.orders.find(
+item=>item.id===orderId
+);
+
+
+if(!order)return;
+
+
+currentOrderId=orderId;
+
+
+document.getElementById(
+"orderPageTitle"
+).textContent=
+order.name;
+
+
+document.getElementById(
+"orderPageSubtitle"
+).textContent=
+"Работа над вашим заказом";
+
+
+document.getElementById(
+"orderPageId"
+).textContent=
+"Заказ №"+order.id;
+
+
+document.getElementById(
+"infoService"
+).textContent=
+order.name;
+
+
+document.getElementById(
+"infoPrice"
+).textContent=
+Number(order.price)
+.toLocaleString("ru-RU")
++" ₽";
+
+
+document.getElementById(
+"infoDate"
+).textContent=
+order.date;
+
+
+document.getElementById(
+"infoStatus"
+).textContent=
+order.status;
+
+
+renderProgress(order);
+
+renderMessages(order);
+
+renderFiles(order);
+
+
+document.getElementById(
+"account"
+).classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"orderPage"
+).classList.add(
+"active"
+);
+
+
+window.scrollTo({
+top:
+document.getElementById(
+"orderPage"
+).offsetTop-30,
+behavior:"smooth"
+});
+
+}
+
+
+function renderProgress(order){
+
+let progress=
+Number(order.progress)||1;
+
+
+const percentages={
+1:25,
+2:50,
+3:75,
+4:100
+};
+
+
+document.getElementById(
+"progressPercent"
+).textContent=
+percentages[progress]+"%";
+
+
+document.getElementById(
+"progressFill"
+).style.width=
+percentages[progress]+"%";
+
+
+document
+.querySelectorAll(
+".step"
+)
+.forEach(step=>{
+
+const stepNumber=
+Number(
+step.dataset.step
+);
+
+
+if(stepNumber<=progress){
+
+step.classList.add(
+"active"
+);
+
+}else{
+
+step.classList.remove(
+"active"
+);
+
+}
+
+});
+
+}
+
+
+/* ========================================
+   СООБЩЕНИЯ
+======================================== */
+
+function renderMessages(order){
+
+const container=
+document.getElementById(
+"chatMessages"
+);
+
+
+container.innerHTML="";
+
+
+if(
+!order.messages ||
+order.messages.length===0
+){
+
+container.innerHTML=
+'<div class="empty">Сообщений пока нет.</div>';
+
+return;
+
+}
+
+
+order.messages.forEach(message=>{
+
+const element=
+document.createElement(
+"div"
+);
+
+
+element.className=
+"message "+
+(
+message.from==="client"
+?
+"client"
+:
+"admin"
+);
+
+
+element.innerHTML=
+
+message.text+
+
+'<div class="message-time">'+
+message.time+
+'</div>';
+
+
+container.appendChild(
+element
+);
+
+});
+
+
+container.scrollTop=
+container.scrollHeight;
+
+}
+
+
+/* ========================================
+   ОТПРАВКА СООБЩЕНИЯ
+======================================== */
+
+function sendMessage(){
+
+const input=
+document.getElementById(
+"chatInput"
+);
+
+
+const text=
+input.value.trim();
+
+
+if(!text)return;
+
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+const order=
+user.orders.find(
+item=>item.id===currentOrderId
+);
+
+
+if(!order)return;
+
+
+if(!Array.isArray(order.messages)){
+order.messages=[];
+}
+
+
+const now=new Date();
+
+
+order.messages.push({
+
+from:"client",
+
+text:text,
+
+time:
+now.toLocaleTimeString(
+"ru-RU",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+)
+
+});
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+input.value="";
+
+
+renderMessages(order);
+
+}
+
+
+document
+.getElementById(
+"sendMessage"
+)
+.addEventListener(
+"click",
+sendMessage
+);
+
+
+document
+.getElementById(
+"chatInput"
+)
+.addEventListener(
+"keydown",
+event=>{
+
+if(
+event.key==="Enter"
+){
+
+event.preventDefault();
+
+sendMessage();
+
+}
+
+});
+
+
+/* ========================================
+   ФАЙЛЫ
+======================================== */
+
+function renderFiles(order){
+
+const container=
+document.getElementById(
+"orderFiles"
+);
+
+
+container.innerHTML="";
+
+
+if(
+!order.files ||
+order.files.length===0
+){
+
+container.innerHTML=
+'<div class="empty">Файлов пока нет.</div>';
+
+return;
+
+}
+
+
+order.files.forEach(
+(file,index)=>{
+
+const element=
+document.createElement(
+"div"
+);
+
+element.className=
+"file-item";
+
+
+element.innerHTML=
+
+'<div class="file-icon">📄</div>'+
+
+'<div class="file-info">'+
+
+'<div class="file-name">'+
+file.name+
+'</div>'+
+
+'<div class="file-meta">'+
+file.size+
+'</div>'+
+
+'</div>'+
+
+'<button class="file-download" data-file-index="'+
+index+
+'">↓</button>';
+
+
+container.appendChild(
+element
+);
+
+});
+
+
+container
+.querySelectorAll(
+"[data-file-index]"
+)
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>{
+
+downloadOrderFile(
+Number(
+button.dataset.fileIndex
+)
+);
+
+});
+
+});
+
+}
+
+
+/* ========================================
+   ДОБАВИТЬ ФАЙЛ
+======================================== */
+
+document
+.getElementById(
+"orderFileInput"
+)
+.addEventListener(
+"change",
+event=>{
+
+const file=
+event.target.files[0];
+
+if(!file)return;
+
+
+if(file.size>5*1024*1024){
+
+alert(
+"Для демо-версии файл должен быть меньше 5 МБ."
+);
+
+event.target.value="";
+
+return;
+
+}
+
+
+const reader=
+new FileReader();
+
+
+reader.onload=()=>{
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+const order=
+user.orders.find(
+item=>item.id===currentOrderId
+);
+
+
+if(!order)return;
+
+
+if(!Array.isArray(order.files)){
+order.files=[];
+}
+
+
+order.files.push({
+
+name:file.name,
+
+size:
+formatFileSize(file.size),
+
+type:file.type,
+
+data:reader.result
+
+});
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+renderFiles(order);
+
+event.target.value="";
+
+};
+
+
+reader.readAsDataURL(file);
+
+});
+
+
+function formatFileSize(bytes){
+
+if(bytes<1024)
+return bytes+" Б";
+
+if(bytes<1024*1024)
+return (bytes/1024).toFixed(1)+" КБ";
+
+return (bytes/(1024*1024)).toFixed(1)+" МБ";
+
+}
+
+
+/* ========================================
+   СКАЧИВАНИЕ ФАЙЛА
+======================================== */
+
+function downloadOrderFile(index){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+const order=
+user.orders.find(
+item=>item.id===currentOrderId
+);
+
+
+if(!order || !order.files[index])
+return;
+
+
+const file=
+order.files[index];
+
+
+const link=
+document.createElement(
+"a"
+);
+
+
+link.href=file.data;
+
+link.download=file.name;
+
+document.body.appendChild(
+link
+);
+
+link.click();
+
+link.remove();
+
+}
+
+
+/* ========================================
+   НАЗАД В КАБИНЕТ
+======================================== */
+
+document
+.getElementById(
+"backToAccount"
+)
+.addEventListener(
+"click",
+()=>{
+
+document.getElementById(
+"orderPage"
+).classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"account"
+).classList.add(
+"active"
+);
+
+
+updateAccount();
+
+
+setTimeout(()=>{
+
+document.getElementById(
+"account"
+).scrollIntoView({
+behavior:"smooth"
+});
+
+},100);
+
+});
+
+
+/* ========================================
+   ОПЛАТА
+======================================== */
+
+function payOrder(orderId){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+if(!user || !user.orders)
+return;
+
+
+const order=
+user.orders.find(
+item=>item.id===orderId
+);
+
+
+if(!order)return;
+
+
+const confirmed=
+confirm(
+"Перейти к оплате заказа №"+
+order.id+
+" на сумму "+
+Number(order.price)
+.toLocaleString("ru-RU")+
+" ₽?"
+);
+
+
+if(!confirmed)return;
+
+
+order.status="Оплачено";
+
+order.progress=4;
+
+
+order.paidAt=
+new Date()
+.toLocaleDateString(
+"ru-RU"
+)+
+" • "+
+new Date()
+.toLocaleTimeString(
+"ru-RU",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+
+if(!Array.isArray(user.payments)){
+user.payments=[];
+}
+
+
+user.payments.unshift({
+
+name:order.name,
+
+price:order.price,
+
+date:order.paidAt,
+
+status:"Оплачено",
+
+orderId:order.id
+
+});
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+updateAccount();
+
+updateServiceButtons();
+
+
+if(currentOrderId===orderId){
+
+openOrderPage(orderId);
+
+}
+
+}
+
+
+/* ========================================
+   ОТМЕНА
+======================================== */
+
+function cancelOrder(orderId){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+if(!user || !user.orders)
+return;
+
+
+if(
+!confirm(
+"Отменить заказ №"+
+orderId+
+"?")
+){
+
+return;
+
+}
+
+
+user.orders=
+user.orders.filter(
+order=>order.id!==orderId
+);
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+updateAccount();
+
+updateServiceButtons();
+
+}
+
+
+/* ========================================
+   ОБНОВЛЕНИЕ КНОПОК
+======================================== */
+
+function updateServiceButtons(){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+document
+.querySelectorAll(
+"[data-service-card]"
+)
+.forEach(card=>{
+
+const service=
+card.dataset.serviceCard;
+
+
+const button=
+card.querySelector(
+".current-orders-button"
+);
+
+
+const buyButton=
+card.querySelector(
+".buy-button"
+);
+
+
+if(!button || !buyButton)
+return;
+
+
+const unfinished=
+user &&
+Array.isArray(user.orders)
+
+?
+
+user.orders.some(
+order=>
+order.name===service &&
+order.status!=="Оплачено" &&
+order.status!=="Завершён"
+)
+
+:false;
+
+
+if(
+unfinished &&
+isLoggedIn()
+){
+
+button.style.display=
+"inline-block";
+
+}else{
+
+button.style.display=
+"none";
+
+}
+
+});
+
+}
+
+
+/* ========================================
+   ОТРИСОВКА ЗАКАЗОВ
+======================================== */
+
+function renderOrders(user){
+
+const orders=
+document.getElementById(
+"orders"
+);
+
+
+const ordersCount=
+document.getElementById(
+"ordersCount"
+);
+
+
+if(
+!user.orders ||
+user.orders.length===0
+){
+
+orders.innerHTML=
+'<div class="empty">Заказов пока нет. Выбери услугу выше и создай первый заказ.</div>';
+
+ordersCount.textContent=
+"0 заказов";
+
+return;
+
+}
+
+
+ordersCount.textContent=
+user.orders.length+
+(
+user.orders.length===1
+?
+" заказ"
+:
+" заказа"
+);
+
+
+orders.innerHTML="";
+
+
+user.orders.forEach(order=>{
+
+const element=
+document.createElement(
+"div"
+);
+
+element.className=
+"order";
+
+
+const top=
+document.createElement(
+"div"
+);
+
+top.className=
+"order-top";
+
+
+const name=
+document.createElement(
+"div"
+);
+
+name.className=
+"order-name";
+
+name.textContent=
+order.name;
+
+
+const price=
+document.createElement(
+"div"
+);
+
+price.className=
+"order-price";
+
+price.textContent=
+Number(order.price)
+.toLocaleString("ru-RU")
++" ₽";
+
+
+top.appendChild(name);
+
+top.appendChild(price);
+
+
+const id=
+document.createElement(
+"div"
+);
+
+id.className=
+"order-date";
+
+id.textContent=
+"Заказ №"+order.id;
+
+
+const date=
+document.createElement(
+"div"
+);
+
+date.className=
+"order-date";
+
+date.textContent=
+"Создан: "+order.date;
+
+
+const status=
+document.createElement(
+"div"
+);
+
+
+if(
+order.status==="Оплачено"
+){
+
+status.className=
+"order-paid";
+
+status.textContent=
+"✓ Оплачено";
+
+}else{
+
+status.className=
+"order-status";
+
+status.textContent=
+"● "+order.status;
+
+}
+
+
+const actions=
+document.createElement(
+"div"
+);
+
+actions.className=
+"order-actions";
+
+
+const open=
+document.createElement(
+"button"
+);
+
+open.className=
+"order-open";
+
+open.textContent=
+"Открыть заказ";
+
+open.onclick=()=>{
+openOrderPage(order.id);
+};
+
+
+actions.appendChild(open);
+
+
+if(
+order.status!=="Оплачено" &&
+order.status!=="Завершён"
+){
+
+const pay=
+document.createElement(
+"button"
+);
+
+pay.className=
+"order-pay";
+
+pay.textContent=
+"Оплатить";
+
+pay.onclick=()=>{
+payOrder(order.id);
+};
+
+actions.appendChild(pay);
+
+
+const cancel=
+document.createElement(
+"button"
+);
+
+cancel.className=
+"order-cancel";
+
+cancel.textContent=
+"Отменить";
+
+cancel.onclick=()=>{
+cancelOrder(order.id);
+};
+
+actions.appendChild(cancel);
+
+}
+
+
+element.appendChild(top);
+
+element.appendChild(id);
+
+element.appendChild(date);
+
+element.appendChild(status);
+
+element.appendChild(actions);
+
+
+orders.appendChild(element);
+
+});
+
+}
+
+
+/* ========================================
+   ПЛАТЕЖИ
+======================================== */
+
+function renderPayments(user){
+
+const payments=
+document.getElementById(
+"payments"
+);
+
+
+if(
+!user.payments ||
+user.payments.length===0
+){
+
+payments.innerHTML=
+'<div class="empty">Оплат пока нет.</div>';
+
+return;
+
+}
+
+
+payments.innerHTML="";
+
+
+user.payments.forEach(
+payment=>{
+
+const element=
+document.createElement(
+"div"
+);
+
+element.className=
+"payment";
+
+
+element.innerHTML=
+
+'<div class="payment-top">'+
+
+'<div class="payment-name">'+
+payment.name+
+'</div>'+
+
+'<div class="payment-price">'+
+Number(payment.price)
+.toLocaleString("ru-RU")+
+" ₽"+
+'</div>'+
+
+'</div>'+
+
+'<div class="payment-date">'+
+payment.date+
+'</div>'+
+
+'<div class="payment-status">'+
+"✓ "+payment.status+
+'</div>';
+
+
+payments.appendChild(
+element
+);
+
+});
+
+}
+
+
+/* ========================================
+   ПОКУПКИ
+======================================== */
+
+function renderPurchases(user){
+
+const purchases=
+document.getElementById(
+"purchases"
+);
+
+
+const paidOrders=
+(user.orders||[])
+.filter(
+order=>
+order.status==="Оплачено" ||
+order.status==="В работе" ||
+order.status==="Завершён"
+);
+
+
+if(paidOrders.length===0){
+
+purchases.innerHTML=
+'<div class="empty">Покупок пока нет.</div>';
+
+return;
+
+}
+
+
+purchases.innerHTML="";
+
+
+paidOrders.forEach(
+order=>{
+
+const element=
+document.createElement(
+"div"
+);
+
+element.className=
+"order";
+
+
+element.innerHTML=
+
+'<div class="order-top">'+
+
+'<div class="order-name">'+
+order.name+
+'</div>'+
+
+'<div class="order-price">'+
+Number(order.price)
+.toLocaleString("ru-RU")+
+" ₽"+
+'</div>'+
+
+'</div>'+
+
+'<div class="order-date">'+
+"Заказ №"+order.id+
+'</div>'+
+
+'<div class="order-status">'+
+"✓ Покупка оформлена"+
+'</div>';
+
+
+purchases.appendChild(
+element
+);
+
+});
+
+}
+
+
+/* ========================================
+   ACCOUNT
+======================================== */
+
+function updateAccount(){
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+if(
+user &&
+isLoggedIn()
+){
+
+document.getElementById(
+"account"
+).classList.add(
+"active"
+);
+
+
+document.getElementById(
+"profileName"
+).textContent=
+user.name;
+
+
+document.getElementById(
+"profileEmail"
+).textContent=
+user.email;
+
+
+document.getElementById(
+"editName"
+).value=
+user.name;
+
+
+document.getElementById(
+"editEmail"
+).value=
+user.email;
+
+
+const avatar=
+document.getElementById(
+"avatar"
+);
+
+
+if(user.avatar){
+
+avatar.innerHTML="";
+
+
+const image=
+document.createElement(
+"img"
+);
+
+image.src=
+user.avatar;
+
+image.alt=
+"Аватар";
+
+avatar.appendChild(
+image
+);
+
+}else{
+
+avatar.textContent=
+user.name
+.charAt(0)
+.toUpperCase();
+
+}
+
+
+document.getElementById(
+"loginButton"
+).textContent=
+"Кабинет";
+
+
+document.getElementById(
+"mobileLogin"
+).textContent=
+"Кабинет";
+
+
+renderOrders(user);
+
+renderPayments(user);
+
+renderPurchases(user);
+
+}else{
+
+
+document.getElementById(
+"account"
+).classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"loginButton"
+).textContent=
+"Войти";
+
+
+document.getElementById(
+"mobileLogin"
+).textContent=
+"Войти";
+
+}
+
+
+updateServiceButtons();
+
+}
+
+
+/* ========================================
+   ПРОФИЛЬ
+======================================== */
+
+document
+.getElementById(
+"saveProfile"
+)
+.addEventListener(
+"click",
+()=>{
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+if(!user)return;
+
+
+const name=
+document.getElementById(
+"editName"
+).value.trim();
+
+
+const email=
+document.getElementById(
+"editEmail"
+).value.trim();
+
+
+if(!name || !email){
+
+alert(
+"Заполни имя и email."
+);
+
+return;
+
+}
+
+
+user.name=name;
+
+user.email=email;
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+updateAccount();
+
+});
+
+
+/* ========================================
+   АВАТАР
+======================================== */
+
+document
+.getElementById(
+"avatarInput"
+)
+.addEventListener(
+"change",
+event=>{
+
+const file=
+event.target.files[0];
+
+
+if(!file)return;
+
+
+if(
+!file.type.startsWith(
+"image/"
+)
+){
+
+alert(
+"Выбери изображение."
+);
+
+return;
+
+}
+
+
+const reader=
+new FileReader();
+
+
+reader.onload=()=>{
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+if(!user)return;
+
+
+user.avatar=
+reader.result;
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+updateAccount();
+
+};
+
+
+reader.readAsDataURL(file);
+
+});
+
+
+/* ========================================
+   ВЫХОД
+======================================== */
+
+document
+.getElementById(
+"logoutButton"
+)
+.addEventListener(
+"click",
+()=>{
+
+localStorage.setItem(
+"portfolioLoggedIn",
+"false"
+);
+
+
+document
+.getElementById(
+"orderPage"
+)
+.classList.remove(
+"active"
+);
+
+
+updateAccount();
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+
+/* ========================================
+   КАБИНЕТ
+======================================== */
+
+function openAccountOrLogin(){
+
+if(isLoggedIn()){
+
+document
+.getElementById(
+"account"
+)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}else{
+
+authModal.classList.add(
+"active"
+);
+
+}
+
+}
+
+
+document
+.getElementById(
+"loginButton"
+)
+.addEventListener(
+"click",
+openAccountOrLogin
+);
+
+
+document
+.getElementById(
+"mobileLogin"
+)
+.addEventListener(
+"click",
+()=>{
+
+mobileMenu.classList.remove(
+"active"
+);
+
+openAccountOrLogin();
+
+});
+
+
+/* ========================================
+   РЕГИСТРАЦИЯ
+======================================== */
+
+document
+.getElementById(
+"registerSubmit"
+)
+.addEventListener(
+"click",
+()=>{
+
+const name=
+document.getElementById(
+"registerName"
+).value.trim();
+
+
+const email=
+document.getElementById(
+"registerEmail"
+).value.trim();
+
+
+const password=
+document.getElementById(
+"registerPassword"
+).value;
+
+
+const error=
+document.getElementById(
+"registerError"
+);
+
+
+if(
+!name ||
+!email ||
+!password
+){
+
+error.textContent=
+"Заполни все поля.";
+
+error.classList.add(
+"show"
+);
+
+return;
+
+}
+
+
+if(
+password.length<6
+){
+
+error.textContent=
+"Пароль должен содержать минимум 6 символов.";
+
+error.classList.add(
+"show"
+);
+
+return;
+
+}
+
+
+const user={
+
+name:name,
+
+email:email,
+
+password:password,
+
+avatar:"",
+
+orders:[],
+
+payments:[]
+
+};
+
+
+localStorage.setItem(
+"portfolioUser",
+JSON.stringify(user)
+);
+
+
+localStorage.setItem(
+"portfolioLoggedIn",
+"true"
+);
+
+
+error.classList.remove(
+"show"
+);
+
+
+authModal.classList.remove(
+"active"
+);
+
+
+updateAccount();
+
+
+setTimeout(
+()=>{
+
+document
+.getElementById(
+"account"
+)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+},
+200
+);
+
+});
+
+
+/* ========================================
+   ВХОД
+======================================== */
+
+document
+.getElementById(
+"loginSubmit"
+)
+.addEventListener(
+"click",
+()=>{
+
+const email=
+document.getElementById(
+"loginEmail"
+).value.trim();
+
+
+const password=
+document.getElementById(
+"loginPassword"
+).value;
+
+
+const error=
+document.getElementById(
+"loginError"
+);
+
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"portfolioUser"
+)
+);
+
+
+if(
+!user ||
+user.email!==email ||
+user.password!==password
+){
+
+error.classList.add(
+"show"
+);
+
+return;
+
+}
+
+
+error.classList.remove(
+"show"
+);
+
+
+localStorage.setItem(
+"portfolioLoggedIn",
+"true"
+);
+
+
+authModal.classList.remove(
+"active"
+);
+
+
+updateAccount();
+
+
+setTimeout(
+()=>{
+
+document
+.getElementById(
+"account"
+)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+},
+200
+);
+
+});
+
+
+/* ========================================
+   ПЕРЕКЛЮЧЕНИЕ
+======================================== */
+
+document
+.getElementById(
+"showRegister"
+)
+.addEventListener(
+"click",
+()=>{
+
+document.getElementById(
+"loginForm"
+).style.display=
+"none";
+
+
+document.getElementById(
+"registerForm"
+).style.display=
+"block";
+
+});
+
+
+document
+.getElementById(
+"showLogin"
+)
+.addEventListener(
+"click",
+()=>{
+
+document.getElementById(
+"registerForm"
+).style.display=
+"none";
+
+
+document.getElementById(
+"loginForm"
+).style.display=
+"block";
+
+});
+
+
+/* ========================================
+   ЗАКРЫТИЕ
+======================================== */
+
+document
+.getElementById(
+"closeService"
+)
+.onclick=()=>{
+serviceModal.classList.remove(
+"active"
+);
+};
+
+
+document
+.getElementById(
+"closeCurrentOrders"
+)
+.onclick=()=>{
+currentOrdersModal.classList.remove(
+"active"
+);
+};
+
+
+document
+.getElementById(
+"closeAuth"
+)
+.onclick=()=>{
+authModal.classList.remove(
+"active"
+);
+};
+
+
+document.addEventListener(
+"click",
+event=>{
+
+if(
+event.target===serviceModal
+){
+
+serviceModal.classList.remove(
+"active"
+);
+
+}
+
+
+if(
+event.target===currentOrdersModal
+){
+
+currentOrdersModal.classList.remove(
+"active"
+);
+
+}
+
+
+if(
+event.target===authModal
+){
+
+authModal.classList.remove(
+"active"
+);
+
+}
+
+});
+
+
+document.addEventListener(
+"keydown",
+event=>{
+
+if(
+event.key==="Escape"
+){
+
+serviceModal.classList.remove(
+"active"
+);
+
+currentOrdersModal.classList.remove(
+"active"
+);
+
+authModal.classList.remove(
+"active"
+);
+
+}
+
+});
+
+
+/* ========================================
+   ЗАПУСК
+======================================== */
+
+updateAccount();
+
+</script>
+
+</body>
+</html>

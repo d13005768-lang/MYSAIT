@@ -1,0 +1,739 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FORMA — Фитнес нового уровня</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f3ef;
+    color: #151515;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background: rgba(244, 243, 239, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #e84b24;
+}
+
+.header-button {
+    background: #151515;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.header-button:hover {
+    background: #e84b24;
+    transform: translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 150px 6% 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    width: 55%;
+    position: relative;
+    z-index: 2;
+}
+
+.tag {
+    display: inline-block;
+    color: #e84b24;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 25px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards;
+}
+
+h1 {
+    font-size: clamp(60px, 8vw, 125px);
+    line-height: 0.86;
+    letter-spacing: -7px;
+    margin-bottom: 35px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.15s forwards;
+}
+
+.hero-description {
+    max-width: 550px;
+    color: #666;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.hero-button {
+    display: inline-block;
+    background: #e84b24;
+    color: white;
+    padding: 17px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.45s forwards;
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    transform: scale(1.06);
+}
+
+/* HERO SHAPE */
+
+.hero-image {
+    position: absolute;
+    right: 5%;
+    width: 42%;
+    height: 70%;
+    background:
+        linear-gradient(135deg, rgba(232,75,36,.25), rgba(0,0,0,.1)),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=80")
+        center/cover;
+    border-radius: 40px;
+    transform: rotate(4deg);
+    animation: floating 5s ease-in-out infinite;
+}
+
+/* STATS */
+
+.stats {
+    padding: 80px 6%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stat {
+    padding: 35px;
+    background: white;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    transition: 0.4s;
+}
+
+.stat:hover {
+    transform: translateY(-8px);
+}
+
+.stat-number {
+    font-size: 55px;
+    font-weight: 900;
+    color: #e84b24;
+}
+
+.stat p {
+    color: #777;
+    margin-top: 8px;
+}
+
+/* SECTION */
+
+.section {
+    padding: 120px 6%;
+}
+
+.section-label {
+    color: #e84b24;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: clamp(45px, 6vw, 80px);
+    letter-spacing: -4px;
+    margin-bottom: 60px;
+}
+
+/* PROGRAMS */
+
+.programs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.program {
+    min-height: 380px;
+    padding: 35px;
+    border-radius: 30px;
+    background: #181818;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.program:hover {
+    transform: translateY(-12px) rotate(-1deg);
+}
+
+.program:nth-child(2) {
+    background: #e84b24;
+}
+
+.program:nth-child(3) {
+    background: #d8d5cb;
+    color: #151515;
+}
+
+.program-number {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 60px;
+    font-weight: 900;
+    opacity: .15;
+}
+
+.program h3 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.program p {
+    line-height: 1.6;
+    opacity: .7;
+}
+
+/* PRICES */
+
+.pricing {
+    background: #151515;
+    color: white;
+}
+
+.pricing .section-title {
+    color: white;
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.price-card {
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 25px;
+    padding: 35px;
+    transition: .4s;
+}
+
+.price-card:hover {
+    transform: translateY(-10px);
+    border-color: #e84b24;
+}
+
+.price-card.featured {
+    background: #e84b24;
+    border-color: #e84b24;
+    transform: scale(1.04);
+}
+
+.price-card h3 {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.price {
+    font-size: 55px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.price span {
+    font-size: 16px;
+    opacity: .6;
+}
+
+.price-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.price-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: #bbb;
+}
+
+.price-card.featured li {
+    color: white;
+}
+
+.price-button {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 30px;
+    background: white;
+    color: #151515;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CTA */
+
+.cta {
+    margin: 80px 6%;
+    padding: 80px;
+    border-radius: 35px;
+    background: #e84b24;
+    color: white;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: clamp(45px, 6vw, 80px);
+    letter-spacing: -4px;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    margin-bottom: 30px;
+    opacity: .85;
+}
+
+.cta a {
+    display: inline-block;
+    background: white;
+    color: #151515;
+    padding: 17px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 6%;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: rotate(4deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(4deg) translateY(-15px);
+    }
+}
+
+/* SCROLL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    header {
+        padding: 18px 20px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .header-button {
+        padding: 10px 15px;
+    }
+
+    .hero {
+        padding: 130px 20px 70px;
+        display: block;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 65px;
+        letter-spacing: -4px;
+    }
+
+    .hero-image {
+        position: relative;
+        right: auto;
+        width: 100%;
+        height: 400px;
+        margin-top: 60px;
+    }
+
+    .stats {
+        padding: 50px 20px;
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 80px 20px;
+    }
+
+    .programs {
+        grid-template-columns: 1fr;
+    }
+
+    .price-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-card.featured {
+        transform: none;
+    }
+
+    .cta {
+        margin: 50px 20px;
+        padding: 60px 25px;
+    }
+
+    footer {
+        padding: 35px 20px;
+        display: block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">FORMA.</div>
+
+    <nav>
+        <a href="#about">О клубе</a>
+        <a href="#programs">Программы</a>
+        <a href="#prices">Абонементы</a>
+    </nav>
+
+    <a href="#prices" class="header-button">Записаться</a>
+</header>
+
+<section class="hero" id="about">
+
+    <div class="hero-content">
+
+        <div class="tag">ФИТНЕС-КЛУБ НОВОГО ПОКОЛЕНИЯ</div>
+
+        <h1>
+            СИЛЬНЕЕ.<br>
+            БЫСТРЕЕ.<br>
+            ЛУЧШЕ.
+        </h1>
+
+        <p class="hero-description">
+            Пространство для тех, кто хочет менять себя.
+            Персональные тренировки, современное оборудование
+            и атмосфера, в которую хочется возвращаться.
+        </p>
+
+        <a href="#prices" class="hero-button">
+            Выбрать абонемент →
+        </a>
+
+    </div>
+
+    <div class="hero-image"></div>
+
+</section>
+
+<section class="stats reveal">
+
+    <div class="stat">
+        <div class="stat-number">12+</div>
+        <p>лет развиваем фитнес-индустрию</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number">4.9</div>
+        <p>средняя оценка наших клиентов</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number">8K+</div>
+        <p>людей уже тренируются с нами</p>
+    </div>
+
+</section>
+
+<section class="section reveal" id="programs">
+
+    <div class="section-label">НАПРАВЛЕНИЯ</div>
+
+    <h2 class="section-title">
+        Найди свою<br>форму.
+    </h2>
+
+    <div class="programs">
+
+        <div class="program">
+            <div class="program-number">01</div>
+
+            <h3>Сила</h3>
+
+            <p>
+                Силовые тренировки для развития
+                мышц, выносливости и уверенности.
+            </p>
+        </div>
+
+        <div class="program">
+            <div class="program-number">02</div>
+
+            <h3>Кардио</h3>
+
+            <p>
+                Высокая интенсивность, энергия
+                и тренировки, которые невозможно забыть.
+            </p>
+        </div>
+
+        <div class="program">
+            <div class="program-number">03</div>
+
+            <h3>Баланс</h3>
+
+            <p>
+                Йога, растяжка и функциональные
+                тренировки для восстановления тела.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section pricing reveal" id="prices">
+
+    <div class="section-label">АБОНЕМЕНТЫ</div>
+
+    <h2 class="section-title">
+        Выбери свой<br>ритм.
+    </h2>
+
+    <div class="price-grid">
+
+        <div class="price-card">
+
+            <h3>START</h3>
+
+            <div class="price">
+                2 990 ₽
+                <span>/ месяц</span>
+            </div>
+
+            <ul>
+                <li>✓ Тренажёрный зал</li>
+                <li>✓ Раздевалки</li>
+                <li>✓ Душ</li>
+            </ul>
+
+            <a href="#" class="price-button">
+                Выбрать
+            </a>
+
+        </div>
+
+        <div class="price-card featured">
+
+            <h3>PRO</h3>
+
+            <div class="price">
+                4 990 ₽
+                <span>/ месяц</span>
+            </div>
+
+            <ul>
+                <li>✓ Всё из START</li>
+                <li>✓ Групповые занятия</li>
+                <li>✓ Персональная консультация</li>
+                <li>✓ Сауна</li>
+            </ul>
+
+            <a href="#" class="price-button">
+                Выбрать
+            </a>
+
+        </div>
+
+        <div class="price-card">
+
+            <h3>ULTRA</h3>
+
+            <div class="price">
+                7 990 ₽
+                <span>/ месяц</span>
+            </div>
+
+            <ul>
+                <li>✓ Всё из PRO</li>
+                <li>✓ 4 персональные тренировки</li>
+                <li>✓ VIP-зона</li>
+                <li>✓ Приоритетная запись</li>
+            </ul>
+
+            <a href="#" class="price-button">
+                Выбрать
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta reveal">
+
+    <h2>Готов начать?</h2>
+
+    <p>
+        Первое посещение — бесплатно.
+        Приходи и почувствуй разницу.
+    </p>
+
+    <a href="#prices">
+        Записаться на тренировку
+    </a>
+
+</section>
+
+<footer>
+
+    <div>© 2026 FORMA.</div>
+
+    <div>Фитнес · Сила · Движение</div>
+
+</footer>
+
+<script>
+
+/* Повторяющаяся анимация при прокрутке */
+
+const elements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+
+    elements.forEach(element => {
+
+        const position =
+            element.getBoundingClientRect().top;
+
+        const screenHeight =
+            window.innerHeight;
+
+        if (position < screenHeight - 100) {
+            element.classList.add("active");
+        } else {
+            element.classList.remove("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+</script>
+
+</body>
+</html>
+```

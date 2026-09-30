@@ -1,0 +1,3002 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>VANTA — магазин техники</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+    --bg:#070707;
+    --bg2:#0d0d10;
+    --card:#111114;
+    --card2:#151519;
+    --text:#fff;
+    --muted:#85858e;
+    --muted2:#55555e;
+    --line:rgba(255,255,255,.09);
+    --purple:#9b82ff;
+    --purple2:#7055ff;
+    --green:#65e6aa;
+    --red:#ff647d;
+    --radius:24px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 15% -10%,rgba(112,85,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 30%,rgba(112,85,255,.07),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+body.locked{
+    overflow:hidden;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+::selection{
+    background:#9b82ff;
+    color:#fff;
+}
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#080808;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#29292f;
+    border-radius:20px;
+}
+
+/* HEADER */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:78px;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    padding:0 5vw;
+    border-bottom:1px solid transparent;
+    transition:.35s ease;
+}
+
+.header.scrolled{
+    background:rgba(7,7,7,.76);
+    backdrop-filter:blur(24px);
+    border-color:var(--line);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.logo-mark{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#fff,#8b73ff);
+    position:relative;
+    box-shadow:0 0 25px rgba(125,95,255,.2);
+}
+
+.logo-mark::after{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border-radius:7px;
+    background:#080808;
+}
+
+.nav{
+    display:flex;
+    gap:28px;
+    margin-left:52px;
+}
+
+.nav a{
+    color:#85858d;
+    font-size:13px;
+    transition:.25s;
+}
+
+.nav a:hover{
+    color:#fff;
+}
+
+.actions{
+    margin-left:auto;
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:#ffffff06;
+    color:#fff;
+    transition:.25s;
+    position:relative;
+}
+
+.icon-btn:hover{
+    background:#ffffff12;
+    transform:translateY(-2px);
+}
+
+.badge{
+    position:absolute;
+    top:-5px;
+    right:-5px;
+    min-width:17px;
+    height:17px;
+    padding:0 4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:20px;
+    background:var(--purple2);
+    color:white;
+    font-size:9px;
+    font-weight:800;
+}
+
+/* HERO */
+
+.hero{
+    min-height:850px;
+    padding:150px 7vw 80px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:40px;
+    overflow:hidden;
+}
+
+.eyebrow{
+    color:#a0a0a7;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+}
+
+.green-dot{
+    width:7px;
+    height:7px;
+    display:inline-block;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 15px var(--green);
+    margin-right:8px;
+}
+
+.hero h1{
+    font-size:clamp(58px,7vw,108px);
+    line-height:.86;
+    letter-spacing:-7px;
+    max-width:800px;
+}
+
+.hero h1 span{
+    color:var(--purple);
+}
+
+.hero-description{
+    max-width:520px;
+    color:#818189;
+    line-height:1.8;
+    margin-top:32px;
+    font-size:14px;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:34px;
+}
+
+.btn{
+    min-height:51px;
+    padding:0 22px;
+    border-radius:15px;
+    border:1px solid var(--line);
+    background:#141417;
+    color:#fff;
+    font-weight:700;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    border-color:#ffffff22;
+}
+
+.btn.primary{
+    color:#050505;
+    background:#fff;
+    border-color:#fff;
+}
+
+.btn.primary:hover{
+    box-shadow:0 15px 40px rgba(255,255,255,.1);
+}
+
+.hero-visual{
+    height:570px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.orbit{
+    position:absolute;
+    width:490px;
+    height:490px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 45% 35%,#373341,transparent 32%),
+        radial-gradient(circle,#15151b,#08080a 67%);
+    box-shadow:
+        0 0 100px rgba(112,85,255,.15),
+        inset 0 0 80px rgba(255,255,255,.03);
+    animation:float 7s ease-in-out infinite;
+}
+
+.orbit::before,
+.orbit::after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(155,130,255,.2);
+    border-radius:50%;
+    inset:-25px;
+}
+
+.orbit::after{
+    inset:-55px;
+    border-color:rgba(255,255,255,.05);
+}
+
+.hero-phone{
+    position:absolute;
+    width:260px;
+    height:410px;
+    border-radius:45px;
+    transform:rotate(-12deg);
+    background:linear-gradient(145deg,#4c4c53,#0c0c0f 48%,#29292f);
+    box-shadow:
+        30px 50px 80px #000,
+        inset 2px 2px 3px #ffffff33;
+    animation:phoneFloat 6s ease-in-out infinite;
+}
+
+.hero-phone::before{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border-radius:34px;
+    background:
+        radial-gradient(circle at 40% 25%,rgba(155,130,255,.45),transparent 25%),
+        linear-gradient(160deg,#18151f,#060608);
+    border:1px solid #ffffff15;
+}
+
+.hero-phone::after{
+    content:"V";
+    position:absolute;
+    width:100px;
+    height:100px;
+    left:80px;
+    top:140px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:27px;
+    background:#101014;
+    color:#a995ff;
+    font-size:48px;
+    font-weight:900;
+    box-shadow:0 0 50px rgba(128,99,255,.2);
+}
+
+.floating-card{
+    position:absolute;
+    padding:15px 18px;
+    border:1px solid var(--line);
+    border-radius:17px;
+    background:rgba(16,16,20,.8);
+    backdrop-filter:blur(18px);
+    z-index:3;
+}
+
+.floating-card small{
+    display:block;
+    color:#66666e;
+    font-size:9px;
+    letter-spacing:1px;
+    margin-bottom:6px;
+}
+
+.floating-card strong{
+    font-size:17px;
+}
+
+.floating-one{
+    right:0;
+    top:85px;
+}
+
+.floating-two{
+    left:0;
+    bottom:70px;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:90px 7vw;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+    margin-bottom:32px;
+}
+
+.kicker{
+    color:#66666e;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.title{
+    font-size:clamp(38px,4.5vw,60px);
+    letter-spacing:-4px;
+    line-height:.95;
+}
+
+.section-description{
+    max-width:400px;
+    color:#707078;
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.category-card{
+    min-height:200px;
+    padding:25px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:linear-gradient(145deg,#141418,#0b0b0d);
+    position:relative;
+    overflow:hidden;
+    transition:.35s;
+    cursor:pointer;
+}
+
+.category-card:hover{
+    transform:translateY(-7px);
+    border-color:#9b82ff45;
+}
+
+.category-card::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    right:-70px;
+    bottom:-80px;
+    border-radius:50%;
+    background:#8064ff20;
+    filter:blur(25px);
+}
+
+.category-icon{
+    font-size:35px;
+    margin-bottom:48px;
+}
+
+.category-card h3{
+    font-size:18px;
+}
+
+.category-card p{
+    color:#64646c;
+    font-size:11px;
+    margin-top:6px;
+}
+
+/* CATALOG */
+
+.catalog{
+    padding:90px 7vw;
+}
+
+.catalog-tools{
+    display:grid;
+    grid-template-columns:1fr 180px 170px;
+    gap:10px;
+    margin-bottom:28px;
+}
+
+.search,
+.select{
+    height:52px;
+    border-radius:15px;
+    border:1px solid var(--line);
+    outline:none;
+    background:#111114;
+    color:#fff;
+    padding:0 16px;
+}
+
+.search::placeholder{
+    color:#55555d;
+}
+
+.search:focus,
+.select:focus{
+    border-color:#7b63ff;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.product-card{
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:#101013;
+    transition:.35s;
+}
+
+.product-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+}
+
+.product-image{
+    height:270px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(255,255,255,.06),transparent 30%),
+        linear-gradient(145deg,#1a1a20,#08080a);
+    cursor:pointer;
+}
+
+.product-tag{
+    position:absolute;
+    left:14px;
+    top:14px;
+    padding:7px 9px;
+    border-radius:9px;
+    background:#fff;
+    color:#000;
+    font-size:8px;
+    font-weight:900;
+}
+
+.favorite{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:#0007;
+    color:#fff;
+    z-index:4;
+}
+
+.favorite.active{
+    color:var(--red);
+}
+
+.product-object{
+    width:145px;
+    height:185px;
+    border-radius:27px;
+    background:linear-gradient(145deg,#4a4a51,#111115);
+    box-shadow:25px 35px 50px #000b;
+    transform:rotate(-8deg);
+    position:relative;
+}
+
+.product-object::after{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border-radius:18px;
+    background:
+        radial-gradient(circle at 40% 25%,rgba(155,130,255,.45),transparent 24%),
+        #08080a;
+}
+
+.product-object.watch{
+    width:120px;
+    height:155px;
+    border-radius:30px;
+}
+
+.product-object.audio{
+    width:180px;
+    height:115px;
+    border-radius:70px 70px 30px 30px;
+}
+
+.product-object.laptop{
+    width:210px;
+    height:130px;
+    border-radius:12px;
+}
+
+.product-object.laptop::after{
+    inset:9px;
+    border-radius:5px;
+}
+
+.product-object.game{
+    width:180px;
+    height:125px;
+    border-radius:21px;
+}
+
+.product-info{
+    padding:19px;
+}
+
+.product-category{
+    color:#66666e;
+    font-size:9px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.product-name{
+    margin-top:7px;
+    font-size:17px;
+    font-weight:800;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+}
+
+.price{
+    font-size:17px;
+    font-weight:900;
+}
+
+.old-price{
+    color:#505058;
+    text-decoration:line-through;
+    font-size:9px;
+    margin-left:4px;
+}
+
+.add-button{
+    width:39px;
+    height:39px;
+    border:0;
+    border-radius:12px;
+    background:#fff;
+    color:#000;
+    font-size:22px;
+    transition:.25s;
+}
+
+.add-button:hover{
+    transform:rotate(90deg);
+}
+
+/* FEATURE */
+
+.feature{
+    margin:25px 7vw 90px;
+    min-height:500px;
+    padding:65px;
+    border-radius:34px;
+    border:1px solid var(--line);
+    background:
+        radial-gradient(circle at 80% 45%,rgba(112,85,255,.17),transparent 32%),
+        #101014;
+    overflow:hidden;
+    position:relative;
+}
+
+.feature h2{
+    font-size:clamp(45px,5vw,75px);
+    line-height:.9;
+    letter-spacing:-5px;
+}
+
+.feature p{
+    max-width:470px;
+    color:#72727b;
+    line-height:1.8;
+    margin:25px 0;
+}
+
+.specs{
+    display:flex;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.spec{
+    padding-right:25px;
+    border-right:1px solid var(--line);
+}
+
+.spec:last-child{
+    border:0;
+}
+
+.spec strong{
+    display:block;
+    font-size:22px;
+}
+
+.spec span{
+    color:#5e5e66;
+    font-size:9px;
+}
+
+/* BENEFITS */
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.benefit{
+    padding:30px;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:#101013;
+}
+
+.benefit-icon{
+    font-size:27px;
+}
+
+.benefit h3{
+    margin:25px 0 9px;
+}
+
+.benefit p{
+    color:#6d6d75;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* PROMO */
+
+.promo{
+    margin:20px 7vw 90px;
+    padding:60px 30px;
+    text-align:center;
+    border-radius:32px;
+    border:1px solid var(--line);
+    background:
+        radial-gradient(circle at 50% 110%,rgba(112,85,255,.2),transparent 45%),
+        #0d0d10;
+}
+
+.promo h2{
+    font-size:clamp(38px,5vw,60px);
+    letter-spacing:-4px;
+}
+
+.promo p{
+    color:#707078;
+    margin:13px auto 25px;
+}
+
+.promo-form{
+    display:flex;
+    max-width:500px;
+    margin:auto;
+    gap:8px;
+}
+
+.promo-form input{
+    flex:1;
+    min-width:0;
+    height:50px;
+    padding:0 15px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    outline:none;
+    background:#151519;
+    color:#fff;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--line);
+    padding:70px 7vw 30px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-description{
+    max-width:300px;
+    color:#616169;
+    line-height:1.7;
+    font-size:12px;
+    margin-top:14px;
+}
+
+.footer h4{
+    color:#aaa;
+    font-size:10px;
+    margin-bottom:17px;
+}
+
+.footer a{
+    display:block;
+    color:#65656d;
+    font-size:12px;
+    margin:10px 0;
+}
+
+.footer a:hover{
+    color:#fff;
+}
+
+.footer-bottom{
+    border-top:1px solid var(--line);
+    margin-top:45px;
+    padding-top:22px;
+    display:flex;
+    justify-content:space-between;
+    color:#48484f;
+    font-size:10px;
+}
+
+/* CART */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(10px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart{
+    position:fixed;
+    z-index:2100;
+    right:0;
+    top:0;
+    height:100%;
+    width:min(470px,100%);
+    display:flex;
+    flex-direction:column;
+    background:#101013;
+    border-left:1px solid var(--line);
+    transform:translateX(100%);
+    transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.cart.active{
+    transform:translateX(0);
+}
+
+.cart-header{
+    height:80px;
+    display:flex;
+    align-items:center;
+    padding:0 24px;
+    border-bottom:1px solid var(--line);
+}
+
+.cart-header h3{
+    font-size:18px;
+}
+
+.close{
+    width:38px;
+    height:38px;
+    margin-left:auto;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#17171b;
+    color:#fff;
+    font-size:20px;
+}
+
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:20px;
+}
+
+.empty-cart{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#55555d;
+    text-align:center;
+}
+
+.empty-cart-icon{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:65px 1fr auto;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.cart-thumb{
+    width:65px;
+    height:65px;
+    border-radius:15px;
+    background:#18181c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.cart-thumb div{
+    width:28px;
+    height:42px;
+    border-radius:8px;
+    background:linear-gradient(145deg,#555,#17171b);
+}
+
+.cart-item-name{
+    font-size:12px;
+    font-weight:800;
+}
+
+.cart-item-price{
+    color:#777780;
+    font-size:11px;
+    margin-top:7px;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:9px;
+}
+
+.quantity button{
+    width:25px;
+    height:25px;
+    border:1px solid var(--line);
+    border-radius:7px;
+    background:#17171b;
+    color:#fff;
+}
+
+.remove{
+    background:none;
+    border:0;
+    color:#55555d;
+}
+
+.cart-footer{
+    padding:20px;
+    border-top:1px solid var(--line);
+}
+
+.cart-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.cart-total strong{
+    font-size:23px;
+}
+
+.checkout-button{
+    width:100%;
+    height:53px;
+    border:0;
+    border-radius:15px;
+    background:#fff;
+    color:#000;
+    font-weight:800;
+}
+
+/* MODALS */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(12px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.modal.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(920px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:30px;
+    border-radius:30px;
+    border:1px solid var(--line);
+    background:#111114;
+    transform:scale(.94);
+    transition:.3s;
+}
+
+.modal.active .modal-box{
+    transform:scale(1);
+}
+
+.modal-product-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.modal-product-image{
+    min-height:450px;
+    border-radius:23px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#19191e,#08080a);
+}
+
+.modal-product-image .product-object{
+    width:200px;
+    height:285px;
+}
+
+.modal-info{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.modal-info small{
+    color:#707078;
+    letter-spacing:2px;
+}
+
+.modal-info h2{
+    font-size:46px;
+    letter-spacing:-3px;
+    margin:10px 0 17px;
+}
+
+.modal-info p{
+    color:#74747c;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.modal-price{
+    font-size:28px;
+    font-weight:900;
+    margin:25px 0;
+}
+
+/* FORMS */
+
+.form{
+    display:grid;
+    gap:10px;
+}
+
+.form input,
+.form select{
+    width:100%;
+    height:51px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:#151519;
+    color:#fff;
+    padding:0 15px;
+    outline:none;
+}
+
+.form input:focus,
+.form select:focus{
+    border-color:var(--purple);
+}
+
+.account-box{
+    max-width:500px;
+}
+
+.account-box h2{
+    font-size:42px;
+    letter-spacing:-3px;
+    margin-bottom:10px;
+}
+
+.account-box p{
+    color:#707078;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:7000;
+    padding:15px 18px;
+    border-radius:15px;
+    background:#fff;
+    color:#000;
+    font-size:12px;
+    font-weight:800;
+    transform:translateY(30px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ANIMATION */
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-13px)}
+}
+
+@keyframes phoneFloat{
+    0%,100%{transform:rotate(-12deg) translateY(0)}
+    50%{transform:rotate(-9deg) translateY(-15px)}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+    .nav{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .hero-visual{
+        margin-top:20px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+    .header{
+        padding:0 18px;
+    }
+
+    .hero{
+        padding:125px 20px 55px;
+        min-height:auto;
+    }
+
+    .hero h1{
+        font-size:56px;
+        letter-spacing:-4px;
+    }
+
+    .hero-visual{
+        height:400px;
+    }
+
+    .orbit{
+        width:340px;
+        height:340px;
+    }
+
+    .hero-phone{
+        width:205px;
+        height:315px;
+    }
+
+    .hero-phone::after{
+        left:60px;
+        top:105px;
+        width:82px;
+        height:82px;
+    }
+
+    .floating-one{
+        right:0;
+        top:35px;
+    }
+
+    .floating-two{
+        left:0;
+        bottom:25px;
+    }
+
+    .section,
+    .catalog{
+        padding:65px 20px;
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-description{
+        margin-top:14px;
+    }
+
+    .categories{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .category-card{
+        min-height:170px;
+        padding:18px;
+    }
+
+    .category-icon{
+        margin-bottom:38px;
+    }
+
+    .products{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .product-image{
+        height:190px;
+    }
+
+    .product-info{
+        padding:13px;
+    }
+
+    .product-name{
+        font-size:14px;
+    }
+
+    .price{
+        font-size:13px;
+    }
+
+    .old-price{
+        display:none;
+    }
+
+    .add-button{
+        width:34px;
+        height:34px;
+    }
+
+    .catalog-tools{
+        grid-template-columns:1fr;
+    }
+
+    .feature{
+        margin:25px 20px 65px;
+        padding:35px 25px;
+        min-height:0;
+    }
+
+    .feature h2{
+        font-size:45px;
+    }
+
+    .benefits{
+        grid-template-columns:1fr;
+    }
+
+    .promo{
+        margin:20px 20px 65px;
+        padding:42px 20px;
+    }
+
+    .promo-form{
+        flex-direction:column;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-bottom{
+        display:block;
+        line-height:2;
+    }
+
+    .modal-product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .modal-product-image{
+        min-height:280px;
+    }
+
+    .modal-info h2{
+        font-size:36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+
+    <a href="#" class="logo">
+        <span class="logo-mark"></span>
+        VANTA
+    </a>
+
+    <nav class="nav">
+        <a href="#catalog">Каталог</a>
+        <a href="#categories">Категории</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#about">О нас</a>
+    </nav>
+
+    <div class="actions">
+
+        <button class="icon-btn" onclick="focusSearch()" aria-label="Поиск">
+            ⌕
+        </button>
+
+        <button class="icon-btn" onclick="showFavorites()" aria-label="Избранное">
+            ♡
+            <span class="badge" id="favoriteBadge">0</span>
+        </button>
+
+        <button class="icon-btn" onclick="openCart()" aria-label="Корзина">
+            🛒
+            <span class="badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="icon-btn" onclick="openAccount()" aria-label="Аккаунт">
+            ◉
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div>
+
+        <div class="eyebrow">
+            <span class="green-dot"></span>
+            ТЕХНОЛОГИИ НОВОГО ПОКОЛЕНИЯ
+        </div>
+
+        <h1>
+            Техника,<br>
+            которая<br>
+            <span>двигает тебя.</span>
+        </h1>
+
+        <p class="hero-description">
+            VANTA — современный магазин электроники для тех,
+            кто выбирает мощность, дизайн и технологии без компромиссов.
+        </p>
+
+        <div class="buttons">
+            <button class="btn primary" onclick="scrollToCatalog()">
+                Смотреть каталог →
+            </button>
+
+            <button class="btn" onclick="scrollToCategories()">
+                Категории
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="hero-visual">
+
+        <div class="orbit"></div>
+
+        <div class="hero-phone"></div>
+
+        <div class="floating-card floating-one">
+            <small>НОВАЯ КОЛЛЕКЦИЯ</small>
+            <strong>2026 / X</strong>
+        </div>
+
+        <div class="floating-card floating-two">
+            <small>ДОСТАВКА</small>
+            <strong>от 1 дня</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+
+    <div class="section-head">
+
+        <div>
+            <div class="kicker">КАТЕГОРИИ</div>
+            <h2 class="title">Выбирай своё.</h2>
+        </div>
+
+        <p class="section-description">
+            Всё необходимое для работы, игр, творчества
+            и повседневной жизни.
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+        <div class="category-card" onclick="filterCategory('Смартфоны')">
+            <div class="category-icon">◈</div>
+            <h3>Смартфоны</h3>
+            <p>Флагманские устройства</p>
+        </div>
+
+        <div class="category-card" onclick="filterCategory('Ноутбуки')">
+            <div class="category-icon">▣</div>
+            <h3>Ноутбуки</h3>
+            <p>Для работы и творчества</p>
+        </div>
+
+        <div class="category-card" onclick="filterCategory('Аудио')">
+            <div class="category-icon">◉</div>
+            <h3>Аудио</h3>
+            <p>Музыка без компромиссов</p>
+        </div>
+
+        <div class="category-card" onclick="filterCategory('Игры')">
+            <div class="category-icon">△</div>
+            <h3>Игры</h3>
+            <p>Игровая техника</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CATALOG -->
+<section class="catalog" id="catalog">
+
+    <div class="section-head">
+
+        <div>
+            <div class="kicker">КАТАЛОГ</div>
+            <h2 class="title">Избранное железо.</h2>
+        </div>
+
+    </div>
+
+
+    <div class="catalog-tools">
+
+        <input
+            id="searchInput"
+            class="search"
+            type="search"
+            placeholder="Поиск по товарам..."
+            oninput="renderProducts()"
+        >
+
+        <select
+            id="categoryFilter"
+            class="select"
+            onchange="renderProducts()"
+        >
+            <option value="">Все категории</option>
+            <option value="Смартфоны">Смартфоны</option>
+            <option value="Ноутбуки">Ноутбуки</option>
+            <option value="Аудио">Аудио</option>
+            <option value="Игры">Игры</option>
+        </select>
+
+        <select
+            id="sortFilter"
+            class="select"
+            onchange="renderProducts()"
+        >
+            <option value="popular">Популярные</option>
+            <option value="cheap">Дешевле</option>
+            <option value="expensive">Дороже</option>
+            <option value="name">По названию</option>
+        </select>
+
+    </div>
+
+
+    <div class="products" id="products"></div>
+
+</section>
+
+
+<!-- FEATURE -->
+<section class="feature">
+
+    <div class="kicker">VANTA X1</div>
+
+    <h2>
+        Не просто<br>
+        ноутбук.
+    </h2>
+
+    <p>
+        Профессиональная машина с 3K-дисплеем,
+        32 ГБ RAM и быстрым SSD. Создана для работы,
+        творчества и игр.
+    </p>
+
+    <div class="specs">
+
+        <div class="spec">
+            <strong>3K</strong>
+            <span>DISPLAY</span>
+        </div>
+
+        <div class="spec">
+            <strong>32GB</strong>
+            <span>RAM</span>
+        </div>
+
+        <div class="spec">
+            <strong>1TB</strong>
+            <span>SSD</span>
+        </div>
+
+    </div>
+
+    <button class="btn primary" onclick="openProduct(5)">
+        Узнать больше
+    </button>
+
+</section>
+
+
+<!-- ADVANTAGES -->
+<section class="section" id="advantages">
+
+    <div class="section-head">
+
+        <div>
+            <div class="kicker">ПОЧЕМУ VANTA</div>
+            <h2 class="title">Сделано удобно.</h2>
+        </div>
+
+    </div>
+
+
+    <div class="benefits">
+
+        <div class="benefit">
+            <div class="benefit-icon">✦</div>
+            <h3>Только оригинал</h3>
+            <p>
+                Оригинальная техника от проверенных
+                поставщиков и гарантия на товары.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">↗</div>
+            <h3>Быстрая доставка</h3>
+            <p>
+                Отправляем заказы сразу после
+                подтверждения и следим за доставкой.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon">◇</div>
+            <h3>Поддержка</h3>
+            <p>
+                Поможем выбрать устройство и ответим
+                на вопросы до и после покупки.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROMO -->
+<section class="promo">
+
+    <div class="kicker">СПЕЦПРЕДЛОЖЕНИЕ</div>
+
+    <h2>Скидка для своих.</h2>
+
+    <p>
+        Введи промокод <b>VANTA10</b>
+        и получи скидку 10%.
+    </p>
+
+    <div class="promo-form">
+
+        <input
+            id="promoInput"
+            type="text"
+            placeholder="Введите промокод"
+        >
+
+        <button class="btn primary" onclick="applyPromo()">
+            Применить
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer id="about">
+
+    <div class="footer-grid">
+
+        <div>
+            <div class="logo">
+                <span class="logo-mark"></span>
+                VANTA
+            </div>
+
+            <p class="footer-description">
+                Современная техника для современной жизни.
+                Дизайн, мощность и технологии в одном месте.
+            </p>
+        </div>
+
+
+        <div class="footer">
+            <h4>МАГАЗИН</h4>
+            <a href="#catalog">Каталог</a>
+            <a href="#categories">Категории</a>
+            <a href="#catalog">Новинки</a>
+        </div>
+
+
+        <div class="footer">
+            <h4>ПОМОЩЬ</h4>
+            <a href="#">Доставка</a>
+            <a href="#">Оплата</a>
+            <a href="#">Гарантия</a>
+        </div>
+
+
+        <div class="footer">
+            <h4>КОНТАКТЫ</h4>
+            <a href="#">Telegram</a>
+            <a href="#">VK</a>
+            <a href="mailto:support@vanta.ru">support@vanta.ru</a>
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        <span>© 2026 VANTA</span>
+        <span>Техника нового поколения</span>
+    </div>
+
+</footer>
+
+
+<!-- CART OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+
+<!-- CART -->
+<aside class="cart" id="cart">
+
+    <div class="cart-header">
+
+        <h3>Корзина</h3>
+
+        <button class="close" onclick="closeCart()">×</button>
+
+    </div>
+
+
+    <div class="cart-items" id="cartItems"></div>
+
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Итого</span>
+            <strong id="cartTotal">0 ₽</strong>
+        </div>
+
+        <button
+            class="checkout-button"
+            onclick="openCheckout()"
+        >
+            Оформить заказ
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('productModal')"
+            style="float:right"
+        >
+            ×
+        </button>
+
+        <div class="modal-product-grid">
+
+            <div class="modal-product-image">
+                <div
+                    class="product-object"
+                    id="modalProductObject"
+                ></div>
+            </div>
+
+            <div class="modal-info">
+
+                <small id="modalCategory"></small>
+
+                <h2 id="modalName"></h2>
+
+                <p id="modalDescription"></p>
+
+                <div
+                    class="modal-price"
+                    id="modalPrice"
+                ></div>
+
+                <button
+                    class="btn primary"
+                    id="modalAddButton"
+                >
+                    Добавить в корзину
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+<div class="modal" id="checkoutModal">
+
+    <div class="modal-box account-box">
+
+        <button
+            class="close"
+            onclick="closeModal('checkoutModal')"
+            style="float:right"
+        >
+            ×
+        </button>
+
+        <div class="kicker">ОФОРМЛЕНИЕ</div>
+
+        <h2>Оформить заказ.</h2>
+
+        <p>
+            Заполни данные доставки.
+            Это демонстрационная форма магазина.
+        </p>
+
+        <div class="form">
+
+            <input
+                id="orderName"
+                placeholder="Имя"
+            >
+
+            <input
+                id="orderPhone"
+                placeholder="Телефон"
+            >
+
+            <input
+                id="orderAddress"
+                placeholder="Адрес доставки"
+            >
+
+            <select id="orderPayment">
+                <option>Банковская карта</option>
+                <option>При получении</option>
+            </select>
+
+            <button
+                class="btn primary"
+                onclick="placeOrder()"
+            >
+                Подтвердить заказ
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ACCOUNT -->
+<div class="modal" id="accountModal">
+
+    <div class="modal-box account-box">
+
+        <button
+            class="close"
+            onclick="closeModal('accountModal')"
+            style="float:right"
+        >
+            ×
+        </button>
+
+        <div class="kicker">VANTA ACCOUNT</div>
+
+        <h2>Личный кабинет.</h2>
+
+        <p id="accountStatus">
+            Сохрани данные, чтобы VANTA запомнил тебя.
+        </p>
+
+        <div class="form">
+
+            <input
+                id="accountName"
+                placeholder="Твоё имя"
+            >
+
+            <input
+                id="accountEmail"
+                placeholder="Email"
+            >
+
+            <button
+                class="btn primary"
+                onclick="saveAccount()"
+            >
+                Сохранить профиль
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================
+   PRODUCTS
+========================= */
+
+const products = [
+
+    {
+        id:1,
+        name:"VANTA Phone X",
+        category:"Смартфоны",
+        price:89990,
+        oldPrice:99990,
+        type:"phone",
+        tag:"ХИТ",
+        description:"Флагманский смартфон с OLED-дисплеем, мощным процессором и камерой нового поколения."
+    },
+
+    {
+        id:2,
+        name:"VANTA Buds Pro",
+        category:"Аудио",
+        price:24990,
+        oldPrice:29990,
+        type:"audio",
+        tag:"NEW",
+        description:"Беспроводные наушники с пространственным звуком и интеллектуальным шумоподавлением."
+    },
+
+    {
+        id:3,
+        name:"VANTA Watch S",
+        category:"Смартфоны",
+        price:32990,
+        oldPrice:39990,
+        type:"watch",
+        tag:"NEW",
+        description:"Премиальные умные часы с AMOLED-дисплеем и расширенным набором функций."
+    },
+
+    {
+        id:4,
+        name:"VANTA Game X",
+        category:"Игры",
+        price:74990,
+        oldPrice:84990,
+        type:"game",
+        tag:"ХИТ",
+        description:"Мощная игровая система для современных игр в высоком разрешении."
+    },
+
+    {
+        id:5,
+        name:"VANTA X1",
+        category:"Ноутбуки",
+        price:149990,
+        oldPrice:169990,
+        type:"laptop",
+        tag:"PRO",
+        description:"Профессиональный ноутбук с 3K-дисплеем, 32 ГБ RAM и SSD на 1 ТБ."
+    },
+
+    {
+        id:6,
+        name:"VANTA Air",
+        category:"Ноутбуки",
+        price:119990,
+        oldPrice:129990,
+        type:"laptop",
+        tag:"NEW",
+        description:"Лёгкий ноутбук для работы, учёбы и творчества."
+    },
+
+    {
+        id:7,
+        name:"VANTA Sound",
+        category:"Аудио",
+        price:18990,
+        oldPrice:21990,
+        type:"audio",
+        tag:"SALE",
+        description:"Полноразмерные наушники с глубоким басом и автономностью до 40 часов."
+    },
+
+    {
+        id:8,
+        name:"VANTA Play",
+        category:"Игры",
+        price:59990,
+        oldPrice:69990,
+        type:"game",
+        tag:"ХИТ",
+        description:"Компактная игровая система с высокой производительностью."
+    }
+
+];
+
+
+/* =========================
+   STATE
+========================= */
+
+let cart =
+    JSON.parse(localStorage.getItem("vantaCart") || "[]");
+
+let favorites =
+    JSON.parse(localStorage.getItem("vantaFavorites") || "[]");
+
+let profile =
+    JSON.parse(localStorage.getItem("vantaProfile") || "null");
+
+let discount =
+    Number(localStorage.getItem("vantaDiscount") || 0);
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function money(value){
+
+    return new Intl.NumberFormat("ru-RU")
+        .format(value) + " ₽";
+
+}
+
+
+function saveState(){
+
+    localStorage.setItem(
+        "vantaCart",
+        JSON.stringify(cart)
+    );
+
+    localStorage.setItem(
+        "vantaFavorites",
+        JSON.stringify(favorites)
+    );
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2300);
+
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+function renderProducts(){
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const category =
+        document.getElementById("categoryFilter")
+        .value;
+
+    const sort =
+        document.getElementById("sortFilter")
+        .value;
+
+
+    let list = products.filter(product => {
+
+        const matchesSearch =
+            !search ||
+            (
+                product.name +
+                " " +
+                product.category
+            )
+            .toLowerCase()
+            .includes(search);
+
+        const matchesCategory =
+            !category ||
+            product.category === category;
+
+        return matchesSearch && matchesCategory;
+
+    });
+
+
+    if(sort === "cheap"){
+        list.sort((a,b) => a.price - b.price);
+    }
+
+    if(sort === "expensive"){
+        list.sort((a,b) => b.price - a.price);
+    }
+
+    if(sort === "name"){
+        list.sort((a,b) =>
+            a.name.localeCompare(b.name)
+        );
+    }
+
+
+    const container =
+        document.getElementById("products");
+
+
+    if(!list.length){
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:80px 20px;
+                color:#55555d;
+            ">
+                <div style="font-size:35px;margin-bottom:15px;">
+                    ⌕
+                </div>
+                Ничего не найдено
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list.map(productCard).join("");
+
+}
+
+
+function productCard(product){
+
+    const liked =
+        favorites.includes(product.id);
+
+    return `
+
+        <article class="product-card">
+
+            <div
+                class="product-image"
+                onclick="openProduct(${product.id})"
+            >
+
+                <span class="product-tag">
+                    ${product.tag}
+                </span>
+
+                <button
+                    class="favorite ${liked ? "active" : ""}"
+                    onclick="
+                        event.stopPropagation();
+                        toggleFavorite(${product.id})
+                    "
+                >
+                    ${liked ? "♥" : "♡"}
+                </button>
+
+                <div
+                    class="product-object ${product.type}"
+                ></div>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    ${product.category}
+                </div>
+
+                <div class="product-name">
+                    ${product.name}
+                </div>
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        ${money(product.price)}
+
+                        <span class="old-price">
+                            ${money(product.oldPrice)}
+                        </span>
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addToCart(${product.id})"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(id){
+
+    const item =
+        cart.find(item => item.id === id);
+
+    if(item){
+
+        item.quantity++;
+
+    }else{
+
+        cart.push({
+            id:id,
+            quantity:1
+        });
+
+    }
+
+    saveState();
+    updateCart();
+
+    showToast("Товар добавлен в корзину");
+
+}
+
+
+function changeQuantity(id, amount){
+
+    const item =
+        cart.find(item => item.id === id);
+
+    if(!item) return;
+
+    item.quantity += amount;
+
+    if(item.quantity <= 0){
+
+        cart =
+            cart.filter(item => item.id !== id);
+
+    }
+
+    saveState();
+    updateCart();
+
+}
+
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+    saveState();
+    updateCart();
+
+}
+
+
+function updateCart(){
+
+    const badge =
+        document.getElementById("cartBadge");
+
+    const totalQuantity =
+        cart.reduce(
+            (sum,item) => sum + item.quantity,
+            0
+        );
+
+    badge.textContent = totalQuantity;
+
+
+    const container =
+        document.getElementById("cartItems");
+
+
+    if(!cart.length){
+
+        container.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div class="empty-cart-icon">
+                    🛒
+                </div>
+
+                <strong>
+                    Корзина пуста
+                </strong>
+
+                <span style="margin-top:7px;">
+                    Добавь что-нибудь из каталога
+                </span>
+
+            </div>
+
+        `;
+
+        document.getElementById("cartTotal")
+            .textContent = "0 ₽";
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    container.innerHTML =
+        cart.map(item => {
+
+            const product =
+                products.find(
+                    product => product.id === item.id
+                );
+
+            const itemTotal =
+                product.price * item.quantity;
+
+            total += itemTotal;
+
+
+            return `
+
+                <div class="cart-item">
+
+                    <div class="cart-thumb">
+                        <div></div>
+                    </div>
+
+
+                    <div>
+
+                        <div class="cart-item-name">
+                            ${product.name}
+                        </div>
+
+                        <div class="cart-item-price">
+                            ${money(product.price)}
+                        </div>
+
+                        <div class="quantity">
+
+                            <button
+                                onclick="
+                                    changeQuantity(
+                                        ${product.id},
+                                        -1
+                                    )
+                                "
+                            >
+                                −
+                            </button>
+
+                            <span>
+                                ${item.quantity}
+                            </span>
+
+                            <button
+                                onclick="
+                                    changeQuantity(
+                                        ${product.id},
+                                        1
+                                    )
+                                "
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="remove"
+                        onclick="
+                            removeFromCart(${product.id})
+                        "
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    const finalTotal =
+        total * (1 - discount);
+
+
+    document.getElementById("cartTotal")
+        .textContent = money(finalTotal);
+
+}
+
+
+function openCart(){
+
+    document
+        .getElementById("cart")
+        .classList.add("active");
+
+    document
+        .getElementById("overlay")
+        .classList.add("active");
+
+    document.body.classList.add("locked");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cart")
+        .classList.remove("active");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("active");
+
+    document.body.classList.remove("locked");
+
+}
+
+
+/* =========================
+   FAVORITES
+========================= */
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(
+                item => item !== id
+            );
+
+        showToast("Удалено из избранного");
+
+    }else{
+
+        favorites.push(id);
+
+        showToast("Добавлено в избранное");
+
+    }
+
+    saveState();
+
+    updateFavoriteBadge();
+
+    renderProducts();
+
+}
+
+
+function updateFavoriteBadge(){
+
+    document.getElementById("favoriteBadge")
+        .textContent = favorites.length;
+
+}
+
+
+function showFavorites(){
+
+    if(!favorites.length){
+
+        showToast("Избранное пока пусто");
+
+        return;
+
+    }
+
+    document
+        .getElementById("catalog")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    setTimeout(() => {
+
+        const container =
+            document.getElementById("products");
+
+        const favoriteProducts =
+            products.filter(
+                product =>
+                    favorites.includes(product.id)
+            );
+
+        container.innerHTML =
+            favoriteProducts
+                .map(productCard)
+                .join("");
+
+    },400);
+
+}
+
+
+/* =========================
+   PRODUCT MODAL
+========================= */
+
+function openProduct(id){
+
+    const product =
+        products.find(
+            product => product.id === id
+        );
+
+    if(!product) return;
+
+
+    document.getElementById("modalCategory")
+        .textContent =
+        product.category.toUpperCase();
+
+
+    document.getElementById("modalName")
+        .textContent =
+        product.name;
+
+
+    document.getElementById("modalDescription")
+        .textContent =
+        product.description;
+
+
+    document.getElementById("modalPrice")
+        .textContent =
+        money(product.price);
+
+
+    const object =
+        document.getElementById(
+            "modalProductObject"
+        );
+
+    object.className =
+        "product-object " + product.type;
+
+
+    document.getElementById("modalAddButton")
+        .onclick = () => {
+
+            addToCart(product.id);
+
+            closeModal("productModal");
+
+        };
+
+
+    openModal("productModal");
+
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+function openModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    document.body.classList.add("locked");
+
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("active");
+
+    document.body.classList.remove("locked");
+
+}
+
+
+/* =========================
+   SEARCH / FILTER
+========================= */
+
+function filterCategory(category){
+
+    document.getElementById(
+        "categoryFilter"
+    ).value = category;
+
+    document.getElementById(
+        "searchInput"
+    ).value = "";
+
+    document
+        .getElementById("catalog")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    setTimeout(
+        renderProducts,
+        350
+    );
+
+}
+
+
+function focusSearch(){
+
+    document
+        .getElementById("catalog")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    setTimeout(() => {
+
+        const input =
+            document.getElementById(
+                "searchInput"
+            );
+
+        input.focus();
+
+    },400);
+
+}
+
+
+/* =========================
+   PROMO
+========================= */
+
+function applyPromo(){
+
+    const value =
+        document.getElementById("promoInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+
+    if(value === "VANTA10"){
+
+        discount = .10;
+
+        localStorage.setItem(
+            "vantaDiscount",
+            discount
+        );
+
+        updateCart();
+
+        showToast(
+            "Промокод применён: скидка 10%"
+        );
+
+    }else{
+
+        showToast(
+            "Такого промокода нет"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function openCheckout(){
+
+    if(!cart.length){
+
+        showToast(
+            "Сначала добавь товар в корзину"
+        );
+
+        return;
+
+    }
+
+    closeCart();
+
+    openModal("checkoutModal");
+
+}
+
+
+function placeOrder(){
+
+    const name =
+        document
+            .getElementById("orderName")
+            .value
+            .trim();
+
+    const phone =
+        document
+            .getElementById("orderPhone")
+            .value
+            .trim();
+
+    const address =
+        document
+            .getElementById("orderAddress")
+            .value
+            .trim();
+
+
+    if(!name || !phone || !address){
+
+        showToast(
+            "Заполни все поля"
+        );
+
+        return;
+
+    }
+
+
+    cart = [];
+
+    discount = 0;
+
+    localStorage.removeItem(
+        "vantaCart"
+    );
+
+    localStorage.removeItem(
+        "vantaDiscount"
+    );
+
+    updateCart();
+
+    closeModal("checkoutModal");
+
+    showToast(
+        "Заказ принят. Спасибо, " + name + "!"
+    );
+
+}
+
+
+/* =========================
+   ACCOUNT
+========================= */
+
+function openAccount(){
+
+    const name =
+        document.getElementById(
+            "accountName"
+        );
+
+    const email =
+        document.getElementById(
+            "accountEmail"
+        );
+
+    if(profile){
+
+        name.value = profile.name || "";
+        email.value = profile.email || "";
+
+        document.getElementById(
+            "accountStatus"
+        ).textContent =
+            "С возвращением, " +
+            profile.name +
+            ". Данные сохранены на этом устройстве.";
+
+    }else{
+
+        name.value = "";
+        email.value = "";
+
+        document.getElementById(
+            "accountStatus"
+        ).textContent =
+            "Сохрани данные, чтобы VANTA запомнил тебя.";
+
+    }
+
+    openModal("accountModal");
+
+}
+
+
+function saveAccount(){
+
+    const name =
+        document
+            .getElementById("accountName")
+            .value
+            .trim();
+
+    const email =
+        document
+            .getElementById("accountEmail")
+            .value
+            .trim();
+
+
+    if(!name){
+
+        showToast(
+            "Введи имя"
+        );
+
+        return;
+
+    }
+
+
+    profile = {
+        name:name,
+        email:email
+    };
+
+
+    localStorage.setItem(
+        "vantaProfile",
+        JSON.stringify(profile)
+    );
+
+
+    closeModal("accountModal");
+
+    showToast(
+        "Профиль сохранён"
+    );
+
+}
+
+
+/* =========================
+   SCROLL
+========================= */
+
+function scrollToCatalog(){
+
+    document
+        .getElementById("catalog")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function scrollToCategories(){
+
+    document
+        .getElementById("categories")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        document
+            .getElementById("header")
+            .classList.toggle(
+                "scrolled",
+                window.scrollY > 30
+            );
+
+    }
+);
+
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            closeCart();
+
+            document
+                .querySelectorAll(".modal")
+                .forEach(modal =>
+                    modal.classList.remove("active")
+                );
+
+            document.body.classList.remove(
+                "locked"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CLOSE MODAL BY BACKDROP
+========================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(event.target === modal){
+
+                    closeModal(modal.id);
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   START
+========================= */
+
+renderProducts();
+
+updateCart();
+
+updateFavoriteBadge();
+
+</script>
+
+</body>
+</html>
+```

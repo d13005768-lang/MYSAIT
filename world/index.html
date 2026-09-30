@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>WORLD — Путешествия</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root{
+    --bg:#f4f7f8;
+    --surface:#fff;
+    --surface2:#e8eef0;
+    --text:#101820;
+    --muted:#6c7880;
+    --line:rgba(16,24,32,.11);
+    --accent:#1b8c8c;
+    --accent2:#f0a35b;
+    --dark:#07111f;
+    --white:#fff;
+    --danger:#c04d58;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+body.dark{
+    --bg:#081018;
+    --surface:#101a23;
+    --surface2:#182631;
+    --text:#f5f8fa;
+    --muted:#93a1aa;
+    --line:rgba(255,255,255,.1);
+    --dark:#f5f8fa;
+    --white:#081018;
+}
+
+body.lock{
+    overflow:hidden;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#82929a;
+    border-radius:20px;
+}
+
+/* HEADER */
+
+.header{
+    position:fixed;
+    z-index:1000;
+    top:0;
+    left:0;
+    right:0;
+    height:78px;
+    display:flex;
+    align-items:center;
+    padding:0 6vw;
+    color:white;
+    transition:.35s;
+}
+
+.header.scrolled{
+    color:var(--text);
+    background:rgba(244,247,248,.86);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+}
+
+body.dark .header.scrolled{
+    background:rgba(8,16,24,.88);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:6px;
+}
+
+.nav{
+    display:flex;
+    gap:30px;
+    margin-left:65px;
+    font-size:12px;
+}
+
+.nav a{
+    opacity:.8;
+    transition:.25s;
+}
+
+.nav a:hover{
+    opacity:1;
+}
+
+.header-actions{
+    margin-left:auto;
+    display:flex;
+    gap:8px;
+}
+
+.icon{
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.25);
+    background:#ffffff12;
+    color:inherit;
+    border-radius:50%;
+    transition:.25s;
+    position:relative;
+}
+
+.header.scrolled .icon{
+    border-color:var(--line);
+    background:var(--surface);
+}
+
+.icon:hover{
+    transform:translateY(-2px);
+}
+
+.badge{
+    position:absolute;
+    right:-3px;
+    top:-4px;
+    min-width:17px;
+    height:17px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--accent2);
+    color:#111;
+    font-size:9px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:120px 7vw 80px;
+    color:white;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 75% 30%,#2e8795 0,#143e51 28%,transparent 58%),
+        linear-gradient(120deg,#07111f,#123143 55%,#0b202d);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    right:-180px;
+    bottom:-230px;
+    background:#f0a35b22;
+    filter:blur(20px);
+}
+
+.hero-content{
+    width:min(760px,100%);
+    position:relative;
+    z-index:2;
+}
+
+.kicker{
+    color:#75d5d0;
+    font-size:10px;
+    letter-spacing:5px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(65px,9vw,135px);
+    line-height:.85;
+    letter-spacing:-6px;
+    font-weight:600;
+}
+
+.hero h1 em{
+    color:#75d5d0;
+    font-style:italic;
+}
+
+.hero-text{
+    max-width:520px;
+    color:#d5e0e5;
+    line-height:1.8;
+    font-size:14px;
+    margin-top:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:32px;
+}
+
+.btn{
+    min-height:52px;
+    padding:0 24px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    border-radius:5px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn.light{
+    color:#07111f;
+    background:white;
+    border-color:white;
+}
+
+.btn.accent{
+    color:white;
+    background:var(--accent);
+    border-color:var(--accent);
+}
+
+.hero-orbit{
+    position:absolute;
+    right:8vw;
+    top:50%;
+    width:420px;
+    height:420px;
+    transform:translateY(-50%);
+    border:1px solid #ffffff20;
+    border-radius:50%;
+}
+
+.hero-orbit::before,
+.hero-orbit::after{
+    content:"";
+    position:absolute;
+    border:1px solid #ffffff15;
+    border-radius:50%;
+}
+
+.hero-orbit::before{
+    inset:55px;
+}
+
+.hero-orbit::after{
+    inset:110px;
+}
+
+.globe{
+    position:absolute;
+    inset:125px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 35% 30%,#72d7d0,#1b697a 45%,#092030 75%);
+    box-shadow:0 0 100px #48c9d055;
+    animation:float 6s ease-in-out infinite;
+}
+
+.globe::before{
+    content:"";
+    position:absolute;
+    width:70px;
+    height:40px;
+    top:80px;
+    left:45px;
+    border-radius:60% 30% 50% 40%;
+    background:#b9eee4aa;
+    transform:rotate(-20deg);
+}
+
+.globe::after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:45px;
+    top:115px;
+    right:25px;
+    border-radius:30% 60% 40% 60%;
+    background:#b9eee488;
+    transform:rotate(25deg);
+}
+
+.pin{
+    position:absolute;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:#f0a35b;
+    box-shadow:0 0 0 8px #f0a35b22;
+}
+
+.pin.one{
+    top:30%;
+    right:32%;
+}
+
+.pin.two{
+    top:60%;
+    right:14%;
+}
+
+.pin.three{
+    top:48%;
+    left:18%;
+}
+
+/* SEARCH */
+
+.search-box{
+    position:relative;
+    z-index:10;
+    width:min(1100px,88vw);
+    margin:-60px auto 0;
+    padding:20px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    box-shadow:0 25px 70px #07111f18;
+    border-radius:8px;
+}
+
+.search-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr auto;
+    gap:8px;
+}
+
+.field{
+    min-height:54px;
+    padding:0 14px;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--text);
+    outline:none;
+    border-radius:4px;
+}
+
+.search-button{
+    border:0;
+    background:var(--accent);
+    color:white;
+    padding:0 25px;
+    border-radius:4px;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:110px 7vw;
+}
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:40px;
+}
+
+.title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(42px,5vw,68px);
+    line-height:1;
+    letter-spacing:-2px;
+}
+
+.description{
+    max-width:390px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* DESTINATIONS */
+
+.destinations{
+    display:grid;
+    grid-template-columns:1.3fr .7fr .7fr;
+    grid-template-rows:260px 260px;
+    gap:12px;
+}
+
+.destination{
+    position:relative;
+    overflow:hidden;
+    border-radius:6px;
+    cursor:pointer;
+    background:var(--surface2);
+}
+
+.destination:first-child{
+    grid-row:span 2;
+}
+
+.destination-bg{
+    position:absolute;
+    inset:0;
+    transition:.6s;
+}
+
+.destination:hover .destination-bg{
+    transform:scale(1.08);
+}
+
+.dest-1{
+    background:
+        linear-gradient(135deg,#1e6677,#8cc4c1 48%,#e8c89f);
+}
+
+.dest-2{
+    background:
+        linear-gradient(135deg,#c8a67d,#72553d 60%,#293a3b);
+}
+
+.dest-3{
+    background:
+        linear-gradient(135deg,#8fc5d0,#315b72 60%,#142735);
+}
+
+.dest-4{
+    background:
+        linear-gradient(135deg,#d9c0a1,#997458 50%,#443a39);
+}
+
+.dest-5{
+    background:
+        linear-gradient(135deg,#b6d0b4,#587d6e 55%,#213e3b);
+}
+
+.destination-content{
+    position:absolute;
+    left:24px;
+    bottom:22px;
+    z-index:2;
+    color:white;
+}
+
+.destination::after{
+    content:"";
+    position:absolute;
+    inset:40% 0 0;
+    background:linear-gradient(transparent,#07111fbb);
+}
+
+.destination-content h3{
+    font-family:"Playfair Display",serif;
+    font-size:32px;
+}
+
+.destination-content span{
+    font-size:9px;
+    letter-spacing:2px;
+    opacity:.75;
+}
+
+/* TOURS */
+
+.catalog-tools{
+    display:grid;
+    grid-template-columns:1fr 180px 180px;
+    gap:8px;
+    margin-bottom:28px;
+}
+
+.tours{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.tour{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    animation:appear .5s ease both;
+}
+
+.tour-image{
+    height:300px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#5f8991,#c6a985);
+}
+
+.tour:nth-child(2n) .tour-image{
+    background:linear-gradient(135deg,#d5b890,#6c5c50);
+}
+
+.tour:nth-child(3n) .tour-image{
+    background:linear-gradient(135deg,#77aeb4,#243e4d);
+}
+
+.tour-image::before{
+    content:"";
+    position:absolute;
+    width:160px;
+    height:110px;
+    border-radius:50% 50% 15% 15%;
+    left:50%;
+    top:35%;
+    transform:translate(-50%,-50%);
+    background:#ffffff26;
+    box-shadow:80px 40px 0 -10px #ffffff18;
+}
+
+.tour-image::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:50%;
+    background:linear-gradient(transparent,#07111f55);
+}
+
+.tour-fav{
+    position:absolute;
+    z-index:3;
+    right:14px;
+    top:14px;
+    width:39px;
+    height:39px;
+    border-radius:50%;
+    border:1px solid #ffffff55;
+    background:#ffffff22;
+    color:white;
+    backdrop-filter:blur(10px);
+}
+
+.tour-fav.active{
+    color:#ffb1b7;
+}
+
+.tour-tag{
+    position:absolute;
+    z-index:3;
+    left:14px;
+    top:14px;
+    padding:7px 9px;
+    background:#07111fdc;
+    color:white;
+    font-size:8px;
+    letter-spacing:1px;
+}
+
+.tour-info{
+    padding:19px;
+}
+
+.tour-location{
+    color:var(--accent);
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.tour-name{
+    font-family:"Playfair Display",serif;
+    font-size:26px;
+    margin-top:7px;
+}
+
+.tour-meta{
+    display:flex;
+    gap:14px;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:10px;
+}
+
+.tour-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-top:20px;
+}
+
+.tour-price{
+    font-size:20px;
+    font-weight:700;
+}
+
+.tour-price small{
+    color:var(--muted);
+    font-size:9px;
+    font-weight:400;
+}
+
+.view{
+    border:0;
+    background:var(--dark);
+    color:var(--white);
+    padding:10px 14px;
+    border-radius:4px;
+    font-size:10px;
+}
+
+/* EXPERIENCE */
+
+.experience{
+    background:var(--dark);
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+}
+
+.experience .description{
+    color:#aab7bf;
+}
+
+.experience-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.experience-card{
+    padding:35px;
+    min-height:280px;
+    border:1px solid #ffffff15;
+    background:#ffffff06;
+    transition:.35s;
+}
+
+.experience-card:hover{
+    transform:translateY(-8px);
+    background:#ffffff0b;
+}
+
+.experience-icon{
+    font-size:38px;
+    margin-bottom:40px;
+}
+
+.experience-card h3{
+    font-family:"Playfair Display",serif;
+    font-size:27px;
+    margin-bottom:12px;
+}
+
+.experience-card p{
+    color:#9eabb3;
+    line-height:1.7;
+    font-size:12px;
+}
+
+/* WHY */
+
+.why{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.why-visual{
+    height:580px;
+    position:relative;
+    background:
+        radial-gradient(circle at 50% 45%,#66c6c1,#174d5d 32%,#08151e 70%);
+    overflow:hidden;
+}
+
+.why-visual::before{
+    content:"WORLD";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) rotate(-90deg);
+    color:#ffffff10;
+    font-size:120px;
+    font-family:"Playfair Display",serif;
+    letter-spacing:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:35px;
+}
+
+.stat{
+    padding:22px;
+    background:var(--surface);
+    border:1px solid var(--line);
+}
+
+.stat strong{
+    display:block;
+    font-family:"Playfair Display",serif;
+    font-size:37px;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* REVIEWS */
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.review{
+    padding:28px;
+    background:var(--surface);
+    border:1px solid var(--line);
+}
+
+.stars{
+    color:#e8a259;
+    letter-spacing:3px;
+}
+
+.review p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:13px;
+    margin:20px 0;
+}
+
+.reviewer{
+    font-weight:700;
+    font-size:12px;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+    margin:0 7vw 100px;
+    padding:75px 30px;
+    text-align:center;
+    background:
+        linear-gradient(135deg,#0d2938,#174b56);
+    color:white;
+}
+
+.newsletter h2{
+    font-family:"Playfair Display",serif;
+    font-size:55px;
+}
+
+.newsletter p{
+    color:#bdd0d4;
+    font-size:13px;
+    margin:15px auto 27px;
+}
+
+.newsletter-form{
+    display:flex;
+    max-width:530px;
+    margin:auto;
+    gap:7px;
+}
+
+.newsletter-form input{
+    flex:1;
+    min-width:0;
+    height:52px;
+    padding:0 15px;
+    border:0;
+    outline:none;
+}
+
+/* FOOTER */
+
+footer{
+    padding:70px 7vw 25px;
+    border-top:1px solid var(--line);
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-description{
+    max-width:300px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+    margin-top:14px;
+}
+
+.footer h4{
+    font-size:9px;
+    color:var(--muted);
+    letter-spacing:2px;
+    margin-bottom:15px;
+}
+
+.footer a{
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    margin:10px 0;
+}
+
+.footer-bottom{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    background:#000a;
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.modal.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(900px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:var(--surface);
+    color:var(--text);
+    border:1px solid var(--line);
+    padding:30px;
+    transform:translateY(20px) scale(.97);
+    transition:.3s;
+}
+
+.modal.active .modal-box{
+    transform:none;
+}
+
+.close{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    font-size:20px;
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:start;
+}
+
+.modal-tour{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-top:20px;
+}
+
+.modal-image{
+    min-height:430px;
+    background:linear-gradient(135deg,#5c9ba0,#d0b28e);
+}
+
+.modal-info h2{
+    font-family:"Playfair Display",serif;
+    font-size:48px;
+    line-height:1;
+    margin:12px 0 18px;
+}
+
+.modal-info p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:13px;
+}
+
+.price-big{
+    font-size:28px;
+    font-weight:700;
+    margin:25px 0;
+}
+
+.form{
+    display:grid;
+    gap:9px;
+}
+
+.form input,
+.form select{
+    height:51px;
+    width:100%;
+    padding:0 14px;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--text);
+    outline:none;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:8000;
+    right:20px;
+    bottom:20px;
+    padding:14px 18px;
+    background:var(--dark);
+    color:var(--white);
+    font-size:11px;
+    transform:translateY(30px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:none;
+}
+
+/* ANIMATION */
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+    50%{
+        transform:translateY(-12px) rotate(2deg);
+    }
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:1050px){
+
+    .nav{
+        display:none;
+    }
+
+    .hero-orbit{
+        opacity:.4;
+        right:-150px;
+    }
+
+    .search-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-button{
+        height:54px;
+    }
+
+    .destinations{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .destination:first-child{
+        grid-row:auto;
+    }
+
+    .tours{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .why{
+        grid-template-columns:1fr;
+    }
+
+    .experience-grid,
+    .reviews{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .header{
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .header-actions{
+        gap:4px;
+    }
+
+    .icon{
+        width:36px;
+        height:36px;
+    }
+
+    .hero{
+        padding:120px 20px 80px;
+    }
+
+    .hero h1{
+        font-size:64px;
+        letter-spacing:-4px;
+    }
+
+    .hero-orbit{
+        width:320px;
+        height:320px;
+        right:-180px;
+        top:70%;
+    }
+
+    .search-box{
+        width:calc(100% - 30px);
+        margin:-30px auto 0;
+        padding:12px;
+    }
+
+    .search-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:75px 20px;
+    }
+
+    .section-top{
+        display:block;
+    }
+
+    .description{
+        margin-top:15px;
+    }
+
+    .destinations{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:190px 190px 190px;
+    }
+
+    .destination:first-child{
+        grid-column:span 2;
+    }
+
+    .destination-content h3{
+        font-size:23px;
+    }
+
+    .catalog-tools{
+        grid-template-columns:1fr;
+    }
+
+    .tours{
+        grid-template-columns:1fr;
+    }
+
+    .tour-image{
+        height:280px;
+    }
+
+    .experience-card{
+        min-height:220px;
+    }
+
+    .why-visual{
+        height:390px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .newsletter{
+        margin:0 20px 70px;
+        padding:55px 20px;
+    }
+
+    .newsletter h2{
+        font-size:42px;
+    }
+
+    .newsletter-form{
+        flex-direction:column;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-bottom{
+        display:block;
+        line-height:2;
+    }
+
+    .modal-tour{
+        grid-template-columns:1fr;
+    }
+
+    .modal-image{
+        min-height:270px;
+    }
+
+    .modal-info h2{
+        font-size:38px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header" id="header">
+
+    <a href="#" class="logo">WORLD</a>
+
+    <nav class="nav">
+        <a href="#destinations">Направления</a>
+        <a href="#tours">Туры</a>
+        <a href="#experience">Впечатления</a>
+        <a href="#reviews">Отзывы</a>
+    </nav>
+
+    <div class="header-actions">
+
+        <button class="icon" onclick="focusSearch()">⌕</button>
+
+        <button class="icon" onclick="showFavorites()">
+            ♡
+            <span class="badge" id="favBadge">0</span>
+        </button>
+
+        <button class="icon" onclick="openBookings()">
+            ◫
+            <span class="badge" id="bookingBadge">0</span>
+        </button>
+
+        <button class="icon" onclick="toggleTheme()">☾</button>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="kicker">
+            WORLD TRAVEL / 2026
+        </div>
+
+        <h1>
+            See the<br>
+            <em>world.</em>
+        </h1>
+
+        <p class="hero-text">
+            Путешествия, которые остаются в памяти.
+            Выбирай направление, открывай новые места
+            и создавай свою следующую историю.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn light"
+                onclick="scrollToTours()"
+            >
+                Найти путешествие
+            </button>
+
+            <button
+                class="btn"
+                style="color:white;border-color:#ffffff55"
+                onclick="scrollToDestinations()"
+            >
+                Направления
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-orbit">
+
+        <div class="globe"></div>
+
+        <span class="pin one"></span>
+        <span class="pin two"></span>
+        <span class="pin three"></span>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+    <div class="search-grid">
+
+        <input
+            class="field"
+            id="search"
+            placeholder="Куда отправимся?"
+            oninput="renderTours()"
+        >
+
+        <select
+            class="field"
+            id="country"
+            onchange="renderTours()"
+        >
+            <option value="">Любая страна</option>
+            <option value="Италия">Италия</option>
+            <option value="Япония">Япония</option>
+            <option value="Исландия">Исландия</option>
+            <option value="Греция">Греция</option>
+            <option value="Португалия">Португалия</option>
+            <option value="Норвегия">Норвегия</option>
+        </select>
+
+        <select
+            class="field"
+            id="type"
+            onchange="renderTours()"
+        >
+            <option value="">Любой отдых</option>
+            <option value="Море">Море</option>
+            <option value="Город">Город</option>
+            <option value="Природа">Природа</option>
+            <option value="Приключения">Приключения</option>
+        </select>
+
+        <select
+            class="field"
+            id="sort"
+            onchange="renderTours()"
+        >
+            <option value="popular">Популярные</option>
+            <option value="cheap">Дешевле</option>
+            <option value="expensive">Дороже</option>
+        </select>
+
+        <button
+            class="search-button"
+            onclick="scrollToTours()"
+        >
+            Найти
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- DESTINATIONS -->
+
+<section class="section" id="destinations">
+
+    <div class="section-top">
+
+        <div>
+            <div class="kicker">EXPLORE</div>
+            <h2 class="title">Куда дальше?</h2>
+        </div>
+
+        <p class="description">
+            От средиземноморских пляжей до северных фьордов —
+            выбери атмосферу своего следующего путешествия.
+        </p>
+
+    </div>
+
+
+    <div class="destinations">
+
+        <div
+            class="destination"
+            onclick="chooseCountry('Италия')"
+        >
+            <div class="destination-bg dest-1"></div>
+            <div class="destination-content">
+                <span>EUROPE</span>
+                <h3>Италия</h3>
+            </div>
+        </div>
+
+        <div
+            class="destination"
+            onclick="chooseCountry('Япония')"
+        >
+            <div class="destination-bg dest-2"></div>
+            <div class="destination-content">
+                <span>ASIA</span>
+                <h3>Япония</h3>
+            </div>
+        </div>
+
+        <div
+            class="destination"
+            onclick="chooseCountry('Исландия')"
+        >
+            <div class="destination-bg dest-3"></div>
+            <div class="destination-content">
+                <span>NORTH</span>
+                <h3>Исландия</h3>
+            </div>
+        </div>
+
+        <div
+            class="destination"
+            onclick="chooseCountry('Греция')"
+        >
+            <div class="destination-bg dest-4"></div>
+            <div class="destination-content">
+                <span>MEDITERRANEAN</span>
+                <h3>Греция</h3>
+            </div>
+        </div>
+
+        <div
+            class="destination"
+            onclick="chooseCountry('Норвегия')"
+        >
+            <div class="destination-bg dest-5"></div>
+            <div class="destination-content">
+                <span>SCANDINAVIA</span>
+                <h3>Норвегия</h3>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TOURS -->
+
+<section class="section" id="tours">
+
+    <div class="section-top">
+
+        <div>
+            <div class="kicker">WORLD COLLECTION</div>
+            <h2 class="title">Путешествия.</h2>
+        </div>
+
+    </div>
+
+
+    <div class="catalog-tools">
+
+        <input
+            class="field"
+            id="tourSearch"
+            placeholder="Поиск тура..."
+            oninput="renderTours()"
+        >
+
+        <select
+            class="field"
+            id="tourCountry"
+            onchange="renderTours()"
+        >
+            <option value="">Все страны</option>
+            <option value="Италия">Италия</option>
+            <option value="Япония">Япония</option>
+            <option value="Исландия">Исландия</option>
+            <option value="Греция">Греция</option>
+            <option value="Португалия">Португалия</option>
+            <option value="Норвегия">Норвегия</option>
+        </select>
+
+        <select
+            class="field"
+            id="tourSort"
+            onchange="renderTours()"
+        >
+            <option value="popular">Популярные</option>
+            <option value="cheap">Сначала дешевле</option>
+            <option value="expensive">Сначала дороже</option>
+        </select>
+
+    </div>
+
+
+    <div class="tours" id="tourList"></div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section class="section experience" id="experience">
+
+    <div class="section-top">
+
+        <div>
+            <div class="kicker">WHY WORLD</div>
+            <h2 class="title">Не просто тур.</h2>
+        </div>
+
+        <p class="description">
+            Мы собираем путешествие вокруг впечатлений,
+            а не вокруг стандартного списка достопримечательностей.
+        </p>
+
+    </div>
+
+
+    <div class="experience-grid">
+
+        <div class="experience-card">
+
+            <div class="experience-icon">◉</div>
+
+            <h3>Местный взгляд</h3>
+
+            <p>
+                Маршруты и рекомендации, которые помогают
+                увидеть место не только глазами туриста.
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="experience-icon">✦</div>
+
+            <h3>Свобода</h3>
+
+            <p>
+                Можно выбрать готовый маршрут или изменить
+                его под свой ритм, даты и интересы.
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="experience-icon">∞</div>
+
+            <h3>Впечатления</h3>
+
+            <p>
+                От ужина у моря до путешествия по ледникам —
+                выбирай то, что хочется запомнить.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY -->
+
+<section class="section">
+
+    <div class="why">
+
+        <div class="why-visual"></div>
+
+        <div>
+
+            <div class="kicker">WORLD PHILOSOPHY</div>
+
+            <h2 class="title">
+                Мир слишком<br>
+                большой, чтобы<br>
+                откладывать.
+            </h2>
+
+            <p class="description" style="margin-top:25px">
+                WORLD помогает превратить идею «когда-нибудь»
+                в конкретный маршрут: направление, даты,
+                бюджет и впечатления.
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>42+</strong>
+                    <span>направления</span>
+                </div>
+
+                <div class="stat">
+                    <strong>180+</strong>
+                    <span>маршрутов</span>
+                </div>
+
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <span>поддержка</span>
+                </div>
+
+                <div class="stat">
+                    <strong>4.9</strong>
+                    <span>средняя оценка</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section class="section" id="reviews">
+
+    <div class="section-top">
+
+        <div>
+            <div class="kicker">TRAVEL STORIES</div>
+            <h2 class="title">Отзывы.</h2>
+        </div>
+
+    </div>
+
+
+    <div class="reviews">
+
+        <article class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                «Маршрут по Италии оказался именно таким,
+                каким мы его представляли. Особенно понравились
+                маленькие места между большими городами.»
+            </p>
+
+            <div class="reviewer">
+                — Анна, Москва
+            </div>
+
+        </article>
+
+
+        <article class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                «Япония полностью изменила мои представления
+                о путешествиях. Очень понравилась свобода
+                менять маршрут прямо по ходу поездки.»
+            </p>
+
+            <div class="reviewer">
+                — Максим, Санкт-Петербург
+            </div>
+
+        </article>
+
+
+        <article class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                «Исландия была мечтой несколько лет.
+                WORLD помог превратить её в нормальный
+                план с понятным бюджетом.»
+            </p>
+
+            <div class="reviewer">
+                — Елена, Казань
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- NEWSLETTER -->
+
+<section class="newsletter">
+
+    <div class="kicker">WORLD LETTER</div>
+
+    <h2>Следующая точка?</h2>
+
+    <p>
+        Получай новые маршруты и идеи для путешествий.
+    </p>
+
+    <div class="newsletter-form">
+
+        <input
+            id="email"
+            type="email"
+            placeholder="Ваш email"
+        >
+
+        <button
+            class="btn light"
+            onclick="subscribe()"
+        >
+            Подписаться
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="logo">WORLD</div>
+
+            <p class="footer-description">
+                Travel further. Feel more. Remember everything.
+            </p>
+
+        </div>
+
+
+        <div class="footer">
+
+            <h4>EXPLORE</h4>
+
+            <a href="#destinations">Направления</a>
+            <a href="#tours">Туры</a>
+            <a href="#experience">Впечатления</a>
+
+        </div>
+
+
+        <div class="footer">
+
+            <h4>HELP</h4>
+
+            <a href="#">FAQ</a>
+            <a href="#">Оплата</a>
+            <a href="#">Поддержка</a>
+
+        </div>
+
+
+        <div class="footer">
+
+            <h4>SOCIAL</h4>
+
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">YouTube</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>© 2026 WORLD TRAVEL</span>
+
+        <span>
+            Explore without limits.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- TOUR MODAL -->
+
+<div
+    class="modal"
+    id="tourModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <div>
+                <div
+                    class="kicker"
+                    id="modalCountry"
+                ></div>
+
+                <h2 id="modalName"></h2>
+            </div>
+
+            <button
+                class="close"
+                onclick="closeModal('tourModal')"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-tour">
+
+            <div class="modal-image"></div>
+
+
+            <div class="modal-info">
+
+                <p id="modalDescription"></p>
+
+                <div
+                    class="price-big"
+                    id="modalPrice"
+                ></div>
+
+                <div class="form">
+
+                    <div class="form-grid">
+
+                        <input
+                            type="date"
+                            id="travelDate"
+                        >
+
+                        <select id="people">
+                            <option value="1">1 человек</option>
+                            <option value="2">2 человека</option>
+                            <option value="3">3 человека</option>
+                            <option value="4">4 человека</option>
+                            <option value="5">5 человек</option>
+                            <option value="6">6 человек</option>
+                        </select>
+
+                    </div>
+
+                    <input
+                        id="travelerName"
+                        placeholder="Ваше имя"
+                    >
+
+                    <input
+                        id="travelerPhone"
+                        placeholder="Телефон"
+                    >
+
+                    <button
+                        class="btn accent"
+                        onclick="bookTour()"
+                    >
+                        Забронировать
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BOOKINGS -->
+
+<div
+    class="modal"
+    id="bookingModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <div>
+                <div class="kicker">MY TRIPS</div>
+                <h2 class="title">Мои поездки.</h2>
+            </div>
+
+            <button
+                class="close"
+                onclick="closeModal('bookingModal')"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            id="bookingList"
+            style="margin-top:25px"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+const tours = [
+
+    {
+        id:1,
+        name:"Dolce Vita",
+        country:"Италия",
+        type:"Город",
+        duration:"8 дней",
+        price:119000,
+        tag:"BEST",
+        description:
+        "Рим, Флоренция и побережье Амальфи. Архитектура, гастрономия, море и итальянский ритм жизни."
+    },
+
+    {
+        id:2,
+        name:"Tokyo After Dark",
+        country:"Япония",
+        type:"Город",
+        duration:"10 дней",
+        price:154000,
+        tag:"NEW",
+        description:
+        "Токио, Киото и Осака. Современная Япония, традиционные кварталы, гастрономия и ночной город."
+    },
+
+    {
+        id:3,
+        name:"Land of Fire & Ice",
+        country:"Исландия",
+        type:"Приключения",
+        duration:"7 дней",
+        price:138000,
+        tag:"ICON",
+        description:
+        "Водопады, вулканы, ледники, чёрные пляжи и северные пейзажи Исландии."
+    },
+
+    {
+        id:4,
+        name:"Aegean Blue",
+        country:"Греция",
+        type:"Море",
+        duration:"9 дней",
+        price:98000,
+        tag:"SUMMER",
+        description:
+        "Острова Эгейского моря, белые дома, тёплая вода и длинные вечера у моря."
+    },
+
+    {
+        id:5,
+        name:"Atlantic Mood",
+        country:"Португалия",
+        type:"Море",
+        duration:"8 дней",
+        price:105000,
+        tag:"NEW",
+        description:
+        "Лиссабон, океан, Порту и маленькие прибрежные города."
+    },
+
+    {
+        id:6,
+        name:"Northern Lights",
+        country:"Норвегия",
+        type:"Природа",
+        duration:"6 дней",
+        price:127000,
+        tag:"NATURE",
+        description:
+        "Фьорды, северные города и шанс увидеть северное сияние."
+    },
+
+    {
+        id:7,
+        name:"Kyoto Silence",
+        country:"Япония",
+        type:"Природа",
+        duration:"7 дней",
+        price:126000,
+        tag:"ZEN",
+        description:
+        "Сады, храмы, горы и тихие улочки старого Киото."
+    },
+
+    {
+        id:8,
+        name:"Santorini Escape",
+        country:"Греция",
+        type:"Море",
+        duration:"7 дней",
+        price:89000,
+        tag:"HOT",
+        description:
+        "Неделя на Санторини: закаты, море, белые города и спокойный ритм."
+    },
+
+    {
+        id:9,
+        name:"Iceland Road",
+        country:"Исландия",
+        type:"Природа",
+        duration:"9 дней",
+        price:149000,
+        tag:"ROAD",
+        description:
+        "Большое путешествие по Исландии с остановками у самых впечатляющих природных локаций."
+    }
+
+];
+
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("worldFavorites") || "[]"
+    );
+
+let bookings =
+    JSON.parse(
+        localStorage.getItem("worldBookings") || "[]"
+    );
+
+
+function money(value){
+
+    return new Intl.NumberFormat("ru-RU")
+        .format(value) + " ₽";
+
+}
+
+
+function save(){
+
+    localStorage.setItem(
+        "worldFavorites",
+        JSON.stringify(favorites)
+    );
+
+    localStorage.setItem(
+        "worldBookings",
+        JSON.stringify(bookings)
+    );
+
+}
+
+
+function toast(message){
+
+    const el =
+        document.getElementById("toast");
+
+    el.textContent = message;
+
+    el.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer =
+        setTimeout(
+            ()=>el.classList.remove("show"),
+            2400
+        );
+
+}
+
+
+function renderTours(){
+
+    const search =
+        (
+            document.getElementById("search").value +
+            " " +
+            document.getElementById("tourSearch").value
+        ).toLowerCase();
+
+    const country =
+        document.getElementById("tourCountry").value ||
+        document.getElementById("country").value;
+
+    const type =
+        document.getElementById("type").value;
+
+    const sort =
+        document.getElementById("tourSort").value;
+
+
+    let list =
+        tours.filter(tour => {
+
+            const text =
+                (
+                    tour.name +
+                    " " +
+                    tour.country +
+                    " " +
+                    tour.type
+                ).toLowerCase();
+
+            return (
+                (!search || text.includes(search)) &&
+                (!country || tour.country === country) &&
+                (!type || tour.type === type)
+            );
+
+        });
+
+
+    if(sort === "cheap"){
+        list.sort((a,b)=>a.price-b.price);
+    }
+
+    if(sort === "expensive"){
+        list.sort((a,b)=>b.price-a.price);
+    }
+
+
+    const container =
+        document.getElementById("tourList");
+
+
+    if(!list.length){
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                padding:80px;
+                text-align:center;
+                color:var(--muted)
+            ">
+                По вашему запросу путешествий не найдено.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list.map(tour => {
+
+            const liked =
+                favorites.includes(tour.id);
+
+            return `
+
+                <article class="tour">
+
+                    <div
+                        class="tour-image"
+                        onclick="openTour(${tour.id})"
+                    >
+
+                        <span class="tour-tag">
+                            ${tour.tag}
+                        </span>
+
+                        <button
+                            class="tour-fav
+                            ${liked ? "active" : ""}"
+                            onclick="
+                                event.stopPropagation();
+                                toggleFavorite(${tour.id})
+                            "
+                        >
+                            ${liked ? "♥" : "♡"}
+                        </button>
+
+                    </div>
+
+
+                    <div class="tour-info">
+
+                        <div class="tour-location">
+                            ${tour.country} · ${tour.type}
+                        </div>
+
+                        <div class="tour-name">
+                            ${tour.name}
+                        </div>
+
+                        <div class="tour-meta">
+                            <span>◷ ${tour.duration}</span>
+                            <span>✦ WORLD</span>
+                        </div>
+
+
+                        <div class="tour-bottom">
+
+                            <div class="tour-price">
+
+                                ${money(tour.price)}
+
+                                <small>/ человек</small>
+
+                            </div>
+
+                            <button
+                                class="view"
+                                onclick="
+                                    openTour(${tour.id})
+                                "
+                            >
+                                Подробнее
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(
+                item => item !== id
+            );
+
+        toast("Удалено из избранного");
+
+    }else{
+
+        favorites.push(id);
+
+        toast("Добавлено в избранное");
+
+    }
+
+    save();
+
+    updateFavoriteBadge();
+
+    renderTours();
+
+}
+
+
+function updateFavoriteBadge(){
+
+    document.getElementById("favBadge")
+        .textContent =
+        favorites.length;
+
+}
+
+
+function showFavorites(){
+
+    if(!favorites.length){
+
+        toast("Избранных путешествий пока нет");
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("tours")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    setTimeout(()=>{
+
+        document.getElementById("search")
+            .value = "";
+
+        document.getElementById("tourSearch")
+            .value = "";
+
+        document.getElementById("country")
+            .value = "";
+
+        document.getElementById("tourCountry")
+            .value = "";
+
+        const list =
+            tours.filter(
+                tour =>
+                    favorites.includes(tour.id)
+            );
+
+
+        document.getElementById("tourList")
+            .innerHTML =
+            list.map(tour => `
+
+                <article class="tour">
+
+                    <div
+                        class="tour-image"
+                        onclick="openTour(${tour.id})"
+                    >
+
+                        <span class="tour-tag">
+                            ${tour.tag}
+                        </span>
+
+                        <button
+                            class="tour-fav active"
+                            onclick="
+                                event.stopPropagation();
+                                toggleFavorite(${tour.id})
+                            "
+                        >
+                            ♥
+                        </button>
+
+                    </div>
+
+                    <div class="tour-info">
+
+                        <div class="tour-location">
+                            ${tour.country} · ${tour.type}
+                        </div>
+
+                        <div class="tour-name">
+                            ${tour.name}
+                        </div>
+
+                        <div class="tour-bottom">
+
+                            <div class="tour-price">
+                                ${money(tour.price)}
+                                <small>/ человек</small>
+                            </div>
+
+                            <button
+                                class="view"
+                                onclick="openTour(${tour.id})"
+                            >
+                                Подробнее
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `).join("");
+
+    },400);
+
+}
+
+
+function openTour(id){
+
+    const tour =
+        tours.find(
+            item => item.id === id
+        );
+
+    document.getElementById("modalCountry")
+        .textContent =
+        (
+            tour.country +
+            " · " +
+            tour.type
+        ).toUpperCase();
+
+    document.getElementById("modalName")
+        .textContent =
+        tour.name;
+
+    document.getElementById("modalDescription")
+        .textContent =
+        tour.description;
+
+    document.getElementById("modalPrice")
+        .textContent =
+        money(tour.price) +
+        " / человек";
+
+    document.getElementById("travelDate")
+        .value = "";
+
+    document.getElementById("travelerName")
+        .value = "";
+
+    document.getElementById("travelerPhone")
+        .value = "";
+
+    document.getElementById("people")
+        .value = "1";
+
+    document.getElementById("tourModal")
+        .dataset.tourId = id;
+
+    openModal("tourModal");
+
+}
+
+
+function bookTour(){
+
+    const id =
+        Number(
+            document.getElementById("tourModal")
+                .dataset.tourId
+        );
+
+    const tour =
+        tours.find(
+            item => item.id === id
+        );
+
+    const date =
+        document.getElementById("travelDate")
+            .value;
+
+    const people =
+        Number(
+            document.getElementById("people")
+                .value
+        );
+
+    const name =
+        document.getElementById("travelerName")
+            .value.trim();
+
+    const phone =
+        document.getElementById("travelerPhone")
+            .value.trim();
+
+
+    if(!date || !name || !phone){
+
+        toast("Заполните все данные");
+
+        return;
+
+    }
+
+
+    const booking = {
+
+        id:Date.now(),
+
+        tourId:id,
+
+        tour:tour.name,
+
+        country:tour.country,
+
+        date:date,
+
+        people:people,
+
+        name:name,
+
+        phone:phone,
+
+        total:tour.price * people
+
+    };
+
+
+    bookings.push(booking);
+
+    save();
+
+    updateBookingBadge();
+
+    closeModal("tourModal");
+
+    toast(
+        "Бронирование создано"
+    );
+
+}
+
+
+function openBookings(){
+
+    const container =
+        document.getElementById("bookingList");
+
+
+    if(!bookings.length){
+
+        container.innerHTML = `
+            <div style="
+                padding:60px 10px;
+                text-align:center;
+                color:var(--muted)
+            ">
+                У вас пока нет забронированных поездок.
+            </div>
+        `;
+
+    }else{
+
+        container.innerHTML =
+            bookings.map(booking => `
+
+                <div style="
+                    border:1px solid var(--line);
+                    padding:20px;
+                    margin-bottom:10px;
+                    background:var(--bg)
+                ">
+
+                    <div
+                        style="
+                            font-family:'Playfair Display';
+                            font-size:25px
+                        "
+                    >
+                        ${booking.tour}
+                    </div>
+
+                    <div
+                        style="
+                            color:var(--muted);
+                            font-size:11px;
+                            margin-top:8px
+                        "
+                    >
+                        ${booking.country}
+                        · ${booking.date}
+                        · ${booking.people} чел.
+                    </div>
+
+                    <div
+                        style="
+                            margin-top:14px;
+                            font-weight:700
+                        "
+                    >
+                        ${money(booking.total)}
+                    </div>
+
+                    <button
+                        class="btn"
+                        style="margin-top:14px"
+                        onclick="
+                            cancelBooking(${booking.id})
+                        "
+                    >
+                        Отменить
+                    </button>
+
+                </div>
+
+            `).join("");
+
+    }
+
+
+    openModal("bookingModal");
+
+}
+
+
+function cancelBooking(id){
+
+    bookings =
+        bookings.filter(
+            booking => booking.id !== id
+        );
+
+    save();
+
+    updateBookingBadge();
+
+    openBookings();
+
+    toast("Бронирование отменено");
+
+}
+
+
+function updateBookingBadge(){
+
+    document.getElementById("bookingBadge")
+        .textContent =
+        bookings.length;
+
+}
+
+
+function chooseCountry(country){
+
+    document.getElementById("country")
+        .value = country;
+
+    document.getElementById("tourCountry")
+        .value = country;
+
+    scrollToTours();
+
+    setTimeout(
+        renderTours,
+        350
+    );
+
+}
+
+
+function focusSearch(){
+
+    scrollToTours();
+
+    setTimeout(()=>{
+
+        document.getElementById("tourSearch")
+            .focus();
+
+    },450);
+
+}
+
+
+function scrollToTours(){
+
+    document
+        .getElementById("tours")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function scrollToDestinations(){
+
+    document
+        .getElementById("destinations")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function subscribe(){
+
+    const email =
+        document.getElementById("email")
+            .value.trim();
+
+    if(!email){
+
+        toast("Введите email");
+
+        return;
+
+    }
+
+    localStorage.setItem(
+        "worldEmail",
+        email
+    );
+
+    document.getElementById("email")
+        .value = "";
+
+    toast("Вы подписаны на WORLD");
+
+}
+
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "worldDark",
+        document.body.classList.contains("dark")
+    );
+
+}
+
+
+function openModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    document.body.classList.add("lock");
+
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("active");
+
+    document.body.classList.remove("lock");
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        document
+            .getElementById("header")
+            .classList.toggle(
+                "scrolled",
+                window.scrollY > 30
+            );
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            document
+                .querySelectorAll(".modal")
+                .forEach(
+                    modal =>
+                        modal.classList.remove("active")
+                );
+
+            document.body.classList.remove("lock");
+
+        }
+
+    }
+);
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(event.target === modal){
+
+                    closeModal(modal.id);
+
+                }
+
+            }
+        );
+
+    });
+
+
+if(
+    localStorage.getItem("worldDark") === "true"
+){
+    document.body.classList.add("dark");
+}
+
+
+renderTours();
+
+updateFavoriteBadge();
+
+updateBookingBadge();
+
+</script>
+
+</body>
+</html>

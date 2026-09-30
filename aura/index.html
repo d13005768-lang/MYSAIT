@@ -1,0 +1,2611 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11100e">
+<title>AURA — Premium Fashion</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root{
+    --bg:#f4f1ec;
+    --surface:#fffdf9;
+    --surface2:#eae5dd;
+    --text:#171512;
+    --muted:#77716a;
+    --line:rgba(23,21,18,.12);
+    --accent:#9b6846;
+    --dark:#171512;
+    --white:#fff;
+    --danger:#a33f45;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+body.dark{
+    --bg:#11100e;
+    --surface:#191714;
+    --surface2:#211e1a;
+    --text:#f7f2eb;
+    --muted:#9b958d;
+    --line:rgba(255,255,255,.1);
+    --dark:#f7f2eb;
+    --white:#11100e;
+}
+
+body.lock{
+    overflow:hidden;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:var(--bg);
+}
+
+::-webkit-scrollbar-thumb{
+    background:#968d83;
+    border-radius:20px;
+}
+
+/* HEADER */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:76px;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    padding:0 5vw;
+    transition:.35s;
+}
+
+.header.scrolled{
+    background:rgba(244,241,236,.85);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+}
+
+body.dark .header.scrolled{
+    background:rgba(17,16,14,.85);
+}
+
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:28px;
+    letter-spacing:4px;
+}
+
+.nav{
+    display:flex;
+    gap:29px;
+    margin-left:65px;
+    font-size:12px;
+}
+
+.nav a{
+    color:var(--muted);
+    transition:.25s;
+}
+
+.nav a:hover{
+    color:var(--text);
+}
+
+.header-actions{
+    margin-left:auto;
+    display:flex;
+    gap:8px;
+}
+
+.icon{
+    width:41px;
+    height:41px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--text);
+    border-radius:50%;
+    transition:.25s;
+    position:relative;
+}
+
+.icon:hover{
+    transform:translateY(-2px);
+}
+
+.badge{
+    position:absolute;
+    top:-4px;
+    right:-3px;
+    min-width:17px;
+    height:17px;
+    padding:0 4px;
+    border-radius:20px;
+    background:var(--accent);
+    color:white;
+    font-size:9px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding:120px 7vw 70px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.hero-label{
+    color:var(--accent);
+    font-size:10px;
+    letter-spacing:4px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(65px,8vw,125px);
+    line-height:.86;
+    font-weight:600;
+    letter-spacing:-5px;
+}
+
+.hero h1 em{
+    color:var(--accent);
+    font-style:italic;
+}
+
+.hero-text{
+    max-width:470px;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:14px;
+    margin-top:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:32px;
+}
+
+.btn{
+    min-height:51px;
+    padding:0 24px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:transparent;
+    color:var(--text);
+    transition:.3s;
+    font-weight:600;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn.dark{
+    background:var(--dark);
+    color:var(--white);
+    border-color:var(--dark);
+}
+
+.hero-image{
+    height:620px;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(135deg,#d5c2af,#866c58 50%,#3c3129);
+}
+
+.hero-image::before{
+    content:"AURA";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) rotate(-90deg);
+    color:#ffffff18;
+    font-family:"Playfair Display",serif;
+    font-size:150px;
+    letter-spacing:15px;
+}
+
+.hero-model{
+    position:absolute;
+    width:270px;
+    height:470px;
+    left:50%;
+    top:53%;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(circle at 50% 13%,#b99880 0 12%,transparent 12.5%),
+        linear-gradient(100deg,transparent 0 29%,#24201d 30% 70%,transparent 71%),
+        linear-gradient(180deg,transparent 0 25%,#1b1816 26% 68%,#2e2924 69%);
+    filter:drop-shadow(25px 35px 35px #20191477);
+    animation:modelFloat 7s ease-in-out infinite;
+}
+
+.hero-model::after{
+    content:"";
+    position:absolute;
+    left:75px;
+    top:80px;
+    width:120px;
+    height:300px;
+    border-radius:40% 40% 25% 25%;
+    background:linear-gradient(120deg,#39332e,#151311);
+}
+
+.hero-note{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    padding:16px 20px;
+    background:#f5eee6e8;
+    color:#171512;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+/* SECTION */
+
+.section{
+    padding:100px 7vw;
+}
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:38px;
+}
+
+.kicker{
+    color:var(--accent);
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+}
+
+.title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(42px,5vw,68px);
+    font-weight:500;
+    letter-spacing:-2px;
+}
+
+.description{
+    max-width:380px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.category{
+    height:270px;
+    position:relative;
+    overflow:hidden;
+    background:var(--surface2);
+    cursor:pointer;
+}
+
+.category::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,#b9a391,#635247);
+    transition:.5s;
+}
+
+.category:nth-child(2)::before{
+    background:linear-gradient(135deg,#d1cbc1,#6d6a65);
+}
+
+.category:nth-child(3)::before{
+    background:linear-gradient(135deg,#b0a38f,#50483d);
+}
+
+.category:nth-child(4)::before{
+    background:linear-gradient(135deg,#b59a8c,#51413c);
+}
+
+.category:hover::before{
+    transform:scale(1.07);
+}
+
+.category-content{
+    position:absolute;
+    left:22px;
+    bottom:22px;
+    color:#fff;
+}
+
+.category h3{
+    font-family:"Playfair Display",serif;
+    font-size:28px;
+}
+
+.category span{
+    font-size:10px;
+    opacity:.7;
+}
+
+/* CATALOG */
+
+.catalog-tools{
+    display:grid;
+    grid-template-columns:1fr 170px 170px;
+    gap:10px;
+    margin-bottom:28px;
+}
+
+.input,
+.select{
+    height:50px;
+    padding:0 15px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--text);
+    outline:none;
+    border-radius:4px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.product{
+    background:var(--surface);
+    border:1px solid var(--line);
+    overflow:hidden;
+    animation:appear .5s ease both;
+}
+
+.product-image{
+    height:350px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:var(--surface2);
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.product-image::before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:280px;
+    background:linear-gradient(145deg,#c9b4a2,#66564c);
+    clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);
+    transition:.5s;
+}
+
+.product:nth-child(2n) .product-image::before{
+    background:linear-gradient(145deg,#d8d1c6,#77716b);
+}
+
+.product:nth-child(3n) .product-image::before{
+    background:linear-gradient(145deg,#bba48e,#655044);
+}
+
+.product:hover .product-image::before{
+    transform:scale(1.08) translateY(-5px);
+}
+
+.product-fav{
+    position:absolute;
+    z-index:3;
+    right:13px;
+    top:13px;
+    width:37px;
+    height:37px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    background:var(--surface);
+    color:var(--text);
+}
+
+.product-fav.active{
+    color:var(--danger);
+}
+
+.product-tag{
+    position:absolute;
+    left:13px;
+    top:13px;
+    z-index:3;
+    padding:7px 9px;
+    background:var(--dark);
+    color:var(--white);
+    font-size:8px;
+    letter-spacing:1px;
+}
+
+.product-info{
+    padding:18px;
+}
+
+.product-category{
+    color:var(--muted);
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.product-name{
+    font-family:"Playfair Display",serif;
+    font-size:22px;
+    margin-top:6px;
+}
+
+.product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+}
+
+.price{
+    font-weight:700;
+}
+
+.old{
+    color:var(--muted);
+    font-size:10px;
+    text-decoration:line-through;
+    margin-left:5px;
+}
+
+.add{
+    width:38px;
+    height:38px;
+    border:0;
+    background:var(--dark);
+    color:var(--white);
+    border-radius:50%;
+    transition:.3s;
+}
+
+.add:hover{
+    transform:rotate(90deg);
+}
+
+/* STORY */
+
+.story{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.story-image{
+    min-height:550px;
+    background:
+        linear-gradient(140deg,#c8b7a6,#756355);
+    position:relative;
+}
+
+.story-image::after{
+    content:"A";
+    position:absolute;
+    right:30px;
+    bottom:-45px;
+    font-family:"Playfair Display",serif;
+    font-size:280px;
+    color:#ffffff16;
+}
+
+.story-text p{
+    color:var(--muted);
+    line-height:1.9;
+    font-size:14px;
+    margin:25px 0;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+    margin:30px 7vw 100px;
+    padding:70px 30px;
+    text-align:center;
+    border:1px solid var(--line);
+    background:var(--surface);
+}
+
+.newsletter h2{
+    font-family:"Playfair Display",serif;
+    font-size:52px;
+}
+
+.newsletter p{
+    color:var(--muted);
+    margin:13px auto 25px;
+    font-size:13px;
+}
+
+.newsletter-form{
+    display:flex;
+    max-width:520px;
+    margin:auto;
+    gap:7px;
+}
+
+.newsletter-form input{
+    flex:1;
+    min-width:0;
+    height:50px;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--text);
+    padding:0 15px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:70px 7vw 25px;
+    border-top:1px solid var(--line);
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-description{
+    max-width:300px;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:12px;
+    margin-top:15px;
+}
+
+.footer h4{
+    font-size:9px;
+    color:var(--muted);
+    letter-spacing:2px;
+    margin-bottom:15px;
+}
+
+.footer a{
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    margin:10px 0;
+}
+
+.footer-bottom{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* CART */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:#0008;
+    backdrop-filter:blur(8px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart{
+    position:fixed;
+    z-index:2100;
+    right:0;
+    top:0;
+    width:min(450px,100%);
+    height:100%;
+    background:var(--surface);
+    transform:translateX(100%);
+    transition:.4s cubic-bezier(.2,.8,.2,1);
+    display:flex;
+    flex-direction:column;
+}
+
+.cart.active{
+    transform:translateX(0);
+}
+
+.cart-header{
+    padding:22px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+}
+
+.cart-header h3{
+    font-family:"Playfair Display",serif;
+    font-size:27px;
+}
+
+.close{
+    margin-left:auto;
+    width:38px;
+    height:38px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    border-radius:50%;
+    font-size:20px;
+}
+
+.cart-items{
+    flex:1;
+    overflow:auto;
+    padding:20px;
+}
+
+.empty{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:var(--muted);
+    text-align:center;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:70px 1fr auto;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.cart-image{
+    height:75px;
+    background:var(--surface2);
+}
+
+.cart-name{
+    font-family:"Playfair Display",serif;
+    font-size:18px;
+}
+
+.cart-price{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:6px;
+}
+
+.qty{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:9px;
+}
+
+.qty button{
+    width:25px;
+    height:25px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+}
+
+.remove{
+    border:0;
+    background:none;
+    color:var(--muted);
+}
+
+.cart-footer{
+    border-top:1px solid var(--line);
+    padding:20px;
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.total strong{
+    font-size:23px;
+}
+
+.full{
+    width:100%;
+}
+
+/* MODALS */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    background:#0009;
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.modal.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(900px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:30px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    transform:translateY(20px) scale(.97);
+    transition:.3s;
+}
+
+.modal.active .modal-box{
+    transform:translateY(0) scale(1);
+}
+
+.product-modal{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.modal-image{
+    min-height:460px;
+    background:var(--surface2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-image::before{
+    content:"";
+    width:250px;
+    height:350px;
+    background:linear-gradient(145deg,#cbb7a4,#665448);
+    clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);
+}
+
+.modal-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.modal-info h2{
+    font-family:"Playfair Display",serif;
+    font-size:52px;
+    line-height:1;
+    margin:10px 0 20px;
+}
+
+.modal-info p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:13px;
+}
+
+.modal-price{
+    font-size:26px;
+    font-weight:700;
+    margin:25px 0;
+}
+
+.form{
+    display:grid;
+    gap:10px;
+}
+
+.form input,
+.form select{
+    width:100%;
+    height:51px;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--text);
+    padding:0 15px;
+    outline:none;
+}
+
+.account{
+    max-width:500px;
+}
+
+.account h2{
+    font-family:"Playfair Display",serif;
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.account p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:8000;
+    right:20px;
+    bottom:20px;
+    background:var(--dark);
+    color:var(--white);
+    padding:14px 18px;
+    font-size:11px;
+    transform:translateY(30px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* ANIMATION */
+
+@keyframes modelFloat{
+    0%,100%{
+        transform:translate(-50%,-50%) translateY(0);
+    }
+    50%{
+        transform:translate(-50%,-50%) translateY(-15px);
+    }
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+
+    .nav{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .story{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .header{
+        padding:0 18px;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .hero{
+        padding:110px 20px 50px;
+        gap:40px;
+    }
+
+    .hero h1{
+        font-size:62px;
+        letter-spacing:-3px;
+    }
+
+    .hero-image{
+        height:470px;
+    }
+
+    .section{
+        padding:70px 20px;
+    }
+
+    .section-top{
+        display:block;
+    }
+
+    .description{
+        margin-top:14px;
+    }
+
+    .categories{
+        gap:8px;
+    }
+
+    .category{
+        height:190px;
+    }
+
+    .category h3{
+        font-size:21px;
+    }
+
+    .catalog-tools{
+        grid-template-columns:1fr;
+    }
+
+    .products{
+        gap:8px;
+    }
+
+    .product-image{
+        height:220px;
+    }
+
+    .product-name{
+        font-size:18px;
+    }
+
+    .old{
+        display:none;
+    }
+
+    .product-info{
+        padding:13px;
+    }
+
+    .newsletter{
+        margin:20px 20px 70px;
+        padding:50px 20px;
+    }
+
+    .newsletter h2{
+        font-size:40px;
+    }
+
+    .newsletter-form{
+        flex-direction:column;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-bottom{
+        display:block;
+        line-height:2;
+    }
+
+    .product-modal{
+        grid-template-columns:1fr;
+    }
+
+    .modal-image{
+        min-height:280px;
+    }
+
+    .modal-info h2{
+        font-size:38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header" id="header">
+
+    <a href="#" class="logo">AURA</a>
+
+    <nav class="nav">
+        <a href="#shop">Магазин</a>
+        <a href="#categories">Коллекции</a>
+        <a href="#story">О бренде</a>
+        <a href="#contact">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+
+        <button class="icon" onclick="focusSearch()">⌕</button>
+
+        <button class="icon" onclick="showFavorites()">
+            ♡
+            <span class="badge" id="favBadge">0</span>
+        </button>
+
+        <button class="icon" onclick="openCart()">
+            🛍
+            <span class="badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="icon" onclick="toggleTheme()">☾</button>
+
+        <button class="icon" onclick="openAccount()">◉</button>
+
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <div>
+
+        <div class="hero-label">
+            AURA / AUTUMN — WINTER 2026
+        </div>
+
+        <h1>
+            Wear<br>
+            your <em>aura.</em>
+        </h1>
+
+        <p class="hero-text">
+            AURA создаёт одежду для людей, которые не следуют
+            трендам — они создают собственный язык стиля.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn dark"
+                onclick="scrollToShop()"
+            >
+                Смотреть коллекцию
+            </button>
+
+            <button
+                class="btn"
+                onclick="scrollToCategories()"
+            >
+                Категории
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <div class="hero-model"></div>
+
+        <div class="hero-note">
+            NEW COLLECTION · 2026
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="categories">
+
+    <div class="section-top">
+
+        <div>
+            <div class="kicker">DISCOVER</div>
+            <h2 class="title">Твой стиль.</h2>
+        </div>
+
+        <p class="description">
+            Четыре направления AURA для разных состояний,
+            дней и настроений.
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('Женское')">
+            <div class="category-content">
+                <h3>Женское</h3>
+                <span>ESSENTIALS</span>
+            </div>
+        </div>
+
+        <div class="category" onclick="filterCategory('Мужское')">
+            <div class="category-content">
+                <h3>Мужское</h3>
+                <span>EVERYDAY</span>
+            </div>
+        </div>
+
+        <div class="category" onclick="filterCategory('Аксессуары')">
+            <div class="category-content">
+                <h3>Аксессуары</h3>
+                <span>DETAILS</span>
+            </div>
+        </div>
+
+        <div class="category" onclick="filterCategory('Обувь')">
+            <div class="category-content">
+                <h3>Обувь</h3>
+                <span>STEPS</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="shop">
+
+    <div class="section-top">
+
+        <div>
+            <div class="kicker">SHOP</div>
+            <h2 class="title">Избранное.</h2>
+        </div>
+
+    </div>
+
+
+    <div class="catalog-tools">
+
+        <input
+            class="input"
+            id="search"
+            placeholder="Поиск одежды..."
+            oninput="renderProducts()"
+        >
+
+        <select
+            class="select"
+            id="category"
+            onchange="renderProducts()"
+        >
+            <option value="">Все категории</option>
+            <option value="Женское">Женское</option>
+            <option value="Мужское">Мужское</option>
+            <option value="Аксессуары">Аксессуары</option>
+            <option value="Обувь">Обувь</option>
+        </select>
+
+        <select
+            class="select"
+            id="sort"
+            onchange="renderProducts()"
+        >
+            <option value="popular">Популярные</option>
+            <option value="cheap">Сначала дешевле</option>
+            <option value="expensive">Сначала дороже</option>
+            <option value="name">По названию</option>
+        </select>
+
+    </div>
+
+
+    <div class="products" id="products"></div>
+
+</section>
+
+
+<section class="section" id="story">
+
+    <div class="story">
+
+        <div class="story-image"></div>
+
+        <div class="story-text">
+
+            <div class="kicker">OUR STORY</div>
+
+            <h2 class="title">
+                Меньше вещей.<br>
+                Больше смысла.
+            </h2>
+
+            <p>
+                AURA появилась из простой идеи: одежда должна
+                оставаться актуальной дольше одного сезона.
+                Поэтому мы создаём чистые силуэты, выбираем
+                спокойные цвета и уделяем внимание деталям.
+            </p>
+
+            <p>
+                Каждая вещь рассчитана на то, чтобы стать частью
+                твоего гардероба, а не просто занять в нём место.
+            </p>
+
+            <button class="btn dark">
+                Узнать больше
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="newsletter" id="contact">
+
+    <div class="kicker">AURA LETTER</div>
+
+    <h2>Будь в курсе.</h2>
+
+    <p>
+        Новые коллекции, закрытые предложения
+        и вдохновение прямо в твоём inbox.
+    </p>
+
+    <div class="newsletter-form">
+
+        <input
+            id="newsletterEmail"
+            type="email"
+            placeholder="Ваш email"
+        >
+
+        <button
+            class="btn dark"
+            onclick="subscribe()"
+        >
+            Подписаться
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="logo">AURA</div>
+
+            <p class="footer-description">
+                Contemporary fashion for a conscious life.
+            </p>
+
+        </div>
+
+        <div class="footer">
+
+            <h4>SHOP</h4>
+
+            <a href="#shop">Каталог</a>
+            <a href="#categories">Коллекции</a>
+            <a href="#shop">Новинки</a>
+
+        </div>
+
+        <div class="footer">
+
+            <h4>HELP</h4>
+
+            <a href="#">Доставка</a>
+            <a href="#">Возврат</a>
+            <a href="#">Размеры</a>
+
+        </div>
+
+        <div class="footer">
+
+            <h4>SOCIAL</h4>
+
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">Pinterest</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>© 2026 AURA</span>
+        <span>Made with intention.</span>
+
+    </div>
+
+</footer>
+
+
+<!-- OVERLAY -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeCart()"
+></div>
+
+
+<!-- CART -->
+
+<aside class="cart" id="cart">
+
+    <div class="cart-header">
+
+        <h3>Корзина</h3>
+
+        <button
+            class="close"
+            onclick="closeCart()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems"
+    ></div>
+
+
+    <div class="cart-footer">
+
+        <div class="total">
+
+            <span>Итого</span>
+
+            <strong id="total">
+                0 ₽
+            </strong>
+
+        </div>
+
+        <button
+            class="btn dark full"
+            onclick="openCheckout()"
+        >
+            Оформить заказ
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- PRODUCT MODAL -->
+
+<div
+    class="modal"
+    id="productModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            style="float:right"
+            onclick="closeModal('productModal')"
+        >
+            ×
+        </button>
+
+        <div class="product-modal">
+
+            <div class="modal-image"></div>
+
+            <div class="modal-info">
+
+                <div
+                    class="kicker"
+                    id="modalCategory"
+                ></div>
+
+                <h2 id="modalName"></h2>
+
+                <p id="modalDescription"></p>
+
+                <div
+                    class="modal-price"
+                    id="modalPrice"
+                ></div>
+
+                <button
+                    class="btn dark"
+                    id="modalAdd"
+                >
+                    Добавить в корзину
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div
+    class="modal"
+    id="checkoutModal"
+>
+
+    <div class="modal-box account">
+
+        <button
+            class="close"
+            style="float:right"
+            onclick="closeModal('checkoutModal')"
+        >
+            ×
+        </button>
+
+        <div class="kicker">CHECKOUT</div>
+
+        <h2>Ваш заказ.</h2>
+
+        <p>
+            Заполните данные для оформления.
+        </p>
+
+        <div class="form">
+
+            <input
+                id="orderName"
+                placeholder="Имя и фамилия"
+            >
+
+            <input
+                id="orderPhone"
+                placeholder="Телефон"
+            >
+
+            <input
+                id="orderAddress"
+                placeholder="Адрес доставки"
+            >
+
+            <select id="payment">
+                <option>Банковская карта</option>
+                <option>При получении</option>
+            </select>
+
+            <button
+                class="btn dark"
+                onclick="placeOrder()"
+            >
+                Подтвердить заказ
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ACCOUNT -->
+
+<div
+    class="modal"
+    id="accountModal"
+>
+
+    <div class="modal-box account">
+
+        <button
+            class="close"
+            style="float:right"
+            onclick="closeModal('accountModal')"
+        >
+            ×
+        </button>
+
+        <div class="kicker">AURA ACCOUNT</div>
+
+        <h2>Мой профиль.</h2>
+
+        <p id="accountText">
+            Сохрани данные, чтобы не вводить их повторно.
+        </p>
+
+        <div class="form">
+
+            <input
+                id="profileName"
+                placeholder="Имя"
+            >
+
+            <input
+                id="profileEmail"
+                placeholder="Email"
+            >
+
+            <button
+                class="btn dark"
+                onclick="saveProfile()"
+            >
+                Сохранить
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+const products = [
+
+    {
+        id:1,
+        name:"Silk Evening Dress",
+        category:"Женское",
+        price:18990,
+        oldPrice:22990,
+        tag:"NEW",
+        description:"Элегантное платье из струящейся ткани с минималистичным силуэтом."
+    },
+
+    {
+        id:2,
+        name:"Oversized Wool Coat",
+        category:"Мужское",
+        price:32990,
+        oldPrice:39990,
+        tag:"ICON",
+        description:"Объёмное шерстяное пальто для холодного сезона."
+    },
+
+    {
+        id:3,
+        name:"AURA Leather Bag",
+        category:"Аксессуары",
+        price:15990,
+        oldPrice:18990,
+        tag:"BEST",
+        description:"Минималистичная кожаная сумка на каждый день."
+    },
+
+    {
+        id:4,
+        name:"Minimal Runner",
+        category:"Обувь",
+        price:12990,
+        oldPrice:15990,
+        tag:"NEW",
+        description:"Лёгкие кроссовки с лаконичным дизайном."
+    },
+
+    {
+        id:5,
+        name:"Cashmere Knit",
+        category:"Женское",
+        price:14990,
+        oldPrice:17990,
+        tag:"SOFT",
+        description:"Мягкий кашемировый свитер свободного кроя."
+    },
+
+    {
+        id:6,
+        name:"Tailored Trousers",
+        category:"Мужское",
+        price:11990,
+        oldPrice:13990,
+        tag:"CORE",
+        description:"Классические брюки современного силуэта."
+    },
+
+    {
+        id:7,
+        name:"Aura Sunglasses",
+        category:"Аксессуары",
+        price:7990,
+        oldPrice:9990,
+        tag:"NEW",
+        description:"Солнцезащитные очки с выразительной геометрией."
+    },
+
+    {
+        id:8,
+        name:"Leather Chelsea",
+        category:"Обувь",
+        price:17990,
+        oldPrice:21990,
+        tag:"ICON",
+        description:"Классические кожаные ботинки Chelsea."
+    }
+
+];
+
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("auraCart") || "[]"
+    );
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("auraFavorites") || "[]"
+    );
+
+let profile =
+    JSON.parse(
+        localStorage.getItem("auraProfile") || "null"
+    );
+
+
+function money(value){
+
+    return new Intl.NumberFormat("ru-RU")
+        .format(value) + " ₽";
+
+}
+
+
+function save(){
+
+    localStorage.setItem(
+        "auraCart",
+        JSON.stringify(cart)
+    );
+
+    localStorage.setItem(
+        "auraFavorites",
+        JSON.stringify(favorites)
+    );
+
+}
+
+
+function toast(message){
+
+    const el =
+        document.getElementById("toast");
+
+    el.textContent = message;
+
+    el.classList.add("show");
+
+    clearTimeout(window.toastTimeout);
+
+    window.toastTimeout =
+        setTimeout(
+            () => el.classList.remove("show"),
+            2300
+        );
+
+}
+
+
+function renderProducts(){
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    const category =
+        document.getElementById("category").value;
+
+    const sort =
+        document.getElementById("sort").value;
+
+
+    let list =
+        products.filter(product => {
+
+            const matchesSearch =
+                (
+                    product.name +
+                    " " +
+                    product.category
+                )
+                .toLowerCase()
+                .includes(search);
+
+            const matchesCategory =
+                !category ||
+                product.category === category;
+
+            return matchesSearch &&
+                   matchesCategory;
+
+        });
+
+
+    if(sort === "cheap"){
+        list.sort((a,b)=>a.price-b.price);
+    }
+
+    if(sort === "expensive"){
+        list.sort((a,b)=>b.price-a.price);
+    }
+
+    if(sort === "name"){
+        list.sort((a,b)=>
+            a.name.localeCompare(b.name)
+        );
+    }
+
+
+    const container =
+        document.getElementById("products");
+
+
+    if(!list.length){
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:80px;
+                color:var(--muted)
+            ">
+                Ничего не найдено
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list.map(product => {
+
+            const liked =
+                favorites.includes(product.id);
+
+            return `
+
+                <article class="product">
+
+                    <div
+                        class="product-image"
+                        onclick="openProduct(${product.id})"
+                    >
+
+                        <span class="product-tag">
+                            ${product.tag}
+                        </span>
+
+                        <button
+                            class="product-fav
+                            ${liked ? "active" : ""}"
+                            onclick="
+                                event.stopPropagation();
+                                toggleFavorite(${product.id})
+                            "
+                        >
+                            ${liked ? "♥" : "♡"}
+                        </button>
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <div class="product-category">
+                            ${product.category}
+                        </div>
+
+                        <div class="product-name">
+                            ${product.name}
+                        </div>
+
+                        <div class="product-bottom">
+
+                            <div class="price">
+
+                                ${money(product.price)}
+
+                                <span class="old">
+                                    ${money(product.oldPrice)}
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add"
+                                onclick="
+                                    addToCart(${product.id})
+                                "
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function addToCart(id){
+
+    const item =
+        cart.find(item => item.id === id);
+
+    if(item){
+        item.quantity++;
+    }else{
+        cart.push({
+            id:id,
+            quantity:1
+        });
+    }
+
+    save();
+    updateCart();
+
+    toast("Добавлено в корзину");
+
+}
+
+
+function changeQuantity(id,amount){
+
+    const item =
+        cart.find(item => item.id === id);
+
+    if(!item) return;
+
+    item.quantity += amount;
+
+    if(item.quantity <= 0){
+        cart =
+            cart.filter(
+                item => item.id !== id
+            );
+    }
+
+    save();
+    updateCart();
+
+}
+
+
+function removeCart(id){
+
+    cart =
+        cart.filter(
+            item => item.id !== id
+        );
+
+    save();
+    updateCart();
+
+}
+
+
+function updateCart(){
+
+    const count =
+        cart.reduce(
+            (sum,item)=>sum+item.quantity,
+            0
+        );
+
+    document.getElementById("cartBadge")
+        .textContent = count;
+
+
+    const container =
+        document.getElementById("cartItems");
+
+
+    if(!cart.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                <div style="font-size:40px">
+                    ♡
+                </div>
+                <strong>
+                    В корзине пока пусто
+                </strong>
+                <span style="margin-top:8px">
+                    Добавьте понравившуюся вещь.
+                </span>
+            </div>
+        `;
+
+        document.getElementById("total")
+            .textContent = "0 ₽";
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    container.innerHTML =
+        cart.map(item => {
+
+            const product =
+                products.find(
+                    p => p.id === item.id
+                );
+
+            total +=
+                product.price *
+                item.quantity;
+
+
+            return `
+
+                <div class="cart-item">
+
+                    <div class="cart-image"></div>
+
+                    <div>
+
+                        <div class="cart-name">
+                            ${product.name}
+                        </div>
+
+                        <div class="cart-price">
+                            ${money(product.price)}
+                        </div>
+
+                        <div class="qty">
+
+                            <button
+                                onclick="
+                                    changeQuantity(
+                                        ${product.id},
+                                        -1
+                                    )
+                                "
+                            >
+                                −
+                            </button>
+
+                            ${item.quantity}
+
+                            <button
+                                onclick="
+                                    changeQuantity(
+                                        ${product.id},
+                                        1
+                                    )
+                                "
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="remove"
+                        onclick="
+                            removeCart(${product.id})
+                        "
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    document.getElementById("total")
+        .textContent = money(total);
+
+}
+
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(
+                item => item !== id
+            );
+
+        toast("Удалено из избранного");
+
+    }else{
+
+        favorites.push(id);
+
+        toast("Добавлено в избранное");
+
+    }
+
+    save();
+
+    updateFavoriteBadge();
+
+    renderProducts();
+
+}
+
+
+function updateFavoriteBadge(){
+
+    document.getElementById("favBadge")
+        .textContent =
+        favorites.length;
+
+}
+
+
+function showFavorites(){
+
+    if(!favorites.length){
+
+        toast("Избранное пока пусто");
+
+        return;
+
+    }
+
+    document
+        .getElementById("shop")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    setTimeout(()=>{
+
+        const list =
+            products.filter(
+                product =>
+                    favorites.includes(product.id)
+            );
+
+        document.getElementById("products")
+            .innerHTML =
+            list.map(product => {
+
+                const liked = true;
+
+                return `
+
+                    <article class="product">
+
+                        <div
+                            class="product-image"
+                            onclick="openProduct(${product.id})"
+                        >
+
+                            <span class="product-tag">
+                                ${product.tag}
+                            </span>
+
+                            <button
+                                class="product-fav active"
+                                onclick="
+                                    event.stopPropagation();
+                                    toggleFavorite(${product.id})
+                                "
+                            >
+                                ♥
+                            </button>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-category">
+                                ${product.category}
+                            </div>
+
+                            <div class="product-name">
+                                ${product.name}
+                            </div>
+
+                            <div class="product-bottom">
+
+                                <div class="price">
+                                    ${money(product.price)}
+                                </div>
+
+                                <button
+                                    class="add"
+                                    onclick="
+                                        addToCart(${product.id})
+                                    "
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }).join("");
+
+    },400);
+
+}
+
+
+function openProduct(id){
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+    document.getElementById("modalCategory")
+        .textContent =
+        product.category.toUpperCase();
+
+    document.getElementById("modalName")
+        .textContent =
+        product.name;
+
+    document.getElementById("modalDescription")
+        .textContent =
+        product.description;
+
+    document.getElementById("modalPrice")
+        .textContent =
+        money(product.price);
+
+    document.getElementById("modalAdd")
+        .onclick = () => {
+
+            addToCart(product.id);
+
+            closeModal("productModal");
+
+        };
+
+
+    openModal("productModal");
+
+}
+
+
+function openCart(){
+
+    document
+        .getElementById("cart")
+        .classList.add("active");
+
+    document
+        .getElementById("overlay")
+        .classList.add("active");
+
+    document.body.classList.add("lock");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cart")
+        .classList.remove("active");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("active");
+
+    document.body.classList.remove("lock");
+
+}
+
+
+function openModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    document.body.classList.add("lock");
+
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("active");
+
+    document.body.classList.remove("lock");
+
+}
+
+
+function openCheckout(){
+
+    if(!cart.length){
+
+        toast("Корзина пуста");
+
+        return;
+
+    }
+
+    closeCart();
+
+    openModal("checkoutModal");
+
+}
+
+
+function placeOrder(){
+
+    const name =
+        document.getElementById("orderName")
+        .value.trim();
+
+    const phone =
+        document.getElementById("orderPhone")
+        .value.trim();
+
+    const address =
+        document.getElementById("orderAddress")
+        .value.trim();
+
+
+    if(!name || !phone || !address){
+
+        toast("Заполните все поля");
+
+        return;
+
+    }
+
+
+    cart = [];
+
+    save();
+
+    updateCart();
+
+    closeModal("checkoutModal");
+
+    toast(
+        "Заказ принят. Спасибо, " +
+        name + "!"
+    );
+
+}
+
+
+function openAccount(){
+
+    if(profile){
+
+        document.getElementById("profileName")
+            .value = profile.name || "";
+
+        document.getElementById("profileEmail")
+            .value = profile.email || "";
+
+        document.getElementById("accountText")
+            .textContent =
+            "Добро пожаловать обратно, " +
+            profile.name + ".";
+
+    }
+
+    openModal("accountModal");
+
+}
+
+
+function saveProfile(){
+
+    const name =
+        document.getElementById("profileName")
+        .value.trim();
+
+    const email =
+        document.getElementById("profileEmail")
+        .value.trim();
+
+
+    if(!name){
+
+        toast("Введите имя");
+
+        return;
+
+    }
+
+
+    profile = {
+        name:name,
+        email:email
+    };
+
+
+    localStorage.setItem(
+        "auraProfile",
+        JSON.stringify(profile)
+    );
+
+
+    closeModal("accountModal");
+
+    toast("Профиль сохранён");
+
+}
+
+
+function subscribe(){
+
+    const email =
+        document
+            .getElementById("newsletterEmail")
+            .value.trim();
+
+    if(!email){
+
+        toast("Введите email");
+
+        return;
+
+    }
+
+    toast("Вы подписаны на AURA");
+
+    document.getElementById("newsletterEmail")
+        .value = "";
+
+}
+
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "auraDark",
+        document.body.classList.contains("dark")
+    );
+
+}
+
+
+function filterCategory(category){
+
+    document.getElementById("category")
+        .value = category;
+
+    document.getElementById("search")
+        .value = "";
+
+    scrollToShop();
+
+    setTimeout(
+        renderProducts,
+        300
+    );
+
+}
+
+
+function focusSearch(){
+
+    scrollToShop();
+
+    setTimeout(()=>{
+
+        document.getElementById("search")
+            .focus();
+
+    },400);
+
+}
+
+
+function scrollToShop(){
+
+    document
+        .getElementById("shop")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+function scrollToCategories(){
+
+    document
+        .getElementById("categories")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        document
+            .getElementById("header")
+            .classList.toggle(
+                "scrolled",
+                window.scrollY > 30
+            );
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            closeCart();
+
+            document
+                .querySelectorAll(".modal")
+                .forEach(
+                    modal =>
+                        modal.classList.remove("active")
+                );
+
+            document.body.classList.remove("lock");
+
+        }
+
+    }
+);
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(event.target === modal){
+
+                    closeModal(modal.id);
+
+                }
+
+            }
+        );
+
+    });
+
+
+if(
+    localStorage.getItem("auraDark") === "true"
+){
+    document.body.classList.add("dark");
+}
+
+
+renderProducts();
+
+updateCart();
+
+updateFavoriteBadge();
+
+</script>
+
+</body>
+</html>
+```

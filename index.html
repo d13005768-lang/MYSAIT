@@ -1,319 +1,2503 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MY WORKS — Портфолио</title>
-<meta name="description" content="Портфолио веб-дизайна и разработки — 7 интерактивных проектов.">
+
+<meta name="description"
+      content="Portfolio — веб-разработка, UI/UX и современные цифровые проекты">
+
+<title>Portfolio — Web Developer</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:#080808;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
-body::before{content:"";position:fixed;width:700px;height:700px;background:#5d35ff;filter:blur(220px);opacity:.12;top:-300px;left:-200px;pointer-events:none}
-body::after{content:"";position:fixed;width:600px;height:600px;background:#00e5ff;filter:blur(220px);opacity:.08;right:-300px;bottom:-300px;pointer-events:none}
-header{width:100%;padding:28px 7%;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:10}
-.logo{font-size:21px;font-weight:900;letter-spacing:3px}.logo span{color:#8d6cff}
-.header-text{color:#777;font-size:13px}
-.hero{padding:100px 7% 80px;position:relative}
-.eyebrow{color:#8d6cff;font-size:12px;letter-spacing:4px;margin-bottom:25px;opacity:0;animation:fadeUp .8s forwards}
-h1{font-size:clamp(60px,9vw,135px);line-height:.85;letter-spacing:-7px;max-width:1000px;opacity:0;animation:fadeUp .8s .1s forwards}
-.hero-description{max-width:560px;color:#777;line-height:1.7;font-size:17px;margin-top:35px;opacity:0;animation:fadeUp .8s .2s forwards}
-.projects{padding:30px 7% 120px}
-.projects-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:35px}
-.projects-title{font-size:13px;color:#777;letter-spacing:2px}.projects-count{color:#555;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.card{position:relative;height:430px;border-radius:28px;overflow:hidden;border:1px solid #252525;background:#111;cursor:pointer;opacity:0;transform:translateY(40px);animation:cardIn .8s forwards;transition:border-color .35s,transform .35s}
-.card:nth-child(1){animation-delay:.1s}.card:nth-child(2){animation-delay:.2s}.card:nth-child(3){animation-delay:.3s}.card:nth-child(4){animation-delay:.4s}.card:nth-child(5){animation-delay:.5s}.card:nth-child(6){animation-delay:.6s}.card:nth-child(7){animation-delay:.7s}
-.card:hover{border-color:#6250c7;transform:translateY(-5px)}
-.card-image{position:absolute;inset:0;background-size:cover;background-position:center;transition:.8s}
-.card:hover .card-image{transform:scale(1.07)}
-.card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93),rgba(0,0,0,.18),rgba(0,0,0,.08))}
-.card-info{position:absolute;z-index:2;left:30px;right:30px;bottom:28px}
-.card-number{color:#aaa;font-size:12px;margin-bottom:10px}
-.card-info h2{font-size:38px;margin-bottom:8px;letter-spacing:-1px}
-.card-info p{color:#aaa;font-size:14px}
-.open{position:absolute;right:28px;bottom:28px;z-index:3;width:48px;height:48px;border-radius:50%;background:#fff;color:#000;display:flex;justify-content:center;align-items:center;font-size:20px;transition:.3s}
-.card:hover .open{transform:rotate(45deg)}
-.card:nth-child(1) .card-image{background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.4)),url("https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80") center/cover}
-.card:nth-child(2) .card-image{background:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.4)),url("https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80") center/cover}
-.card:nth-child(3) .card-image{background:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.4)),url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80") center/cover}
-.card:nth-child(4) .card-image{background:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.4)),url("https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80") center/cover}
-.card:nth-child(5) .card-image{background:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.4)),url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80") center/cover}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-/* LUME */
-.card:nth-child(6) .card-image{
-background:
-radial-gradient(circle at 74% 25%,rgba(255,210,224,.75),transparent 8%),
-radial-gradient(circle at 35% 45%,rgba(255,143,191,.34),transparent 25%),
-linear-gradient(135deg,#210b16,#4a172c 48%,#12070d);
+:root {
+    --bg: #080808;
+    --surface: #111111;
+    --surface-2: #171717;
+    --text: #f5f5f5;
+    --muted: #888888;
+    --line: rgba(255,255,255,.1);
 }
-.lume-art{position:absolute;z-index:1;width:250px;height:250px;border-radius:50%;right:10%;top:10%;border:1px solid rgba(255,202,222,.32);box-shadow:0 0 100px rgba(255,100,170,.2),inset 0 0 60px rgba(255,180,210,.08)}
-.lume-art::before{content:"L";position:absolute;inset:55px;border-radius:50%;display:grid;place-items:center;font-size:92px;font-weight:900;color:#fff;background:radial-gradient(circle,rgba(255,210,225,.4),rgba(255,100,170,.12) 48%,transparent 70%);box-shadow:0 0 70px rgba(255,130,180,.3)}
-.lume-art::after{content:"BEAUTY";position:absolute;bottom:-35px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:7px;color:#ffd7e5}
 
-/* LUNO */
-.card:nth-child(7) .card-image{
-background:
-radial-gradient(circle at 72% 28%,rgba(100,230,255,.8),transparent 10%),
-radial-gradient(circle at 45% 55%,rgba(152,124,255,.45),transparent 24%),
-linear-gradient(135deg,#02040a,#08121f 48%,#080313);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.luno-art{position:absolute;z-index:1;width:240px;height:240px;border:1px solid rgba(100,230,255,.22);border-radius:50%;right:12%;top:12%;box-shadow:0 0 90px rgba(100,230,255,.14),inset 0 0 60px rgba(152,124,255,.1)}
-.luno-art::before{content:"L";position:absolute;inset:50px;border-radius:50%;display:grid;place-items:center;font-size:86px;font-weight:900;color:#fff;background:radial-gradient(circle,rgba(100,230,255,.38),rgba(152,124,255,.13) 48%,transparent 70%);box-shadow:0 0 60px rgba(100,230,255,.24)}
-.luno-art::after{content:"COMPUTERS";position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:5px;color:#a9ecff;white-space:nowrap}
 
-footer{padding:40px 7%;border-top:1px solid #222;display:flex;justify-content:space-between;color:#555;font-size:12px}
-
-/* DEMO */
-.demo{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.9);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s}
-.demo.active{opacity:1;visibility:visible}
-.demo-window{width:94vw;height:92vh;background:#fff;border-radius:18px;overflow:hidden;position:relative;transform:scale(.94);transition:.4s;box-shadow:0 30px 100px #000}
-.demo.active .demo-window{transform:scale(1)}
-.demo-bar{height:48px;background:#161616;display:flex;align-items:center;padding:0 15px;gap:7px}
-.dot{width:11px;height:11px;border-radius:50%;background:#555}.dot:nth-child(1){background:#ff5f57}.dot:nth-child(2){background:#febc2e}.dot:nth-child(3){background:#28c840}
-.demo-title{color:#777;font-size:12px;margin-left:15px}
-.close{margin-left:auto;border:none;background:#292929;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px}
-.demo iframe{width:100%;height:calc(100% - 48px);border:none;background:#fff}
-
-/* LOADER */
-.loader{
-  position:fixed;
-  inset:0;
-  background:#080808;
-  z-index:9000;
-  display:grid;
-  place-items:center;
-  transition:opacity .45s ease, visibility .45s ease;
-  animation:loaderAutoHide .8s ease 1.8s forwards;
+html {
+    scroll-behavior: smooth;
 }
-.loader.hide{opacity:0;visibility:hidden;pointer-events:none}
-@keyframes loaderAutoHide{
-  to{opacity:0;visibility:hidden;pointer-events:none}
-}
-.loader-inner{text-align:center}
-.loader-logo{font-size:32px;font-weight:900;letter-spacing:7px}
-.loader-line{width:180px;height:1px;background:#222;margin:20px auto;overflow:hidden}
-.loader-line i{display:block;width:45%;height:100%;background:#8d6cff;animation:load 1.2s infinite}
-.loader-text{font-size:10px;letter-spacing:4px;color:#555}
 
-/* MOBILE */
-@media(max-width:800px){
-header{padding:20px}.header-text{display:none}
-.hero{padding:70px 20px 60px}
-h1{font-size:65px;letter-spacing:-4px}
-.projects{padding:20px 20px 80px}
-.projects-top{align-items:start}
-.grid{grid-template-columns:1fr}
-.card{height:400px}
-.card-info h2{font-size:32px}
-footer{padding:30px 20px;display:block}
-footer div+div{margin-top:10px}
-.demo-window{width:100%;height:100%;border-radius:0}
-.demo-bar{height:45px}
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+    transition: background .35s ease, color .35s ease;
 }
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
-@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(330%)}}
+
+body.light {
+    --bg: #f4f4f2;
+    --surface: #ffffff;
+    --surface-2: #eaeae7;
+    --text: #111111;
+    --muted: #666666;
+    --line: rgba(0,0,0,.1);
+}
+
+body.viewer-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 20px;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+header {
+    position: fixed;
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 78px;
+
+    padding: 0 6vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: .35s ease;
+}
+
+header.scrolled {
+    background: rgba(8,8,8,.78);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+}
+
+body.light header.scrolled {
+    background: rgba(244,244,242,.82);
+}
+
+.logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+nav a {
+    color: var(--muted);
+    font-size: 12px;
+    transition: .25s ease;
+}
+
+nav a:hover {
+    color: var(--text);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-btn,
+.menu-btn {
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--line);
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--text);
+
+    transition: .3s ease;
+}
+
+.theme-btn:hover,
+.menu-btn:hover {
+    transform: scale(1.06);
+}
+
+.menu-btn {
+    display: none;
+}
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+    min-height: 100vh;
+
+    padding: 140px 7vw 100px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    right: -220px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.09),
+            transparent 68%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 950px;
+}
+
+.hero-label {
+    margin-bottom: 25px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(65px, 10vw, 150px);
+
+    line-height: .85;
+
+    letter-spacing: -8px;
+
+    font-weight: 600;
+}
+
+.hero h1 span {
+    color: #666;
+}
+
+.hero-description {
+    max-width: 500px;
+
+    margin-top: 35px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 35px;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.btn {
+    min-height: 50px;
+
+    padding: 0 23px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    background: transparent;
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1;
+    text-align: center;
+
+    white-space: nowrap;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+.btn.primary {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.btn.primary:hover {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--text);
+}
+
+.hero-number {
+    position: absolute;
+
+    right: 7vw;
+    bottom: 70px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+/* ========================================
+   SECTIONS
+======================================== */
+
+.section {
+    padding: 120px 7vw;
+}
+
+.section-header {
+    margin-bottom: 45px;
+
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.section-label {
+    margin-bottom: 13px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.section-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(42px, 6vw, 75px);
+
+    line-height: .95;
+
+    letter-spacing: -4px;
+}
+
+.section-description {
+    max-width: 350px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* ========================================
+   PROJECT GRID
+======================================== */
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.project-card {
+    display: block;
+
+    overflow: hidden;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 7px;
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        border-color .45s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+
+    border-color: rgba(255,255,255,.25);
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,.25);
+}
+
+/*
+   Первые три проекта крупные,
+   остальные идут сеткой 2 × N.
+*/
+
+.project-card:nth-child(1),
+.project-card:nth-child(2),
+.project-card:nth-child(3) {
+    grid-column: span 2;
+}
+
+/* ========================================
+   PROJECT PREVIEW
+======================================== */
+
+.project-preview {
+    height: 380px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-card:nth-child(1) .project-preview,
+.project-card:nth-child(2) .project-preview,
+.project-card:nth-child(3) .project-preview {
+    height: 420px;
+}
+
+.project-preview::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 35%,
+            rgba(255,255,255,.1),
+            transparent 65%
+        );
+
+    transform: translateX(-100%);
+
+    transition: 1s ease;
+
+    pointer-events: none;
+}
+
+.project-card:hover .project-preview::after {
+    transform: translateX(100%);
+}
+
+/* ========================================
+   PROJECT BACKGROUNDS
+======================================== */
+
+.aura {
+    background:
+        radial-gradient(
+            circle at 25% 25%,
+            #f6d4bf,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 75% 70%,
+            #8e638c,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #18131d,
+            #70516f
+        );
+}
+
+.vanta {
+    background:
+        radial-gradient(
+            circle at 70% 25%,
+            #686868,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            #222,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #030303,
+            #252525
+        );
+}
+
+.world {
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            #2f8795,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 25% 80%,
+            #174b56,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #07111f,
+            #163a48
+        );
+}
+
+.nova {
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #ffc7d7,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 75% 70%,
+            #6947a5,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #17111e,
+            #6d426d
+        );
+}
+
+.casa {
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            #e8c8a5,
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #30241d,
+            #927052
+        );
+}
+
+.forma {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #bcbcbc,
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #151515,
+            #555
+        );
+}
+
+.lume {
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #fff1a8,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 75% 75%,
+            #d28a38,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #241b0c,
+            #765324
+        );
+}
+
+.noir {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #555,
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #020202,
+            #171717
+        );
+}
+
+.luno {
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            #d6e3ff,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 25% 75%,
+            #556ca8,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #0d1324,
+            #263968
+        );
+}
+
+.portfolio {
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #ffffff,
+            transparent 18%
+        ),
+        radial-gradient(
+            circle at 75% 70%,
+            #555,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #090909,
+            #303030
+        );
+}
+
+/* ========================================
+   PROJECT DECORATION
+======================================== */
+
+.project-preview::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    box-shadow:
+        0 0 0 30px rgba(255,255,255,.025),
+        0 0 0 65px rgba(255,255,255,.018);
+
+    transition: .7s ease;
+
+    pointer-events: none;
+}
+
+.project-card:hover .project-preview::before {
+    transform:
+        scale(1.12)
+        rotate(18deg);
+}
+
+.project-preview-title {
+    position: relative;
+    z-index: 3;
+
+    color: white;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(42px, 6vw, 80px);
+
+    font-weight: 700;
+
+    letter-spacing: 9px;
+
+    transition: .5s ease;
+
+    text-shadow:
+        0 10px 40px rgba(0,0,0,.25);
+}
+
+.project-card:hover .project-preview-title {
+    letter-spacing: 14px;
+}
+
+/* ========================================
+   PROJECT INFO
+======================================== */
+
+.project-info {
+    min-height: 90px;
+
+    padding: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-category {
+    color: var(--muted);
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.project-name {
+    margin-top: 7px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.project-arrow {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--text);
+    color: var(--bg);
+
+    font-size: 18px;
+
+    transition: .3s ease;
+}
+
+.project-card:hover .project-arrow {
+    transform: rotate(45deg);
+}
+
+/* ========================================
+   ABOUT
+======================================== */
+
+.about {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 90px;
+
+    align-items: center;
+}
+
+.about-visual {
+    height: 550px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 40% 40%,
+            #555,
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #111,
+            #252525
+        );
+}
+
+.about-visual::before {
+    content: "DEV";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-90deg);
+
+    color: rgba(255,255,255,.05);
+
+    font-family: "Space Grotesk";
+
+    font-size: 140px;
+    font-weight: 700;
+
+    letter-spacing: 15px;
+}
+
+.about-content p {
+    max-width: 500px;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 30px;
+}
+
+.skill {
+    padding: 10px 14px;
+
+    border: 1px solid var(--line);
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    transition: .25s ease;
+}
+
+.skill:hover {
+    color: var(--text);
+
+    border-color: var(--text);
+
+    transform: translateY(-3px);
+}
+
+/* ========================================
+   SERVICES
+======================================== */
+
+.services {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.service {
+    min-height: 270px;
+
+    padding: 30px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+
+    transition: .35s ease;
+}
+
+.service:hover {
+    transform: translateY(-7px);
+
+    background: var(--surface-2);
+}
+
+.service-number {
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.service h3 {
+    margin-top: 70px;
+
+    font-family: "Space Grotesk";
+
+    font-size: 26px;
+}
+
+.service p {
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ========================================
+   CONTACT
+======================================== */
+
+.contact {
+    padding: 130px 7vw;
+
+    background: var(--surface);
+
+    border-top: 1px solid var(--line);
+}
+
+.contact-inner {
+    max-width: 900px;
+}
+
+.contact-title {
+    font-family: "Space Grotesk";
+
+    font-size: clamp(55px, 9vw, 120px);
+
+    line-height: .88;
+
+    letter-spacing: -7px;
+}
+
+.contact-title span {
+    color: #666;
+}
+
+.contact-text {
+    max-width: 450px;
+
+    margin-top: 30px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.contact-buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 30px;
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    padding: 30px 7vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    border-top: 1px solid var(--line);
+}
+
+/* ========================================
+   MOBILE MENU
+======================================== */
+
+.mobile-menu {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--bg);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .35s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu nav {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.mobile-menu nav a {
+    color: var(--text);
+
+    font-family: "Space Grotesk";
+
+    font-size: 38px;
+}
+
+/* ========================================
+   REVEAL
+======================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* ========================================
+   PROJECT VIEWER
+======================================== */
+
+.project-viewer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #050505;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(.98);
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease,
+        transform .35s ease;
+}
+
+.project-viewer.active {
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+.viewer-top {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 76px;
+
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.85),
+            rgba(0,0,0,0)
+        );
+
+    pointer-events: none;
+}
+
+.viewer-title {
+    color: #fff;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+.viewer-close {
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.55);
+
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    pointer-events: auto;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.viewer-close:hover {
+    transform: rotate(90deg) scale(1.08);
+
+    background: #fff;
+    color: #000;
+
+    border-color: #fff;
+}
+
+.viewer-content {
+    width: 100%;
+    height: 100%;
+}
+
+.viewer-content iframe {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border: none;
+
+    background: #fff;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    nav {
+        display: none;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card:nth-child(1),
+    .project-card:nth-child(2),
+    .project-card:nth-child(3) {
+        grid-column: auto;
+    }
+
+    .project-preview,
+    .project-card:nth-child(1) .project-preview,
+    .project-card:nth-child(2) .project-preview,
+    .project-card:nth-child(3) .project-preview {
+        height: 350px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .services {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        display: block;
+    }
+
+    .section-description {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 0 20px;
+    }
+
+    .hero {
+        padding: 130px 20px 80px;
+    }
+
+    .hero h1 {
+        font-size: 65px;
+        letter-spacing: -5px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .section {
+        padding: 85px 20px;
+    }
+
+    .section-title {
+        font-size: 47px;
+    }
+
+    .project-preview,
+    .project-card:nth-child(1) .project-preview,
+    .project-card:nth-child(2) .project-preview,
+    .project-card:nth-child(3) .project-preview {
+        height: 270px;
+    }
+
+    .project-preview-title {
+        font-size: 40px;
+        letter-spacing: 6px;
+    }
+
+    .project-card:hover .project-preview-title {
+        letter-spacing: 8px;
+    }
+
+    .project-info {
+        min-height: 82px;
+        padding: 18px;
+    }
+
+    .project-name {
+        font-size: 23px;
+    }
+
+    .about-visual {
+        height: 370px;
+    }
+
+    .service {
+        min-height: 220px;
+    }
+
+    .service h3 {
+        margin-top: 45px;
+    }
+
+    .contact {
+        padding: 90px 20px;
+    }
+
+    .contact-title {
+        font-size: 65px;
+        letter-spacing: -5px;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .contact-buttons .btn {
+        width: 100%;
+    }
+
+    footer {
+        padding: 25px 20px;
+
+        display: block;
+
+        line-height: 2;
+    }
+
+    .viewer-top {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    .viewer-title {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .viewer-close {
+        width: 43px;
+        height: 43px;
+        font-size: 27px;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<div class="loader" id="loader">
-  <div class="loader-inner">
-    <div class="loader-logo">MY<span style="color:#8d6cff">.</span>WORKS</div>
-    <div class="loader-line"><i></i></div>
-    <div class="loader-text">ЗАГРУЗКА ПОРТФОЛИО</div>
-  </div>
-</div>
+<!-- ========================================
+     HEADER
+======================================== -->
 
-<header>
-  <div class="logo">MY<span>.</span>WORKS</div>
-  <div class="header-text">WEB DESIGN · DEVELOPMENT · 2026</div>
+<header id="header">
+
+    <a href="#" class="logo">
+        PORTFOLIO
+    </a>
+
+    <nav>
+        <a href="#projects">Проекты</a>
+        <a href="#about">Обо мне</a>
+        <a href="#services">Навыки</a>
+        <a href="#contact">Контакты</a>
+    </nav>
+
+    <div class="header-right">
+
+        <button
+            class="theme-btn"
+            id="themeBtn"
+            aria-label="Переключить тему"
+        >☾</button>
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Открыть меню"
+        >☰</button>
+
+    </div>
+
 </header>
 
-<section class="hero">
-  <div class="eyebrow">МОЁ ПОРТФОЛИО</div>
-  <h1>Сайты,<br>которые<br>работают.</h1>
-  <p class="hero-description">
-    Семь демонстрационных проектов в разных стилях.
-    Нажмите на любой проект, чтобы открыть полноценную интерактивную версию.
-  </p>
-</section>
 
-<section class="projects">
-  <div class="projects-top">
-    <div class="projects-title">SELECTED WORKS</div>
-    <div class="projects-count">07 PROJECTS</div>
-  </div>
+<!-- ========================================
+     MOBILE MENU
+======================================== -->
 
-  <div class="grid">
+<div class="mobile-menu" id="mobileMenu">
 
-    <div class="card" onclick="openDemo('restaurant')">
-      <div class="card-image"></div>
-      <div class="card-info">
-        <div class="card-number">01 / 07</div>
-        <h2>NOIR</h2>
-        <p>Премиальный ресторан</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
+    <nav>
 
-    <div class="card" onclick="openDemo('fitness')">
-      <div class="card-image"></div>
-      <div class="card-info">
-        <div class="card-number">02 / 07</div>
-        <h2>FORMA</h2>
-        <p>Фитнес-клуб</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
+        <a href="#projects">Проекты</a>
+        <a href="#about">Обо мне</a>
+        <a href="#services">Навыки</a>
+        <a href="#contact">Контакты</a>
 
-    <div class="card" onclick="openDemo('interior')">
-      <div class="card-image"></div>
-      <div class="card-info">
-        <div class="card-number">03 / 07</div>
-        <h2>CASA</h2>
-        <p>Студия интерьеров</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
+    </nav>
 
-    <div class="card" onclick="openDemo('nova')">
-      <div class="card-image"></div>
-      <div class="card-info">
-        <div class="card-number">04 / 07</div>
-        <h2>NOVA</h2>
-        <p>AI / Technology</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
-
-    <div class="card" onclick="openDemo('portfolio')">
-      <div class="card-image"></div>
-      <div class="card-info">
-        <div class="card-number">05 / 07</div>
-        <h2>PORTFOLIO</h2>
-        <p>Персональный сайт</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
-
-    <div class="card" onclick="openDemo('lume')">
-      <div class="card-image"><div class="lume-art"></div></div>
-      <div class="card-info">
-        <div class="card-number">06 / 07</div>
-        <h2>LUME</h2>
-        <p>Премиальный салон красоты</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
-
-    <div class="card" onclick="openDemo('luno')">
-      <div class="card-image"><div class="luno-art"></div></div>
-      <div class="card-info">
-        <div class="card-number">07 / 07</div>
-        <h2>LUNO</h2>
-        <p>Премиальный магазин компьютеров</p>
-      </div>
-      <div class="open">↗</div>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  <div>© 2026 MY.WORKS</div>
-  <div>Сайты на заказ</div>
-</footer>
-
-<div class="demo" id="demo">
-  <div class="demo-window">
-    <div class="demo-bar">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="demo-title" id="demoTitle">Demo Website</div>
-      <button class="close" onclick="closeDemo()">×</button>
-    </div>
-    <iframe id="demoFrame" title="Демонстрация проекта"></iframe>
-  </div>
 </div>
 
+
+<!-- ========================================
+     HERO
+======================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            WEB DEVELOPER / CREATIVE PORTFOLIO
+        </div>
+
+        <h1>
+            I build<br>
+            <span>digital</span><br>
+            experiences.
+        </h1>
+
+        <p class="hero-description">
+            Создаю современные сайты с чистым дизайном,
+            интерактивными интерфейсами, анимациями
+            и полноценной адаптацией под любые устройства.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#projects" class="btn primary">
+                Смотреть проекты
+            </a>
+
+            <a href="#contact" class="btn">
+                Связаться
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-number">
+        SCROLL TO EXPLORE ↓
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     PROJECTS
+======================================== -->
+
+<section class="section" id="projects">
+
+    <div class="section-header reveal">
+
+        <div>
+
+            <div class="section-label">
+                SELECTED WORK
+            </div>
+
+            <h2 class="section-title">
+                Проекты.
+            </h2>
+
+        </div>
+
+        <p class="section-description">
+            Коллекция цифровых проектов:
+            лендинги, магазины, интерфейсы
+            и полноценные веб-концепции.
+        </p>
+
+    </div>
+
+
+    <div class="projects-grid">
+
+
+        <!-- AURA -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./aura/index.html"
+            data-title="AURA"
+        >
+
+            <div class="project-preview aura">
+
+                <div class="project-preview-title">
+                    AURA
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        BEAUTY / LANDING PAGE
+                    </div>
+
+                    <div class="project-name">
+                        AURA
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- VANTA -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./vanta/index.html"
+            data-title="VANTA"
+        >
+
+            <div class="project-preview vanta">
+
+                <div class="project-preview-title">
+                    VANTA
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        E-COMMERCE / STORE
+                    </div>
+
+                    <div class="project-name">
+                        VANTA
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- WORLD -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./world/index.html"
+            data-title="WORLD"
+        >
+
+            <div class="project-preview world">
+
+                <div class="project-preview-title">
+                    WORLD
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        TRAVEL / WEB APP
+                    </div>
+
+                    <div class="project-name">
+                        WORLD
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- NOVA -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./nova/index.html"
+            data-title="NOVA"
+        >
+
+            <div class="project-preview nova">
+
+                <div class="project-preview-title">
+                    NOVA
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        CREATIVE / STUDIO
+                    </div>
+
+                    <div class="project-name">
+                        NOVA
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- CASA -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./casa/index.html"
+            data-title="CASA"
+        >
+
+            <div class="project-preview casa">
+
+                <div class="project-preview-title">
+                    CASA
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        INTERIOR / LIFESTYLE
+                    </div>
+
+                    <div class="project-name">
+                        CASA
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- FORMA -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./forma/index.html"
+            data-title="FORMA"
+        >
+
+            <div class="project-preview forma">
+
+                <div class="project-preview-title">
+                    FORMA
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        ARCHITECTURE / DESIGN
+                    </div>
+
+                    <div class="project-name">
+                        FORMA
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- LUME -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./lume/index.html"
+            data-title="LUME"
+        >
+
+            <div class="project-preview lume">
+
+                <div class="project-preview-title">
+                    LUME
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        LIFESTYLE / BRAND
+                    </div>
+
+                    <div class="project-name">
+                        LUME
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- NOIR -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./noir/index.html"
+            data-title="NOIR"
+        >
+
+            <div class="project-preview noir">
+
+                <div class="project-preview-title">
+                    NOIR
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        FASHION / EDITORIAL
+                    </div>
+
+                    <div class="project-name">
+                        NOIR
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- LUNO -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./luno/index.html"
+            data-title="LUNO"
+        >
+
+            <div class="project-preview luno">
+
+                <div class="project-preview-title">
+                    LUNO
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        TECHNOLOGY / PRODUCT
+                    </div>
+
+                    <div class="project-name">
+                        LUNO
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- PORTFOLIO -->
+
+        <a
+            href="#"
+            class="project-card reveal project-link"
+            data-project="./portfolio/index.html"
+            data-title="PORTFOLIO"
+        >
+
+            <div class="project-preview portfolio">
+
+                <div class="project-preview-title">
+                    PORTFOLIO
+                </div>
+
+            </div>
+
+            <div class="project-info">
+
+                <div>
+
+                    <div class="project-category">
+                        WEB / PORTFOLIO
+                    </div>
+
+                    <div class="project-name">
+                        PORTFOLIO
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     ABOUT
+======================================== -->
+
+<section class="section" id="about">
+
+    <div class="about">
+
+        <div class="about-visual reveal"></div>
+
+        <div class="about-content reveal">
+
+            <div class="section-label">
+                ABOUT ME
+            </div>
+
+            <h2 class="section-title">
+                Код +<br>
+                дизайн.
+            </h2>
+
+            <p>
+                Я создаю сайты, которые выглядят современно,
+                быстро работают и удобно ощущаются на любом
+                устройстве.
+            </p>
+
+            <p>
+                От идеи и визуальной концепции до готового
+                интерактивного интерфейса — весь процесс
+                можно собрать в одном проекте.
+            </p>
+
+            <div class="skills">
+
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">Responsive</span>
+                <span class="skill">UI/UX</span>
+                <span class="skill">Animations</span>
+                <span class="skill">Git</span>
+                <span class="skill">GitHub</span>
+                <span class="skill">Figma</span>
+                <span class="skill">DOM</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     SERVICES
+======================================== -->
+
+<section class="section" id="services">
+
+    <div class="section-header reveal">
+
+        <div>
+
+            <div class="section-label">
+                WHAT I DO
+            </div>
+
+            <h2 class="section-title">
+                Навыки.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="services">
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                01 / FRONTEND
+            </div>
+
+            <h3>
+                Современная<br>
+                вёрстка
+            </h3>
+
+            <p>
+                Чистый HTML, CSS и JavaScript,
+                адаптивная структура и аккуратный
+                интерфейс.
+            </p>
+
+        </div>
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                02 / UI / UX
+            </div>
+
+            <h3>
+                UI/UX<br>
+                интерфейсы
+            </h3>
+
+            <p>
+                Продуманные страницы, визуальная
+                иерархия, интерактивные элементы
+                и удобная навигация.
+            </p>
+
+        </div>
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                03 / MOTION
+            </div>
+
+            <h3>
+                Анимации<br>
+                и эффект
+            </h3>
+
+            <p>
+                Плавные переходы, hover-эффекты,
+                появления блоков и интерактивные
+                элементы.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     CONTACT
+======================================== -->
+
+<section class="contact" id="contact">
+
+    <div class="contact-inner reveal">
+
+        <div class="section-label">
+            LET'S WORK TOGETHER
+        </div>
+
+        <h2 class="contact-title">
+            Есть идея?<br>
+            <span>Давайте создадим.</span>
+        </h2>
+
+        <p class="contact-text">
+            Если вам нужен современный сайт,
+            лендинг, магазин или интерфейс —
+            напишите мне.
+        </p>
+
+        <div class="contact-buttons">
+
+            <a
+                class="btn primary"
+                href="mailto:yourmail@example.com"
+            >
+                Написать мне
+            </a>
+
+            <a
+                class="btn"
+                href="#projects"
+            >
+                Смотреть работы
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================
+     FOOTER
+======================================== -->
+
+<footer>
+
+    <span>
+        © 2026 PORTFOLIO
+    </span>
+
+    <span>
+        HTML · CSS · JavaScript
+    </span>
+
+</footer>
+
+
+<!-- ========================================
+     PROJECT VIEWER
+======================================== -->
+
+<div class="project-viewer" id="projectViewer">
+
+    <div class="viewer-top">
+
+        <div class="viewer-title" id="viewerTitle">
+            PROJECT
+        </div>
+
+        <button
+            class="viewer-close"
+            id="viewerClose"
+            aria-label="Закрыть проект"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div class="viewer-content">
+
+        <iframe
+            id="projectFrame"
+            src=""
+            title="Project preview"
+            allowfullscreen
+        ></iframe>
+
+    </div>
+
+</div>
+
+
 <script>
-const demos = {
-  restaurant:{
-    title:"NOIR — Ресторан",
-    url:"noir/index.html"
-  },
-  fitness:{
-    title:"FORMA — Фитнес-клуб",
-    url:"forma/index.html"
-  },
-  interior:{
-    title:"CASA — Студия интерьеров",
-    url:"casa/index.html"
-  },
-  nova:{
-    title:"NOVA — AI Platform",
-    url:"nova/index.html"
-  },
-  portfolio:{
-    title:"PORTFOLIO — Персональный сайт",
-    url:"portfolio/index.html"
-  },
-  lume:{
-    title:"LUME — Салон красоты",
-    url:"lume/index.html"
-  },
-  luno:{
-    title:"LUNO — Компьютерный магазин",
-    url:"luno/index.html"
-  }
-};
 
-function openDemo(name){
-  const demo=demos[name];
-  if(!demo)return;
+/* ========================================
+   HEADER
+======================================== */
 
-  document.getElementById("demoTitle").textContent=demo.title;
-  document.getElementById("demoFrame").src=demo.url;
-  document.getElementById("demo").classList.add("active");
-  document.body.style.overflow="hidden";
-}
+const header =
+    document.getElementById("header");
 
-function closeDemo(){
-  const windowDemo=document.getElementById("demo");
-  const frame=document.getElementById("demoFrame");
+window.addEventListener("scroll", () => {
 
-  windowDemo.classList.remove("active");
-  document.body.style.overflow="";
+    header.classList.toggle(
+        "scrolled",
+        window.scrollY > 40
+    );
 
-  setTimeout(()=>{
-    frame.src="";
-  },350);
-}
-
-document.addEventListener("keydown",function(event){
-  if(event.key==="Escape")closeDemo();
 });
 
-document.getElementById("demo").addEventListener("click",function(event){
-  if(event.target===this)closeDemo();
+
+/* ========================================
+   THEME
+======================================== */
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
+const savedTheme =
+    localStorage.getItem("portfolioTheme");
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+    themeBtn.textContent = "☀";
+
+}
+
+themeBtn.addEventListener("click", () => {
+
+    document.body.classList.toggle("light");
+
+    const isLight =
+        document.body.classList.contains("light");
+
+    localStorage.setItem(
+        "portfolioTheme",
+        isLight ? "light" : "dark"
+    );
+
+    themeBtn.textContent =
+        isLight ? "☀" : "☾";
+
 });
 
-function hideLoader(){
-  const loader=document.getElementById("loader");
-  if(loader) loader.classList.add("hide");
+
+/* ========================================
+   MOBILE MENU
+======================================== */
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("active");
+
+});
+
+document
+    .querySelectorAll(".mobile-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileMenu.classList.remove("active");
+
+        });
+
+    });
+
+
+/* ========================================
+   SCROLL REVEAL
+======================================== */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .12
+        }
+    );
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+/* ========================================
+   PROJECT VIEWER
+======================================== */
+
+const projectViewer =
+    document.getElementById("projectViewer");
+
+const projectFrame =
+    document.getElementById("projectFrame");
+
+const viewerTitle =
+    document.getElementById("viewerTitle");
+
+const viewerClose =
+    document.getElementById("viewerClose");
+
+const projectLinks =
+    document.querySelectorAll(".project-link");
+
+
+function openProject(url, title) {
+
+    viewerTitle.textContent = title;
+
+    projectFrame.src = url;
+
+    projectViewer.classList.add("active");
+
+    document.body.classList.add("viewer-open");
+
+    /*
+       Запоминаем проект в истории браузера,
+       чтобы кнопка "Назад" тоже работала.
+    */
+
+    history.pushState(
+        {
+            project: title
+        },
+        "",
+        "#project-" + title.toLowerCase()
+    );
+
 }
 
-/* Убираем загрузочный экран независимо от загрузки картинок/iframe */
-setTimeout(hideLoader,1200);
 
-if(document.readyState==="complete"){
-  hideLoader();
-}else{
-  window.addEventListener("load",hideLoader,{once:true});
+function closeProject() {
+
+    projectViewer.classList.remove("active");
+
+    document.body.classList.remove("viewer-open");
+
+    /*
+       Небольшая задержка нужна,
+       чтобы iframe не исчезал резко.
+    */
+
+    setTimeout(() => {
+
+        projectFrame.src = "";
+
+    }, 350);
+
+    /*
+       Убираем project hash из URL.
+    */
+
+    if (
+        window.location.hash.startsWith(
+            "#project-"
+        )
+    ) {
+
+        history.pushState(
+            null,
+            "",
+            window.location.pathname +
+            window.location.search
+        );
+
+    }
+
 }
+
+
+/*
+   Открытие проектов.
+*/
+
+projectLinks.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            const url =
+                link.dataset.project;
+
+            const title =
+                link.dataset.title;
+
+            openProject(url, title);
+
+        }
+    );
+
+});
+
+
+/*
+   Крестик.
+*/
+
+viewerClose.addEventListener(
+    "click",
+    closeProject
+);
+
+
+/*
+   ESC тоже закрывает проект.
+*/
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            projectViewer.classList.contains("active")
+        ) {
+
+            closeProject();
+
+        }
+
+    }
+);
+
+
+/*
+   Кнопка "Назад" браузера.
+*/
+
+window.addEventListener(
+    "popstate",
+    () => {
+
+        if (
+            projectViewer.classList.contains("active")
+        ) {
+
+            projectViewer.classList.remove(
+                "active"
+            );
+
+            document.body.classList.remove(
+                "viewer-open"
+            );
+
+            setTimeout(() => {
+
+                projectFrame.src = "";
+
+            }, 350);
+
+        }
+
+    }
+);
+
+
+/* ========================================
+   CLOSE VIEWER WHEN HASH IS CLEARED
+======================================== */
+
+window.addEventListener(
+    "hashchange",
+    () => {
+
+        if (
+            !window.location.hash.startsWith(
+                "#project-"
+            ) &&
+            projectViewer.classList.contains(
+                "active"
+            )
+        ) {
+
+            projectViewer.classList.remove(
+                "active"
+            );
+
+            document.body.classList.remove(
+                "viewer-open"
+            );
+
+            projectFrame.src = "";
+
+        }
+
+    }
+);
+
+
+/* ========================================
+   HERO MOUSE PARALLAX
+======================================== */
+
+const hero =
+    document.querySelector(".hero");
+
+if (window.innerWidth > 900) {
+
+    hero.addEventListener(
+        "mousemove",
+        event => {
+
+            const x =
+                (event.clientX /
+                    window.innerWidth - .5) * 10;
+
+            const y =
+                (event.clientY /
+                    window.innerHeight - .5) * 10;
+
+            hero.style.backgroundPosition =
+                `${50 + x}% ${50 + y}%`;
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   ESCAPE MOBILE MENU
+======================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            mobileMenu.classList.contains(
+                "active"
+            )
+        ) {
+
+            mobileMenu.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
 </script>
+
 </body>
 </html>
+```

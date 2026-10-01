@@ -5,1325 +5,800 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description"
-      content="Portfolio — веб-разработка, UI/UX и современные цифровые проекты">
-
-<title>Portfolio — Web Developer</title>
+<title>PORTFOLIO</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap');
 
-:root {
-    --bg: #080808;
-    --surface: #111111;
-    --surface-2: #171717;
-    --text: #f5f5f5;
-    --muted: #888888;
-    --line: rgba(255,255,255,.1);
+:root{
+    --bg:#050607;
+    --card:rgba(255,255,255,.045);
+    --card2:rgba(255,255,255,.025);
+    --line:rgba(255,255,255,.11);
+    --text:#f4f5f7;
+    --muted:#777d85;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "DM Sans", sans-serif;
-    overflow-x: hidden;
-    transition: background .35s ease, color .35s ease;
+body{
+    background:#050607;
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
 }
 
-body.light {
-    --bg: #f4f4f2;
-    --surface: #ffffff;
-    --surface-2: #eaeae7;
-    --text: #111111;
-    --muted: #666666;
-    --line: rgba(0,0,0,.1);
+/* BACKGROUND */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+
+    background:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+
+    background-size:60px 60px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent 95%
+    );
 }
 
-body.viewer-open {
-    overflow: hidden;
+body::after{
+    content:"";
+    position:fixed;
+    width:650px;
+    height:650px;
+    top:-300px;
+    right:-200px;
+    border-radius:50%;
+    background:rgba(160,190,230,.06);
+    filter:blur(120px);
+    pointer-events:none;
+    z-index:-1;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:78px;
+    z-index:100;
+
+    border-bottom:1px solid transparent;
+
+    transition:.4s;
 }
 
-button {
-    font: inherit;
-    cursor: pointer;
+header.scrolled{
+    background:rgba(5,6,7,.72);
+    backdrop-filter:blur(22px);
+    border-color:var(--line);
 }
 
-::-webkit-scrollbar {
-    width: 7px;
+.header-inner{
+    height:100%;
+    max-width:1450px;
+    margin:auto;
+    padding:0 35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--bg);
+.logo{
+    font-family:"Space Grotesk";
+    font-size:13px;
+    letter-spacing:5px;
+    font-weight:500;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 20px;
+.logo span{
+    color:#666d76;
 }
 
-/* ========================================
-   HEADER
-======================================== */
-
-header {
-    position: fixed;
-    z-index: 1000;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 78px;
-
-    padding: 0 6vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    transition: .35s ease;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
 }
 
-header.scrolled {
-    background: rgba(8,8,8,.78);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--line);
+.header-right span{
+    color:#60666e;
+    font-size:9px;
+    letter-spacing:2px;
 }
 
-body.light header.scrolled {
-    background: rgba(244,244,242,.82);
+.contact-btn{
+    height:38px;
+    padding:0 16px;
+
+    border:1px solid var(--line);
+    border-radius:7px;
+
+    display:flex;
+    align-items:center;
+
+    font-size:9px;
+
+    background:rgba(255,255,255,.035);
+
+    transition:.3s;
 }
 
-.logo {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 4px;
+.contact-btn:hover{
+    background:white;
+    color:black;
 }
 
-nav {
-    display: flex;
-    align-items: center;
-    gap: 35px;
+/* HERO */
+
+.hero{
+    min-height:85vh;
+    max-width:1450px;
+    margin:auto;
+
+    padding:180px 35px 100px;
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
 }
 
-nav a {
-    color: var(--muted);
-    font-size: 12px;
-    transition: .25s ease;
+.hero-content{
+    max-width:1000px;
 }
 
-nav a:hover {
-    color: var(--text);
+.eyebrow{
+    color:#656b73;
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:30px;
 }
 
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.hero h1{
+    font-family:"Space Grotesk";
+    font-size:clamp(75px,12vw,165px);
+    font-weight:500;
+    line-height:.82;
+    letter-spacing:-10px;
 }
 
-.theme-btn,
-.menu-btn {
-    width: 42px;
-    height: 42px;
-
-    padding: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid var(--line);
-    border-radius: 50%;
-
-    background: transparent;
-    color: var(--text);
-
-    transition: .3s ease;
+.hero h1 span{
+    color:#626871;
 }
 
-.theme-btn:hover,
-.menu-btn:hover {
-    transform: scale(1.06);
+.hero-description{
+    max-width:560px;
+    margin-top:42px;
+
+    color:#737981;
+
+    font-size:13px;
+    line-height:1.8;
 }
 
-.menu-btn {
-    display: none;
+/* ORB */
+
+.hero-orb{
+    position:absolute;
+
+    right:7%;
+    top:50%;
+
+    width:390px;
+    height:390px;
+
+    transform:translateY(-50%);
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 0 100px rgba(180,210,250,.035),
+        inset 0 0 100px rgba(255,255,255,.025);
 }
 
-/* ========================================
-   HERO
-======================================== */
+.hero-orb::before{
+    content:"";
 
-.hero {
-    min-height: 100vh;
+    position:absolute;
+    inset:55px;
 
-    padding: 140px 7vw 100px;
+    border-radius:50%;
 
-    display: flex;
-    align-items: center;
-
-    position: relative;
-    overflow: hidden;
+    border:1px solid rgba(255,255,255,.07);
 }
 
-.hero::before {
-    content: "";
+.hero-orb::after{
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    width: 650px;
-    height: 650px;
+    inset:125px;
 
-    right: -220px;
-    top: 50%;
-
-    transform: translateY(-50%);
+    border-radius:50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,.09),
-            transparent 68%
+            rgba(220,235,255,.22),
+            rgba(100,140,190,.04) 55%,
+            transparent 70%
         );
 
-    filter: blur(30px);
-
-    pointer-events: none;
+    box-shadow:0 0 70px rgba(180,210,255,.12);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+/* PORTFOLIO */
 
-    max-width: 950px;
+.portfolio{
+    max-width:1450px;
+    margin:auto;
+
+    padding:60px 35px 140px;
 }
 
-.hero-label {
-    margin-bottom: 25px;
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
 
-    color: var(--muted);
-
-    font-size: 10px;
-    letter-spacing: 4px;
+    margin-bottom:45px;
 }
 
-.hero h1 {
-    font-family: "Space Grotesk", sans-serif;
+.section-title{
+    font-family:"Space Grotesk";
 
-    font-size: clamp(65px, 10vw, 150px);
+    font-size:clamp(45px,6vw,78px);
 
-    line-height: .85;
+    font-weight:500;
 
-    letter-spacing: -8px;
-
-    font-weight: 600;
+    letter-spacing:-5px;
 }
 
-.hero h1 span {
-    color: #666;
+.section-title span{
+    color:#5c626a;
 }
 
-.hero-description {
-    max-width: 500px;
-
-    margin-top: 35px;
-
-    color: var(--muted);
-
-    font-size: 14px;
-    line-height: 1.8;
+.counter{
+    color:#626970;
+    font-size:9px;
+    letter-spacing:3px;
 }
 
-.hero-buttons {
-    display: flex;
-    align-items: center;
+/* GRID */
 
-    gap: 10px;
+.projects{
+    display:grid;
 
-    margin-top: 35px;
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:12px;
 }
 
-/* ========================================
-   BUTTONS
-======================================== */
+/* CARD */
 
-.btn {
-    min-height: 50px;
+.project{
+    height:420px;
 
-    padding: 0 23px;
+    position:relative;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    overflow:hidden;
 
-    border: 1px solid var(--line);
-    border-radius: 4px;
+    border:1px solid var(--line);
 
-    background: transparent;
-    color: var(--text);
+    border-radius:10px;
 
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
+    background:var(--card);
 
-    line-height: 1;
-    text-align: center;
+    cursor:pointer;
 
-    white-space: nowrap;
+    isolation:isolate;
 
     transition:
-        transform .3s ease,
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        border-color .4s;
 }
 
-.btn:hover {
-    transform: translateY(-4px);
+.project:hover{
+    transform:translateY(-8px);
+
+    border-color:
+        rgba(255,255,255,.23);
 }
 
-.btn.primary {
-    background: var(--text);
-    color: var(--bg);
-}
+/* CARD VISUAL */
 
-.btn.primary:hover {
-    background: transparent;
-    color: var(--text);
-    border-color: var(--text);
-}
+.project-bg{
+    position:absolute;
+    inset:0;
 
-.hero-number {
-    position: absolute;
-
-    right: 7vw;
-    bottom: 70px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-    letter-spacing: 3px;
-}
-
-/* ========================================
-   SECTIONS
-======================================== */
-
-.section {
-    padding: 120px 7vw;
-}
-
-.section-header {
-    margin-bottom: 45px;
-
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-}
-
-.section-label {
-    margin-bottom: 13px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-    letter-spacing: 4px;
-}
-
-.section-title {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: clamp(42px, 6vw, 75px);
-
-    line-height: .95;
-
-    letter-spacing: -4px;
-}
-
-.section-description {
-    max-width: 350px;
-
-    color: var(--muted);
-
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-/* ========================================
-   PROJECT GRID
-======================================== */
-
-.projects-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 18px;
-}
-
-.project-card {
-    display: block;
-
-    overflow: hidden;
-
-    background: var(--surface);
-
-    border: 1px solid var(--line);
-    border-radius: 7px;
+    z-index:-2;
 
     transition:
-        transform .45s ease,
-        box-shadow .45s ease,
-        border-color .45s ease;
+        transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
-.project-card:hover {
-    transform: translateY(-10px);
-
-    border-color: rgba(255,255,255,.25);
-
-    box-shadow:
-        0 35px 80px rgba(0,0,0,.25);
+.project:hover .project-bg{
+    transform:scale(1.08);
 }
 
-/*
-   Первые три проекта крупные,
-   остальные идут сеткой 2 × N.
-*/
+/* overlays */
 
-.project-card:nth-child(1),
-.project-card:nth-child(2),
-.project-card:nth-child(3) {
-    grid-column: span 2;
-}
+.project::after{
+    content:"";
 
-/* ========================================
-   PROJECT PREVIEW
-======================================== */
+    position:absolute;
+    inset:0;
 
-.project-preview {
-    height: 380px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.project-card:nth-child(1) .project-preview,
-.project-card:nth-child(2) .project-preview,
-.project-card:nth-child(3) .project-preview {
-    height: 420px;
-}
-
-.project-preview::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
+    z-index:-1;
 
     background:
         linear-gradient(
-            135deg,
-            transparent 35%,
-            rgba(255,255,255,.1),
-            transparent 65%
-        );
-
-    transform: translateX(-100%);
-
-    transition: 1s ease;
-
-    pointer-events: none;
-}
-
-.project-card:hover .project-preview::after {
-    transform: translateX(100%);
-}
-
-/* ========================================
-   PROJECT BACKGROUNDS
-======================================== */
-
-.aura {
-    background:
-        radial-gradient(
-            circle at 25% 25%,
-            #f6d4bf,
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 75% 70%,
-            #8e638c,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #18131d,
-            #70516f
+            to top,
+            rgba(0,0,0,.78),
+            rgba(0,0,0,.05) 65%
         );
 }
 
-.vanta {
+/* DIFFERENT WORLDS */
+
+.nova{
     background:
         radial-gradient(
             circle at 70% 25%,
-            #686868,
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 20% 80%,
-            #222,
-            transparent 35%
-        ),
+            #b7c9dd,
+            #3b4654 20%,
+            #11161d 55%,
+            #050607
+        );
+}
+
+.casa{
+    background:
         linear-gradient(
             135deg,
+            #191713,
+            #766957,
+            #252018 50%,
+            #080807
+        );
+}
+
+.forma{
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #9a9a98,
+            #3e3e3c 22%,
+            #121212 60%
+        );
+}
+
+.lume{
+    background:
+        radial-gradient(
+            circle at 65% 35%,
+            #d7c39b,
+            #765f3d 18%,
+            #20180e 55%,
+            #070605
+        );
+}
+
+.noir{
+    background:
+        linear-gradient(
+            120deg,
             #030303,
-            #252525
+            #242424 45%,
+            #070707
         );
 }
 
-.world {
+.luno{
     background:
         radial-gradient(
-            circle at 70% 30%,
-            #2f8795,
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 25% 80%,
-            #174b56,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #07111f,
-            #163a48
+            circle at 65% 35%,
+            #657ca3,
+            #202b42 25%,
+            #080c15 60%
         );
 }
 
-.nova {
+.aura{
     background:
         radial-gradient(
-            circle at 30% 30%,
-            #ffc7d7,
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 75% 70%,
-            #6947a5,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #17111e,
-            #6d426d
+            circle at 50% 35%,
+            #b7d1d5,
+            #566d71 18%,
+            #172023 55%,
+            #060809
         );
 }
 
-.casa {
-    background:
-        radial-gradient(
-            circle at 70% 30%,
-            #e8c8a5,
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #30241d,
-            #927052
-        );
-}
-
-.forma {
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            #bcbcbc,
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #151515,
-            #555
-        );
-}
-
-.lume {
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            #fff1a8,
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 75% 75%,
-            #d28a38,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #241b0c,
-            #765324
-        );
-}
-
-.noir {
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            #555,
-            transparent 25%
-        ),
-        linear-gradient(
-            135deg,
-            #020202,
-            #171717
-        );
-}
-
-.luno {
-    background:
-        radial-gradient(
-            circle at 70% 30%,
-            #d6e3ff,
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 25% 75%,
-            #556ca8,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #0d1324,
-            #263968
-        );
-}
-
-.portfolio {
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            #ffffff,
-            transparent 18%
-        ),
-        radial-gradient(
-            circle at 75% 70%,
-            #555,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #090909,
-            #303030
-        );
-}
-
-/* ========================================
-   PROJECT DECORATION
-======================================== */
-
-.project-preview::before {
-    content: "";
-
-    position: absolute;
-
-    width: 230px;
-    height: 230px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255,255,255,.22);
-
-    box-shadow:
-        0 0 0 30px rgba(255,255,255,.025),
-        0 0 0 65px rgba(255,255,255,.018);
-
-    transition: .7s ease;
-
-    pointer-events: none;
-}
-
-.project-card:hover .project-preview::before {
-    transform:
-        scale(1.12)
-        rotate(18deg);
-}
-
-.project-preview-title {
-    position: relative;
-    z-index: 3;
-
-    color: white;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: clamp(42px, 6vw, 80px);
-
-    font-weight: 700;
-
-    letter-spacing: 9px;
-
-    transition: .5s ease;
-
-    text-shadow:
-        0 10px 40px rgba(0,0,0,.25);
-}
-
-.project-card:hover .project-preview-title {
-    letter-spacing: 14px;
-}
-
-/* ========================================
-   PROJECT INFO
-======================================== */
-
-.project-info {
-    min-height: 90px;
-
-    padding: 23px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.project-category {
-    color: var(--muted);
-
-    font-size: 9px;
-    letter-spacing: 2px;
-}
-
-.project-name {
-    margin-top: 7px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 27px;
-    font-weight: 600;
-}
-
-.project-arrow {
-    width: 43px;
-    height: 43px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--text);
-    color: var(--bg);
-
-    font-size: 18px;
-
-    transition: .3s ease;
-}
-
-.project-card:hover .project-arrow {
-    transform: rotate(45deg);
-}
-
-/* ========================================
-   ABOUT
-======================================== */
-
-.about {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 90px;
-
-    align-items: center;
-}
-
-.about-visual {
-    height: 550px;
-
-    position: relative;
-
-    overflow: hidden;
-
+.vanta{
     background:
         radial-gradient(
             circle at 40% 40%,
-            #555,
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #111,
-            #252525
+            #41464d,
+            #17191d 35%,
+            #030405 70%
         );
 }
 
-.about-visual::before {
-    content: "DEV";
+.world{
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #8296a5,
+            #35404a 22%,
+            #10151a 58%,
+            #040506
+        );
+}
 
-    position: absolute;
+.obsidian{
+    background:
+        linear-gradient(
+            125deg,
+            #30302e,
+            #111110 35%,
+            #050505 75%
+        );
+}
 
-    left: 50%;
-    top: 50%;
+.syntra{
+    background:
+        radial-gradient(
+            circle at 65% 35%,
+            #829bbf,
+            #27384e 20%,
+            #080c12 58%,
+            #030507
+        );
+}
 
+.portfolio-demo{
+    background:
+        linear-gradient(
+            135deg,
+            #151719,
+            #30353b,
+            #08090a
+        );
+}
+
+/* CARD GEOMETRY */
+
+.geometry{
+    position:absolute;
+
+    width:190px;
+    height:190px;
+
+    right:35px;
+    top:35px;
+
+    border:1px solid rgba(255,255,255,.13);
+
+    transform:rotate(35deg);
+
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.project:hover .geometry{
     transform:
-        translate(-50%,-50%)
-        rotate(-90deg);
-
-    color: rgba(255,255,255,.05);
-
-    font-family: "Space Grotesk";
-
-    font-size: 140px;
-    font-weight: 700;
-
-    letter-spacing: 15px;
+        rotate(55deg)
+        scale(1.12);
 }
 
-.about-content p {
-    max-width: 500px;
+.geometry::before{
+    content:"";
 
-    margin-top: 25px;
+    position:absolute;
 
-    color: var(--muted);
+    inset:30px;
 
-    font-size: 14px;
-    line-height: 1.9;
+    border:1px solid rgba(255,255,255,.1);
 }
 
-.skills {
-    display: flex;
-    flex-wrap: wrap;
+.geometry::after{
+    content:"";
 
-    gap: 7px;
+    position:absolute;
 
-    margin-top: 30px;
+    inset:65px;
+
+    background:rgba(255,255,255,.07);
+
+    box-shadow:
+        0 0 70px rgba(255,255,255,.08);
 }
 
-.skill {
-    padding: 10px 14px;
+/* CARD TEXT */
 
-    border: 1px solid var(--line);
+.project-content{
+    position:absolute;
 
-    color: var(--muted);
-
-    font-size: 10px;
-
-    transition: .25s ease;
+    left:25px;
+    right:25px;
+    bottom:24px;
 }
 
-.skill:hover {
-    color: var(--text);
+.project-number{
+    color:#91979e;
 
-    border-color: var(--text);
+    font-size:8px;
 
-    transform: translateY(-3px);
+    letter-spacing:3px;
+
+    margin-bottom:9px;
 }
 
-/* ========================================
-   SERVICES
-======================================== */
+.project-name{
+    font-family:"Space Grotesk";
 
-.services {
-    display: grid;
+    font-size:32px;
 
-    grid-template-columns: repeat(3, 1fr);
+    font-weight:500;
 
-    gap: 12px;
+    letter-spacing:-1px;
 }
 
-.service {
-    min-height: 270px;
+.project-type{
+    color:#858b92;
 
-    padding: 30px;
+    font-size:9px;
 
-    background: var(--surface);
+    margin-top:7px;
 
-    border: 1px solid var(--line);
-
-    transition: .35s ease;
+    letter-spacing:1px;
 }
 
-.service:hover {
-    transform: translateY(-7px);
+.open-icon{
+    position:absolute;
 
-    background: var(--surface-2);
+    right:25px;
+    bottom:25px;
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    display:grid;
+    place-items:center;
+
+    font-size:14px;
+
+    transition:.3s;
 }
 
-.service-number {
-    color: var(--muted);
+.project:hover .open-icon{
+    background:#fff;
+    color:#000;
 
-    font-size: 10px;
-    letter-spacing: 2px;
+    transform:rotate(45deg);
 }
 
-.service h3 {
-    margin-top: 70px;
+/* DEMO WINDOW */
 
-    font-family: "Space Grotesk";
+.demo{
+    position:fixed;
 
-    font-size: 26px;
+    inset:0;
+
+    z-index:500;
+
+    background:#030405;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .4s,
+        visibility .4s;
 }
 
-.service p {
-    margin-top: 12px;
-
-    color: var(--muted);
-
-    font-size: 12px;
-    line-height: 1.7;
+.demo.open{
+    opacity:1;
+    visibility:visible;
 }
 
-/* ========================================
-   CONTACT
-======================================== */
+.demo iframe{
+    position:absolute;
 
-.contact {
-    padding: 130px 7vw;
+    inset:0;
 
-    background: var(--surface);
+    width:100%;
+    height:100%;
 
-    border-top: 1px solid var(--line);
+    border:0;
+
+    background:#050607;
 }
 
-.contact-inner {
-    max-width: 900px;
+/* CLOSE */
+
+.close{
+    position:fixed;
+
+    top:22px;
+    right:25px;
+
+    z-index:600;
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(5,6,7,.65);
+
+    backdrop-filter:blur(15px);
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    display:grid;
+    place-items:center;
+
+    transition:.3s;
 }
 
-.contact-title {
-    font-family: "Space Grotesk";
+.close:hover{
+    background:#fff;
+    color:#000;
 
-    font-size: clamp(55px, 9vw, 120px);
-
-    line-height: .88;
-
-    letter-spacing: -7px;
+    transform:rotate(90deg);
 }
 
-.contact-title span {
-    color: #666;
+/* FOOTER */
+
+footer{
+    max-width:1450px;
+
+    margin:auto;
+
+    padding:30px 35px;
+
+    border-top:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#555b62;
+
+    font-size:8px;
+
+    letter-spacing:2px;
 }
 
-.contact-text {
-    max-width: 450px;
+/* REVEAL */
 
-    margin-top: 30px;
+.reveal{
+    opacity:0;
 
-    color: var(--muted);
-
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-.contact-buttons {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    margin-top: 30px;
-}
-
-/* ========================================
-   FOOTER
-======================================== */
-
-footer {
-    padding: 30px 7vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    color: var(--muted);
-
-    font-size: 10px;
-
-    border-top: 1px solid var(--line);
-}
-
-/* ========================================
-   MOBILE MENU
-======================================== */
-
-.mobile-menu {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 2000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--bg);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: .35s ease;
-}
-
-.mobile-menu.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-menu nav {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 25px;
-}
-
-.mobile-menu nav a {
-    color: var(--text);
-
-    font-family: "Space Grotesk";
-
-    font-size: 38px;
-}
-
-/* ========================================
-   REVEAL
-======================================== */
-
-.reveal {
-    opacity: 0;
-
-    transform: translateY(30px);
+    transform:translateY(35px);
 
     transition:
         opacity .8s ease,
-        transform .8s ease;
+        transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
-.reveal.visible {
-    opacity: 1;
-
-    transform: translateY(0);
+.reveal.show{
+    opacity:1;
+    transform:none;
 }
 
-/* ========================================
-   PROJECT VIEWER
-======================================== */
+/* MOBILE */
 
-.project-viewer {
-    position: fixed;
+@media(max-width:1000px){
 
-    inset: 0;
-
-    z-index: 9999;
-
-    background: #050505;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: scale(.98);
-
-    transition:
-        opacity .35s ease,
-        visibility .35s ease,
-        transform .35s ease;
-}
-
-.project-viewer.active {
-    opacity: 1;
-    visibility: visible;
-
-    transform: scale(1);
-}
-
-.viewer-top {
-    position: absolute;
-
-    z-index: 10;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 76px;
-
-    padding: 0 25px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.85),
-            rgba(0,0,0,0)
-        );
-
-    pointer-events: none;
-}
-
-.viewer-title {
-    color: #fff;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    letter-spacing: 4px;
-}
-
-.viewer-close {
-    width: 48px;
-    height: 48px;
-
-    padding: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 50%;
-
-    background: rgba(0,0,0,.55);
-
-    color: #fff;
-
-    font-family: Arial, sans-serif;
-    font-size: 30px;
-    font-weight: 300;
-
-    line-height: 1;
-
-    pointer-events: auto;
-
-    transition:
-        transform .3s ease,
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
-}
-
-.viewer-close:hover {
-    transform: rotate(90deg) scale(1.08);
-
-    background: #fff;
-    color: #000;
-
-    border-color: #fff;
-}
-
-.viewer-content {
-    width: 100%;
-    height: 100%;
-}
-
-.viewer-content iframe {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    border: none;
-
-    background: #fff;
-}
-
-/* ========================================
-   RESPONSIVE
-======================================== */
-
-@media (max-width: 900px) {
-
-    nav {
-        display: none;
+    .hero-orb{
+        opacity:.35;
+        right:-100px;
     }
 
-    .menu-btn {
-        display: flex;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card:nth-child(1),
-    .project-card:nth-child(2),
-    .project-card:nth-child(3) {
-        grid-column: auto;
-    }
-
-    .project-preview,
-    .project-card:nth-child(1) .project-preview,
-    .project-card:nth-child(2) .project-preview,
-    .project-card:nth-child(3) .project-preview {
-        height: 350px;
-    }
-
-    .about {
-        grid-template-columns: 1fr;
-    }
-
-    .services {
-        grid-template-columns: 1fr;
-    }
-
-    .section-header {
-        display: block;
-    }
-
-    .section-description {
-        margin-top: 20px;
+    .projects{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
     }
 }
 
-@media (max-width: 600px) {
+@media(max-width:650px){
 
-    header {
-        padding: 0 20px;
+    .header-inner{
+        padding:0 20px;
     }
 
-    .hero {
-        padding: 130px 20px 80px;
+    .header-right span{
+        display:none;
     }
 
-    .hero h1 {
-        font-size: 65px;
-        letter-spacing: -5px;
+    .hero{
+        padding:
+            140px 20px
+            80px;
     }
 
-    .hero-description {
-        font-size: 13px;
+    .hero h1{
+        font-size:72px;
+        letter-spacing:-5px;
     }
 
-    .hero-buttons {
-        flex-direction: column;
+    .hero-orb{
+        width:300px;
+        height:300px;
 
-        align-items: stretch;
+        right:-150px;
+        top:70%;
 
-        width: 100%;
+        opacity:.25;
     }
 
-    .hero-buttons .btn {
-        width: 100%;
+    .portfolio{
+        padding:
+            70px 20px
+            100px;
     }
 
-    .section {
-        padding: 85px 20px;
+    .section-top{
+        display:block;
     }
 
-    .section-title {
-        font-size: 47px;
+    .counter{
+        margin-top:15px;
     }
 
-    .project-preview,
-    .project-card:nth-child(1) .project-preview,
-    .project-card:nth-child(2) .project-preview,
-    .project-card:nth-child(3) .project-preview {
-        height: 270px;
+    .projects{
+        grid-template-columns:1fr;
     }
 
-    .project-preview-title {
-        font-size: 40px;
-        letter-spacing: 6px;
+    .project{
+        height:370px;
     }
 
-    .project-card:hover .project-preview-title {
-        letter-spacing: 8px;
+    footer{
+        padding:25px 20px;
+
+        display:block;
     }
 
-    .project-info {
-        min-height: 82px;
-        padding: 18px;
-    }
-
-    .project-name {
-        font-size: 23px;
-    }
-
-    .about-visual {
-        height: 370px;
-    }
-
-    .service {
-        min-height: 220px;
-    }
-
-    .service h3 {
-        margin-top: 45px;
-    }
-
-    .contact {
-        padding: 90px 20px;
-    }
-
-    .contact-title {
-        font-size: 65px;
-        letter-spacing: -5px;
-    }
-
-    .contact-buttons {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .contact-buttons .btn {
-        width: 100%;
-    }
-
-    footer {
-        padding: 25px 20px;
-
-        display: block;
-
-        line-height: 2;
-    }
-
-    .viewer-top {
-        height: 65px;
-        padding: 0 15px;
-    }
-
-    .viewer-title {
-        font-size: 10px;
-        letter-spacing: 3px;
-    }
-
-    .viewer-close {
-        width: 43px;
-        height: 43px;
-        font-size: 27px;
+    footer span{
+        display:block;
+        margin-bottom:8px;
     }
 }
 </style>
@@ -1331,737 +806,476 @@ footer {
 
 <body>
 
-<!-- ========================================
-     HEADER
-======================================== -->
-
 <header id="header">
 
-    <a href="#" class="logo">
-        PORTFOLIO
-    </a>
+<div class="header-inner">
 
-    <nav>
-        <a href="#projects">Проекты</a>
-        <a href="#about">Обо мне</a>
-        <a href="#services">Навыки</a>
-        <a href="#contact">Контакты</a>
-    </nav>
+    <a href="#" class="logo">
+        PORTFOLIO<span>.</span>
+    </a>
 
     <div class="header-right">
 
-        <button
-            class="theme-btn"
-            id="themeBtn"
-            aria-label="Переключить тему"
-        >☾</button>
+        <span>
+            SELECTED DIGITAL WORKS
+        </span>
 
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            aria-label="Открыть меню"
-        >☰</button>
+        <a href="mailto:hello@example.com"
+           class="contact-btn">
+            WRITE TO ME ↗
+        </a>
 
     </div>
+
+</div>
 
 </header>
 
 
-<!-- ========================================
-     MOBILE MENU
-======================================== -->
-
-<div class="mobile-menu" id="mobileMenu">
-
-    <nav>
-
-        <a href="#projects">Проекты</a>
-        <a href="#about">Обо мне</a>
-        <a href="#services">Навыки</a>
-        <a href="#contact">Контакты</a>
-
-    </nav>
-
-</div>
-
-
-<!-- ========================================
-     HERO
-======================================== -->
+<main>
 
 <section class="hero">
 
-    <div class="hero-content">
+    <div class="hero-content reveal">
 
-        <div class="hero-label">
-            WEB DEVELOPER / CREATIVE PORTFOLIO
+        <div class="eyebrow">
+            DIGITAL DESIGN / 2026
         </div>
 
         <h1>
-            I build<br>
-            <span>digital</span><br>
-            experiences.
+            Selected<br>
+            <span>works.</span>
         </h1>
 
         <p class="hero-description">
-            Создаю современные сайты с чистым дизайном,
-            интерактивными интерфейсами, анимациями
-            и полноценной адаптацией под любые устройства.
+            Коллекция цифровых концептов, брендов
+            и интерфейсов. Каждый проект создан как
+            отдельный визуальный мир.
         </p>
 
-        <div class="hero-buttons">
-
-            <a href="#projects" class="btn primary">
-                Смотреть проекты
-            </a>
-
-            <a href="#contact" class="btn">
-                Связаться
-            </a>
-
-        </div>
-
     </div>
 
-    <div class="hero-number">
-        SCROLL TO EXPLORE ↓
-    </div>
+    <div class="hero-orb"></div>
 
 </section>
 
 
-<!-- ========================================
-     PROJECTS
-======================================== -->
+<section class="portfolio">
 
-<section class="section" id="projects">
-
-    <div class="section-header reveal">
+    <div class="section-top reveal">
 
         <div>
 
-            <div class="section-label">
-                SELECTED WORK
+            <div class="eyebrow">
+                PROJECT ARCHIVE
             </div>
 
             <h2 class="section-title">
-                Проекты.
+                The <span>collection.</span>
             </h2>
 
         </div>
 
-        <p class="section-description">
-            Коллекция цифровых проектов:
-            лендинги, магазины, интерфейсы
-            и полноценные веб-концепции.
-        </p>
+        <div class="counter">
+            12 PROJECTS / 04 ROWS
+        </div>
 
     </div>
 
 
-    <div class="projects-grid">
+    <div class="projects">
 
 
-        <!-- AURA -->
+        <!-- 01 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./aura/index.html"
-            data-title="AURA"
-        >
+        <article
+            class="project reveal"
+            data-site="nova/index.html">
 
-            <div class="project-preview aura">
+            <div class="project-bg nova"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
-                    AURA
+            <div class="project-content">
+
+                <div class="project-number">
+                    01 / 12
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        BEAUTY / LANDING PAGE
-                    </div>
-
-                    <div class="project-name">
-                        AURA
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- VANTA -->
-
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./vanta/index.html"
-            data-title="VANTA"
-        >
-
-            <div class="project-preview vanta">
-
-                <div class="project-preview-title">
-                    VANTA
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        E-COMMERCE / STORE
-                    </div>
-
-                    <div class="project-name">
-                        VANTA
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- WORLD -->
-
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./world/index.html"
-            data-title="WORLD"
-        >
-
-            <div class="project-preview world">
-
-                <div class="project-preview-title">
-                    WORLD
-                </div>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        TRAVEL / WEB APP
-                    </div>
-
-                    <div class="project-name">
-                        WORLD
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- NOVA -->
-
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./nova/index.html"
-            data-title="NOVA"
-        >
-
-            <div class="project-preview nova">
-
-                <div class="project-preview-title">
+                <div class="project-name">
                     NOVA
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        CREATIVE / STUDIO
-                    </div>
-
-                    <div class="project-name">
-                        NOVA
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    CREATIVE STUDIO
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
-        <!-- CASA -->
+        <!-- 02 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./casa/index.html"
-            data-title="CASA"
-        >
+        <article
+            class="project reveal"
+            data-site="casa/index.html">
 
-            <div class="project-preview casa">
+            <div class="project-bg casa"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
+            <div class="project-content">
+
+                <div class="project-number">
+                    02 / 12
+                </div>
+
+                <div class="project-name">
                     CASA
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        INTERIOR / LIFESTYLE
-                    </div>
-
-                    <div class="project-name">
-                        CASA
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    ARCHITECTURE
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
-        <!-- FORMA -->
+        <!-- 03 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./forma/index.html"
-            data-title="FORMA"
-        >
+        <article
+            class="project reveal"
+            data-site="forma/index.html">
 
-            <div class="project-preview forma">
+            <div class="project-bg forma"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
+            <div class="project-content">
+
+                <div class="project-number">
+                    03 / 12
+                </div>
+
+                <div class="project-name">
                     FORMA
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        ARCHITECTURE / DESIGN
-                    </div>
-
-                    <div class="project-name">
-                        FORMA
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    DESIGN HOUSE
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
-        <!-- LUME -->
+        <!-- 04 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./lume/index.html"
-            data-title="LUME"
-        >
+        <article
+            class="project reveal"
+            data-site="lume/index.html">
 
-            <div class="project-preview lume">
+            <div class="project-bg lume"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
+            <div class="project-content">
+
+                <div class="project-number">
+                    04 / 12
+                </div>
+
+                <div class="project-name">
                     LUME
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        LIFESTYLE / BRAND
-                    </div>
-
-                    <div class="project-name">
-                        LUME
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    LIGHTING / SPACE
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
-        <!-- NOIR -->
+        <!-- 05 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./noir/index.html"
-            data-title="NOIR"
-        >
+        <article
+            class="project reveal"
+            data-site="noir/index.html">
 
-            <div class="project-preview noir">
+            <div class="project-bg noir"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
+            <div class="project-content">
+
+                <div class="project-number">
+                    05 / 12
+                </div>
+
+                <div class="project-name">
                     NOIR
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        FASHION / EDITORIAL
-                    </div>
-
-                    <div class="project-name">
-                        NOIR
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    LUXURY BRAND
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
-        <!-- LUNO -->
+        <!-- 06 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./luno/index.html"
-            data-title="LUNO"
-        >
+        <article
+            class="project reveal"
+            data-site="luno/index.html">
 
-            <div class="project-preview luno">
+            <div class="project-bg luno"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
+            <div class="project-content">
+
+                <div class="project-number">
+                    06 / 12
+                </div>
+
+                <div class="project-name">
                     LUNO
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        TECHNOLOGY / PRODUCT
-                    </div>
-
-                    <div class="project-name">
-                        LUNO
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    DIGITAL PRODUCT
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
-        <!-- PORTFOLIO -->
+        <!-- 07 -->
 
-        <a
-            href="#"
-            class="project-card reveal project-link"
-            data-project="./portfolio/index.html"
-            data-title="PORTFOLIO"
-        >
+        <article
+            class="project reveal"
+            data-site="aura/index.html">
 
-            <div class="project-preview portfolio">
+            <div class="project-bg aura"></div>
+            <div class="geometry"></div>
 
-                <div class="project-preview-title">
+            <div class="project-content">
+
+                <div class="project-number">
+                    07 / 12
+                </div>
+
+                <div class="project-name">
+                    AURA
+                </div>
+
+                <div class="project-type">
+                    WELLNESS / DIGITAL
+                </div>
+
+            </div>
+
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
+
+
+        <!-- 08 -->
+
+        <article
+            class="project reveal"
+            data-site="vanta/index.html">
+
+            <div class="project-bg vanta"></div>
+            <div class="geometry"></div>
+
+            <div class="project-content">
+
+                <div class="project-number">
+                    08 / 12
+                </div>
+
+                <div class="project-name">
+                    VANTA
+                </div>
+
+                <div class="project-type">
+                    TECHNOLOGY
+                </div>
+
+            </div>
+
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
+
+
+        <!-- 09 -->
+
+        <article
+            class="project reveal"
+            data-site="world/index.html">
+
+            <div class="project-bg world"></div>
+            <div class="geometry"></div>
+
+            <div class="project-content">
+
+                <div class="project-number">
+                    09 / 12
+                </div>
+
+                <div class="project-name">
+                    WORLD
+                </div>
+
+                <div class="project-type">
+                    GLOBAL PLATFORM
+                </div>
+
+            </div>
+
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
+
+
+        <!-- 10 -->
+
+        <article
+            class="project reveal"
+            data-site="obsidian/index.html">
+
+            <div class="project-bg obsidian"></div>
+            <div class="geometry"></div>
+
+            <div class="project-content">
+
+                <div class="project-number">
+                    10 / 12
+                </div>
+
+                <div class="project-name">
+                    OBSIDIAN
+                </div>
+
+                <div class="project-type">
+                    ARCHITECTURE / SPACE
+                </div>
+
+            </div>
+
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
+
+
+        <!-- 11 -->
+
+        <article
+            class="project reveal"
+            data-site="syntra/index.html">
+
+            <div class="project-bg syntra"></div>
+            <div class="geometry"></div>
+
+            <div class="project-content">
+
+                <div class="project-number">
+                    11 / 12
+                </div>
+
+                <div class="project-name">
+                    SYNTRA
+                </div>
+
+                <div class="project-type">
+                    AI / TECHNOLOGY
+                </div>
+
+            </div>
+
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
+
+
+        <!-- 12 -->
+
+        <article
+            class="project reveal"
+            data-site="portfolio/index.html">
+
+            <div class="project-bg portfolio-demo"></div>
+            <div class="geometry"></div>
+
+            <div class="project-content">
+
+                <div class="project-number">
+                    12 / 12
+                </div>
+
+                <div class="project-name">
                     PORTFOLIO
                 </div>
 
-            </div>
-
-            <div class="project-info">
-
-                <div>
-
-                    <div class="project-category">
-                        WEB / PORTFOLIO
-                    </div>
-
-                    <div class="project-name">
-                        PORTFOLIO
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
+                <div class="project-type">
+                    DIGITAL ARCHIVE
                 </div>
 
             </div>
 
-        </a>
+            <div class="open-icon">
+                ↗
+            </div>
+
+        </article>
 
 
     </div>
 
 </section>
 
+</main>
 
-<!-- ========================================
-     ABOUT
-======================================== -->
-
-<section class="section" id="about">
-
-    <div class="about">
-
-        <div class="about-visual reveal"></div>
-
-        <div class="about-content reveal">
-
-            <div class="section-label">
-                ABOUT ME
-            </div>
-
-            <h2 class="section-title">
-                Код +<br>
-                дизайн.
-            </h2>
-
-            <p>
-                Я создаю сайты, которые выглядят современно,
-                быстро работают и удобно ощущаются на любом
-                устройстве.
-            </p>
-
-            <p>
-                От идеи и визуальной концепции до готового
-                интерактивного интерфейса — весь процесс
-                можно собрать в одном проекте.
-            </p>
-
-            <div class="skills">
-
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">Responsive</span>
-                <span class="skill">UI/UX</span>
-                <span class="skill">Animations</span>
-                <span class="skill">Git</span>
-                <span class="skill">GitHub</span>
-                <span class="skill">Figma</span>
-                <span class="skill">DOM</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ========================================
-     SERVICES
-======================================== -->
-
-<section class="section" id="services">
-
-    <div class="section-header reveal">
-
-        <div>
-
-            <div class="section-label">
-                WHAT I DO
-            </div>
-
-            <h2 class="section-title">
-                Навыки.
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="services">
-
-
-        <div class="service reveal">
-
-            <div class="service-number">
-                01 / FRONTEND
-            </div>
-
-            <h3>
-                Современная<br>
-                вёрстка
-            </h3>
-
-            <p>
-                Чистый HTML, CSS и JavaScript,
-                адаптивная структура и аккуратный
-                интерфейс.
-            </p>
-
-        </div>
-
-
-        <div class="service reveal">
-
-            <div class="service-number">
-                02 / UI / UX
-            </div>
-
-            <h3>
-                UI/UX<br>
-                интерфейсы
-            </h3>
-
-            <p>
-                Продуманные страницы, визуальная
-                иерархия, интерактивные элементы
-                и удобная навигация.
-            </p>
-
-        </div>
-
-
-        <div class="service reveal">
-
-            <div class="service-number">
-                03 / MOTION
-            </div>
-
-            <h3>
-                Анимации<br>
-                и эффект
-            </h3>
-
-            <p>
-                Плавные переходы, hover-эффекты,
-                появления блоков и интерактивные
-                элементы.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- ========================================
-     CONTACT
-======================================== -->
-
-<section class="contact" id="contact">
-
-    <div class="contact-inner reveal">
-
-        <div class="section-label">
-            LET'S WORK TOGETHER
-        </div>
-
-        <h2 class="contact-title">
-            Есть идея?<br>
-            <span>Давайте создадим.</span>
-        </h2>
-
-        <p class="contact-text">
-            Если вам нужен современный сайт,
-            лендинг, магазин или интерфейс —
-            напишите мне.
-        </p>
-
-        <div class="contact-buttons">
-
-            <a
-                class="btn primary"
-                href="mailto:yourmail@example.com"
-            >
-                Написать мне
-            </a>
-
-            <a
-                class="btn"
-                href="#projects"
-            >
-                Смотреть работы
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ========================================
-     FOOTER
-======================================== -->
 
 <footer>
 
@@ -2070,135 +1284,51 @@ footer {
     </span>
 
     <span>
-        HTML · CSS · JavaScript
+        NOVA / CASA / FORMA / LUME / NOIR / LUNO /
+        AURA / VANTA / WORLD / OBSIDIAN / SYNTRA
     </span>
 
 </footer>
 
 
-<!-- ========================================
-     PROJECT VIEWER
-======================================== -->
+<!-- DEMO -->
 
-<div class="project-viewer" id="projectViewer">
+<div class="demo" id="demo">
 
-    <div class="viewer-top">
+    <button
+        class="close"
+        id="closeDemo"
+        aria-label="Закрыть">
+        ×
+    </button>
 
-        <div class="viewer-title" id="viewerTitle">
-            PROJECT
-        </div>
-
-        <button
-            class="viewer-close"
-            id="viewerClose"
-            aria-label="Закрыть проект"
-        >
-            ×
-        </button>
-
-    </div>
-
-    <div class="viewer-content">
-
-        <iframe
-            id="projectFrame"
-            src=""
-            title="Project preview"
-            allowfullscreen
-        ></iframe>
-
-    </div>
+    <iframe
+        id="demoFrame"
+        src=""
+        title="Project preview">
+    </iframe>
 
 </div>
 
 
 <script>
 
-/* ========================================
-   HEADER
-======================================== */
+/* HEADER */
 
 const header =
     document.getElementById("header");
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
     header.classList.toggle(
         "scrolled",
-        window.scrollY > 40
+        window.scrollY > 30
     );
 
 });
 
 
-/* ========================================
-   THEME
-======================================== */
-
-const themeBtn =
-    document.getElementById("themeBtn");
-
-const savedTheme =
-    localStorage.getItem("portfolioTheme");
-
-if (savedTheme === "light") {
-
-    document.body.classList.add("light");
-
-    themeBtn.textContent = "☀";
-
-}
-
-themeBtn.addEventListener("click", () => {
-
-    document.body.classList.toggle("light");
-
-    const isLight =
-        document.body.classList.contains("light");
-
-    localStorage.setItem(
-        "portfolioTheme",
-        isLight ? "light" : "dark"
-    );
-
-    themeBtn.textContent =
-        isLight ? "☀" : "☾";
-
-});
-
-
-/* ========================================
-   MOBILE MENU
-======================================== */
-
-const mobileMenu =
-    document.getElementById("mobileMenu");
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-menuBtn.addEventListener("click", () => {
-
-    mobileMenu.classList.toggle("active");
-
-});
-
-document
-    .querySelectorAll(".mobile-menu a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("active");
-
-        });
-
-    });
-
-
-/* ========================================
-   SCROLL REVEAL
-======================================== */
+/* REVEAL */
 
 const observer =
     new IntersectionObserver(
@@ -2206,11 +1336,9 @@ const observer =
 
             entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
+                if(entry.isIntersecting){
 
-                    entry.target.classList.add(
-                        "visible"
-                    );
+                    entry.target.classList.add("show");
 
                     observer.unobserve(
                         entry.target
@@ -2222,279 +1350,145 @@ const observer =
 
         },
         {
-            threshold: .12
+            threshold:.1
         }
     );
+
 
 document
     .querySelectorAll(".reveal")
-    .forEach(element => {
-
-        observer.observe(element);
-
+    .forEach(el=>{
+        observer.observe(el);
     });
 
 
-/* ========================================
-   PROJECT VIEWER
-======================================== */
+/* DEMO WINDOW */
 
-const projectViewer =
-    document.getElementById("projectViewer");
+const demo =
+    document.getElementById("demo");
 
-const projectFrame =
-    document.getElementById("projectFrame");
+const frame =
+    document.getElementById("demoFrame");
 
-const viewerTitle =
-    document.getElementById("viewerTitle");
+const closeDemo =
+    document.getElementById("closeDemo");
 
-const viewerClose =
-    document.getElementById("viewerClose");
-
-const projectLinks =
-    document.querySelectorAll(".project-link");
+const projects =
+    document.querySelectorAll(".project");
 
 
-function openProject(url, title) {
+function openDemo(url){
 
-    viewerTitle.textContent = title;
+    frame.src = url;
 
-    projectFrame.src = url;
+    demo.classList.add("open");
 
-    projectViewer.classList.add("active");
-
-    document.body.classList.add("viewer-open");
-
-    /*
-       Запоминаем проект в истории браузера,
-       чтобы кнопка "Назад" тоже работала.
-    */
-
-    history.pushState(
-        {
-            project: title
-        },
-        "",
-        "#project-" + title.toLowerCase()
-    );
+    document.body.style.overflow="hidden";
 
 }
 
 
-function closeProject() {
+function closeProject(){
 
-    projectViewer.classList.remove("active");
+    demo.classList.remove("open");
 
-    document.body.classList.remove("viewer-open");
+    setTimeout(()=>{
+        frame.src="";
+    },400);
 
-    /*
-       Небольшая задержка нужна,
-       чтобы iframe не исчезал резко.
-    */
-
-    setTimeout(() => {
-
-        projectFrame.src = "";
-
-    }, 350);
-
-    /*
-       Убираем project hash из URL.
-    */
-
-    if (
-        window.location.hash.startsWith(
-            "#project-"
-        )
-    ) {
-
-        history.pushState(
-            null,
-            "",
-            window.location.pathname +
-            window.location.search
-        );
-
-    }
+    document.body.style.overflow="";
 
 }
 
 
-/*
-   Открытие проектов.
-*/
+projects.forEach(project=>{
 
-projectLinks.forEach(link => {
+    project.addEventListener("click",()=>{
 
-    link.addEventListener(
-        "click",
-        event => {
+        const site =
+            project.dataset.site;
 
-            event.preventDefault();
-
-            const url =
-                link.dataset.project;
-
-            const title =
-                link.dataset.title;
-
-            openProject(url, title);
-
+        if(site){
+            openDemo(site);
         }
-    );
+
+    });
 
 });
 
 
-/*
-   Крестик.
-*/
-
-viewerClose.addEventListener(
+closeDemo.addEventListener(
     "click",
     closeProject
 );
 
 
-/*
-   ESC тоже закрывает проект.
-*/
+/* ESC */
 
 document.addEventListener(
     "keydown",
-    event => {
+    event=>{
 
-        if (
-            event.key === "Escape" &&
-            projectViewer.classList.contains("active")
-        ) {
-
+        if(
+            event.key==="Escape" &&
+            demo.classList.contains("open")
+        ){
             closeProject();
-
         }
 
     }
 );
 
 
-/*
-   Кнопка "Назад" браузера.
-*/
+/* CLICK OUTSIDE */
 
-window.addEventListener(
-    "popstate",
-    () => {
+demo.addEventListener(
+    "click",
+    event=>{
 
-        if (
-            projectViewer.classList.contains("active")
-        ) {
-
-            projectViewer.classList.remove(
-                "active"
-            );
-
-            document.body.classList.remove(
-                "viewer-open"
-            );
-
-            setTimeout(() => {
-
-                projectFrame.src = "";
-
-            }, 350);
-
+        if(event.target === demo){
+            closeProject();
         }
 
     }
 );
 
 
-/* ========================================
-   CLOSE VIEWER WHEN HASH IS CLEARED
-======================================== */
+/* HERO PARALLAX */
 
-window.addEventListener(
-    "hashchange",
-    () => {
-
-        if (
-            !window.location.hash.startsWith(
-                "#project-"
-            ) &&
-            projectViewer.classList.contains(
-                "active"
-            )
-        ) {
-
-            projectViewer.classList.remove(
-                "active"
-            );
-
-            document.body.classList.remove(
-                "viewer-open"
-            );
-
-            projectFrame.src = "";
-
-        }
-
-    }
-);
-
-
-/* ========================================
-   HERO MOUSE PARALLAX
-======================================== */
+const orb =
+    document.querySelector(".hero-orb");
 
 const hero =
     document.querySelector(".hero");
 
-if (window.innerWidth > 900) {
+
+if(window.innerWidth > 900){
 
     hero.addEventListener(
         "mousemove",
-        event => {
+        event=>{
 
             const x =
-                (event.clientX /
-                    window.innerWidth - .5) * 10;
+                event.clientX /
+                window.innerWidth -
+                .5;
 
             const y =
-                (event.clientY /
-                    window.innerHeight - .5) * 10;
+                event.clientY /
+                window.innerHeight -
+                .5;
 
-            hero.style.backgroundPosition =
-                `${50 + x}% ${50 + y}%`;
+            orb.style.transform =
+                `translate(
+                    ${x*25}px,
+                    calc(-50% + ${y*25}px)
+                )`;
 
         }
     );
 
 }
-
-
-/* ========================================
-   ESCAPE MOBILE MENU
-======================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape" &&
-            mobileMenu.classList.contains(
-                "active"
-            )
-        ) {
-
-            mobileMenu.classList.remove(
-                "active"
-            );
-
-        }
-
-    }
-);
 
 </script>
 

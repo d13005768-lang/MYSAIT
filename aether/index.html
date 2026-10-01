@@ -1,0 +1,1819 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AETHER — Advanced Systems</title>
+
+<meta
+    name="description"
+    content="AETHER — advanced artificial intelligence, robotics and autonomous systems."
+>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #030303;
+    --panel: rgba(255,255,255,.045);
+    --panel-strong: rgba(255,255,255,.075);
+
+    --line: rgba(255,255,255,.10);
+    --line-bright: rgba(255,255,255,.18);
+
+    --text: #f5f7fa;
+    --muted: #858a93;
+
+    --accent: #dce8ff;
+    --accent-soft: rgba(190,215,255,.18);
+
+    --max: 1440px;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        #030303;
+
+    color: var(--text);
+
+    font-family: "Inter", sans-serif;
+
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 52px 52px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black 0%,
+            rgba(0,0,0,.8) 70%,
+            transparent 100%
+        );
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(130,160,210,.09),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(80,120,180,.055),
+            transparent 28%
+        );
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+::selection {
+    background: rgba(210,225,255,.25);
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030303;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 42px;
+
+    border-bottom: 1px solid transparent;
+
+    transition:
+        background .4s ease,
+        backdrop-filter .4s ease,
+        border-color .4s ease;
+}
+
+.header.scrolled {
+    background: rgba(3,3,3,.62);
+
+    backdrop-filter: blur(22px);
+
+    border-color: var(--line);
+}
+
+.nav {
+    width: 100%;
+    max-width: var(--max);
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+.logo-mark {
+    width: 25px;
+    height: 25px;
+
+    position: relative;
+
+    border: 1px solid rgba(255,255,255,.45);
+
+    transform: rotate(45deg);
+}
+
+.logo-mark::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border: 1px solid rgba(255,255,255,.25);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+}
+
+.menu a {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    transition: color .25s ease;
+}
+
+.menu a:hover {
+    color: var(--text);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+/* =========================
+   GLASS BUTTONS
+========================= */
+
+.glass-btn {
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border: 1px solid rgba(255,255,255,.14);
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025)
+        );
+
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 500;
+
+    line-height: 1;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 8px 30px rgba(0,0,0,.16);
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.glass-btn:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(255,255,255,.28);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.16),
+            rgba(255,255,255,.045)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 14px 40px rgba(0,0,0,.3);
+}
+
+.glass-btn.primary {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(220,232,255,.24),
+            rgba(150,180,230,.08)
+        );
+
+    border-color: rgba(220,232,255,.3);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    max-width: var(--max);
+
+    margin: auto;
+
+    padding:
+        170px 42px
+        100px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.hero-content {
+    max-width: 920px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 27px;
+
+    color: #9ba1aa;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #dce8ff;
+
+    box-shadow:
+        0 0 15px rgba(220,232,255,.7);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(65px, 9.5vw, 145px);
+
+    line-height: .84;
+
+    letter-spacing: -8px;
+
+    font-weight: 500;
+}
+
+.hero h1 span {
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.5);
+}
+
+.hero-description {
+    max-width: 535px;
+
+    margin-top: 38px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.hero-actions {
+    margin-top: 35px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+/* =========================
+   HERO DECOR
+========================= */
+
+.hero-orbit {
+    position: absolute;
+
+    right: 4%;
+    top: 50%;
+
+    width: 430px;
+    height: 430px;
+
+    transform:
+        translateY(-50%);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    border-radius: 50%;
+
+    opacity: .7;
+}
+
+.hero-orbit::before,
+.hero-orbit::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 50%;
+
+    width: 130%;
+    height: 35%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-25deg);
+
+    border:
+        1px solid rgba(255,255,255,.07);
+
+    border-radius: 50%;
+}
+
+.hero-orbit::after {
+    transform:
+        translate(-50%,-50%)
+        rotate(65deg);
+}
+
+.hero-core {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 115px;
+    height: 115px;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(225,235,255,.16),
+            rgba(120,150,200,.04) 45%,
+            transparent 70%
+        );
+
+    box-shadow:
+        0 0 80px rgba(150,180,230,.12);
+}
+
+/* =========================
+   SYSTEM STRIP
+========================= */
+
+.system-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+
+    background:
+        rgba(255,255,255,.018);
+
+    backdrop-filter: blur(15px);
+}
+
+.system-strip-inner {
+    max-width: var(--max);
+
+    min-height: 70px;
+
+    margin: auto;
+
+    padding: 0 42px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+}
+
+.system-item {
+    padding: 15px 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-left: 1px solid var(--line);
+}
+
+.system-item:last-child {
+    border-right: 1px solid var(--line);
+}
+
+.system-label {
+    color: #666c75;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.system-value {
+    margin-top: 5px;
+
+    color: #d9dde4;
+
+    font-family: "Space Grotesk";
+
+    font-size: 13px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    max-width: var(--max);
+
+    margin: auto;
+
+    padding:
+        145px 42px;
+}
+
+.section-heading {
+    max-width: 720px;
+}
+
+.section-number {
+    margin-bottom: 16px;
+
+    color: #60656c;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+.section-title {
+    font-family: "Space Grotesk";
+
+    font-size: clamp(45px, 6vw, 82px);
+
+    font-weight: 500;
+
+    line-height: .92;
+
+    letter-spacing: -4px;
+}
+
+.section-title span {
+    color: #696f78;
+}
+
+.section-text {
+    max-width: 500px;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+/* =========================
+   TECHNOLOGY GRID
+========================= */
+
+.tech-grid {
+    margin-top: 65px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+}
+
+.tech-card {
+    min-height: 300px;
+
+    position: relative;
+
+    padding: 28px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.018)
+        );
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform .45s ease,
+        border-color .45s ease,
+        background .45s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(255,255,255,.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.025)
+        );
+}
+
+.tech-index {
+    color: #626872;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.tech-icon {
+    width: 70px;
+    height: 70px;
+
+    margin-top: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-size: 24px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.tech-card h3 {
+    margin-top: 24px;
+
+    font-family: "Space Grotesk";
+
+    font-size: 24px;
+
+    font-weight: 500;
+}
+
+.tech-card p {
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+/* =========================
+   MISSION
+========================= */
+
+.mission {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.mission-visual {
+    min-height: 500px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.015)
+        );
+}
+
+.mission-visual::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 15%;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    transform:
+        perspective(500px)
+        rotateX(60deg)
+        rotateZ(20deg);
+
+    box-shadow:
+        0 0 80px rgba(180,205,255,.06);
+}
+
+.mission-visual::after {
+    content: "A";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-family: "Space Grotesk";
+
+    font-size: 220px;
+
+    font-weight: 500;
+
+    color: rgba(255,255,255,.025);
+}
+
+.mission-content .section-title {
+    margin-top: 8px;
+}
+
+.mission-list {
+    margin-top: 35px;
+
+    display: grid;
+
+    gap: 1px;
+}
+
+.mission-row {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 15px;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.mission-row:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.mission-row strong {
+    color: var(--text);
+
+    font-weight: 500;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta {
+    max-width: var(--max);
+
+    margin: auto;
+
+    padding:
+        0 42px 145px;
+}
+
+.cta-box {
+    position: relative;
+
+    overflow: hidden;
+
+    padding:
+        85px 70px;
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.018)
+        );
+
+    backdrop-filter: blur(25px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.cta-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: -200px;
+    top: -280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(180,205,255,.12),
+            transparent 68%
+        );
+}
+
+.cta-label {
+    color: #717781;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+.cta h2 {
+    max-width: 800px;
+
+    margin-top: 20px;
+
+    font-family: "Space Grotesk";
+
+    font-size: clamp(45px, 6vw, 82px);
+
+    font-weight: 500;
+
+    line-height: .95;
+
+    letter-spacing: -4px;
+}
+
+.cta h2 span {
+    color: #656b75;
+}
+
+.cta-actions {
+    margin-top: 35px;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    border-top: 1px solid var(--line);
+
+    padding: 28px 42px;
+}
+
+.footer-inner {
+    max-width: var(--max);
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer p {
+    color: #5e636b;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 22px;
+}
+
+.footer-links a {
+    color: #737880;
+
+    font-size: 9px;
+
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-menu {
+    display: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .menu {
+        display: none;
+    }
+
+    .hero-orbit {
+        right: -180px;
+
+        opacity: .35;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mission {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 0 20px;
+    }
+
+    .header-actions .glass-btn {
+        display: none;
+    }
+
+    .hero {
+        padding:
+            145px 20px
+            90px;
+
+        min-height: 850px;
+    }
+
+    .hero h1 {
+        font-size: 70px;
+
+        letter-spacing: -5px;
+    }
+
+    .hero-orbit {
+        width: 330px;
+        height: 330px;
+
+        right: -180px;
+
+        top: 65%;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 100%;
+    }
+
+    .hero-actions .glass-btn {
+        width: 100%;
+    }
+
+    .system-strip-inner {
+        grid-template-columns: 1fr 1fr;
+
+        padding: 0 20px;
+    }
+
+    .system-item {
+        min-height: 65px;
+    }
+
+    .section {
+        padding:
+            95px 20px;
+    }
+
+    .section-title {
+        font-size: 52px;
+
+        letter-spacing: -3px;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr;
+
+        margin-top: 45px;
+    }
+
+    .tech-card {
+        min-height: 260px;
+    }
+
+    .mission-visual {
+        min-height: 360px;
+    }
+
+    .cta {
+        padding:
+            0 20px
+            90px;
+    }
+
+    .cta-box {
+        padding: 55px 28px;
+    }
+
+    .cta h2 {
+        font-size: 52px;
+
+        letter-spacing: -3px;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+    }
+
+    .cta-actions .glass-btn {
+        width: 100%;
+    }
+
+    .footer {
+        padding: 25px 20px;
+    }
+
+    .footer-inner {
+        display: block;
+    }
+
+    .footer-links {
+        margin-top: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header" id="header">
+
+    <div class="nav">
+
+        <a href="#" class="logo">
+
+            <span class="logo-mark"></span>
+
+            AETHER
+
+        </a>
+
+        <nav class="menu">
+
+            <a href="#technology">
+                Technology
+            </a>
+
+            <a href="#mission">
+                Mission
+            </a>
+
+            <a href="#systems">
+                Systems
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <a
+                href="#contact"
+                class="glass-btn"
+            >
+                CONTACT AETHER
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+
+            <span class="status-dot"></span>
+
+            AETHER ADVANCED SYSTEMS · ONLINE
+
+        </div>
+
+        <h1>
+            Beyond<br>
+            <span>human</span><br>
+            limits.
+        </h1>
+
+        <p class="hero-description">
+
+            AETHER develops intelligent systems for a world
+            where artificial intelligence, autonomous machines
+            and human creativity operate as one.
+
+        </p>
+
+        <div class="hero-actions">
+
+            <a
+                href="#technology"
+                class="glass-btn primary"
+            >
+                Explore technology
+                <span>↗</span>
+            </a>
+
+            <a
+                href="#mission"
+                class="glass-btn"
+            >
+                Our mission
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-orbit">
+
+        <div class="hero-core"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SYSTEM STRIP
+========================= -->
+
+<section class="system-strip" id="systems">
+
+    <div class="system-strip-inner">
+
+        <div class="system-item">
+
+            <span class="system-label">
+                GLOBAL NETWORK
+            </span>
+
+            <span class="system-value">
+                42 NODES
+            </span>
+
+        </div>
+
+        <div class="system-item">
+
+            <span class="system-label">
+                COMPUTE
+            </span>
+
+            <span class="system-value">
+                18.4 EFLOPS
+            </span>
+
+        </div>
+
+        <div class="system-item">
+
+            <span class="system-label">
+                ACTIVE SYSTEMS
+            </span>
+
+            <span class="system-value">
+                126
+            </span>
+
+        </div>
+
+        <div class="system-item">
+
+            <span class="system-label">
+                STATUS
+            </span>
+
+            <span class="system-value">
+                OPERATIONAL
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TECHNOLOGY
+========================= -->
+
+<section
+    class="section"
+    id="technology"
+>
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">
+            01 / TECHNOLOGY
+        </div>
+
+        <h2 class="section-title">
+            Intelligence<br>
+            <span>without boundaries.</span>
+        </h2>
+
+        <p class="section-text">
+
+            Наши технологии объединяют машинное обучение,
+            робототехнику и автономные вычислительные
+            системы в единую экосистему.
+
+        </p>
+
+    </div>
+
+
+    <div class="tech-grid">
+
+
+        <article class="tech-card reveal">
+
+            <div class="tech-index">
+                01 / INTELLIGENCE
+            </div>
+
+            <div class="tech-icon">
+                ◇
+            </div>
+
+            <h3>
+                AETHER AI
+            </h3>
+
+            <p>
+                Модели нового поколения для анализа,
+                прогнозирования и принятия решений
+                в реальном времени.
+            </p>
+
+        </article>
+
+
+        <article class="tech-card reveal">
+
+            <div class="tech-index">
+                02 / ROBOTICS
+            </div>
+
+            <div class="tech-icon">
+                ⌁
+            </div>
+
+            <h3>
+                AETHER R
+            </h3>
+
+            <p>
+                Автономные роботизированные системы,
+                способные взаимодействовать с
+                физическим миром.
+            </p>
+
+        </article>
+
+
+        <article class="tech-card reveal">
+
+            <div class="tech-index">
+                03 / COMPUTE
+            </div>
+
+            <div class="tech-icon">
+                ⬡
+            </div>
+
+            <h3>
+                AETHER CORE
+            </h3>
+
+            <p>
+                Высокопроизводительная вычислительная
+                инфраструктура для сложных AI-систем.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MISSION
+========================= -->
+
+<section
+    class="section"
+    id="mission"
+>
+
+    <div class="mission">
+
+        <div class="mission-visual reveal"></div>
+
+
+        <div class="mission-content reveal">
+
+            <div class="section-number">
+                02 / MISSION
+            </div>
+
+            <h2 class="section-title">
+                Build what<br>
+                <span>comes next.</span>
+            </h2>
+
+            <p class="section-text">
+
+                Мы не пытаемся предсказать будущее.
+                Мы создаём инструменты, которые
+                помогают его построить.
+
+            </p>
+
+
+            <div class="mission-list">
+
+                <div class="mission-row">
+
+                    <span>
+                        Autonomous Intelligence
+                    </span>
+
+                    <strong>
+                        01
+                    </strong>
+
+                </div>
+
+                <div class="mission-row">
+
+                    <span>
+                        Human Augmentation
+                    </span>
+
+                    <strong>
+                        02
+                    </strong>
+
+                </div>
+
+                <div class="mission-row">
+
+                    <span>
+                        Planetary Systems
+                    </span>
+
+                    <strong>
+                        03
+                    </strong>
+
+                </div>
+
+                <div class="mission-row">
+
+                    <span>
+                        Next-Gen Infrastructure
+                    </span>
+
+                    <strong>
+                        04
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section
+    class="cta"
+    id="contact"
+>
+
+    <div class="cta-box reveal">
+
+        <div class="cta-label">
+            AETHER / COLLABORATION
+        </div>
+
+        <h2>
+            The future is<br>
+            <span>an engineering problem.</span>
+        </h2>
+
+        <div class="cta-actions">
+
+            <a
+                href="mailto:hello@aether.systems"
+                class="glass-btn primary"
+            >
+                Contact AETHER
+                <span>↗</span>
+            </a>
+
+            <a
+                href="#technology"
+                class="glass-btn"
+            >
+                Explore systems
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <p>
+            © 2026 AETHER ADVANCED SYSTEMS
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Research
+            </a>
+
+            <a href="#">
+                Careers
+            </a>
+
+            <a href="mailto:hello@aether.systems">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   HEADER
+========================= */
+
+const header =
+    document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+
+    header.classList.toggle(
+        "scrolled",
+        window.scrollY > 30
+    );
+
+});
+
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (
+                    entry.isIntersecting
+                ) {
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .12
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+/* =========================
+   SMOOTH ANCHOR
+========================= */
+
+document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const id =
+                    link.getAttribute("href");
+
+                if (
+                    id === "#"
+                ) return;
+
+                const target =
+                    document.querySelector(id);
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   HERO PARALLAX
+========================= */
+
+const orbit =
+    document.querySelector(".hero-orbit");
+
+if (
+    window.innerWidth > 800
+) {
+
+    document
+        .querySelector(".hero")
+        .addEventListener(
+            "mousemove",
+            event => {
+
+                const x =
+                    (event.clientX /
+                    window.innerWidth - .5);
+
+                const y =
+                    (event.clientY /
+                    window.innerHeight - .5);
+
+                orbit.style.transform =
+                    `translate(
+                        ${x * 25}px,
+                        calc(-50% + ${y * 25}px)
+                    ) rotate(${x * 8}deg)`;
+
+            }
+        );
+
+}
+
+
+/* =========================
+   TILT CARDS
+========================= */
+
+document
+    .querySelectorAll(".tech-card")
+    .forEach(card => {
+
+        card.addEventListener(
+            "mousemove",
+            event => {
+
+                if (
+                    window.innerWidth < 800
+                ) return;
+
+                const rect =
+                    card.getBoundingClientRect();
+
+                const x =
+                    event.clientX - rect.left;
+
+                const y =
+                    event.clientY - rect.top;
+
+                const rotateX =
+                    ((y / rect.height) - .5) * -5;
+
+                const rotateY =
+                    ((x / rect.width) - .5) * 5;
+
+                card.style.transform =
+                    `perspective(900px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)
+                     translateY(-8px)`;
+
+            }
+        );
+
+        card.addEventListener(
+            "mouseleave",
+            () => {
+
+                card.style.transform = "";
+
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+</html>
+```

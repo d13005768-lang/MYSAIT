@@ -1,0 +1,585 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OBSIDIAN — Architecture & Spaces</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap');
+
+:root{
+    --bg:#080808;
+    --panel:#111;
+    --line:rgba(255,255,255,.11);
+    --text:#f4f2ed;
+    --muted:#85827c;
+    --max:1450px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    background:
+      radial-gradient(circle at 75% 10%,rgba(255,255,255,.07),transparent 28%),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:auto,90px 90px;
+}
+
+a{color:inherit;text-decoration:none}
+
+.header{
+    position:fixed;
+    z-index:50;
+    top:0;
+    left:0;
+    right:0;
+    height:78px;
+    border-bottom:1px solid transparent;
+    transition:.4s;
+}
+
+.header.active{
+    background:rgba(8,8,8,.72);
+    backdrop-filter:blur(20px);
+    border-color:var(--line);
+}
+
+.nav{
+    max-width:var(--max);
+    height:100%;
+    margin:auto;
+    padding:0 35px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:12px;
+    letter-spacing:5px;
+    font-weight:600;
+}
+
+.navlinks{
+    display:flex;
+    gap:30px;
+}
+
+.navlinks a{
+    color:#777;
+    font-size:10px;
+    transition:.25s;
+}
+
+.navlinks a:hover{color:#fff}
+
+.menu{
+    display:none;
+    width:40px;
+    height:40px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:#fff;
+}
+
+.hero{
+    min-height:100vh;
+    max-width:var(--max);
+    margin:auto;
+    padding:160px 35px 90px;
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.hero-copy{
+    position:relative;
+    z-index:2;
+    max-width:950px;
+}
+
+.kicker{
+    color:#777;
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:35px;
+}
+
+.hero h1{
+    font-family:"Manrope",sans-serif;
+    font-size:clamp(72px,12vw,170px);
+    line-height:.82;
+    font-weight:300;
+    letter-spacing:-10px;
+}
+
+.hero h1 em{
+    color:#686762;
+    font-style:normal;
+}
+
+.hero p{
+    max-width:480px;
+    margin-top:42px;
+    color:#888;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.hero-actions{
+    display:flex;
+    gap:10px;
+    margin-top:35px;
+}
+
+.button{
+    min-height:46px;
+    padding:0 20px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:rgba(255,255,255,.035);
+    color:#fff;
+    font-size:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.button:hover{
+    background:#fff;
+    color:#000;
+    transform:translateY(-3px);
+}
+
+.monolith{
+    position:absolute;
+    right:8%;
+    top:50%;
+    width:310px;
+    height:470px;
+    transform:translateY(-50%) rotate(7deg);
+    border:1px solid rgba(255,255,255,.12);
+    background:
+      linear-gradient(120deg,rgba(255,255,255,.08),transparent 30%),
+      linear-gradient(180deg,#1a1a19,#070707);
+    box-shadow:
+      -40px 50px 100px rgba(0,0,0,.8),
+      inset 15px 0 50px rgba(255,255,255,.025);
+}
+
+.monolith:before{
+    content:"";
+    position:absolute;
+    inset:35px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.monolith:after{
+    content:"O";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-family:"Manrope";
+    font-size:100px;
+    font-weight:300;
+    color:#222;
+}
+
+.section{
+    max-width:var(--max);
+    margin:auto;
+    padding:130px 35px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:45px;
+}
+
+.label{
+    color:#696969;
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+.title{
+    margin-top:13px;
+    font-family:"Manrope";
+    font-size:clamp(45px,6vw,85px);
+    font-weight:300;
+    letter-spacing:-5px;
+}
+
+.title span{color:#64635f}
+
+.projects{
+    display:grid;
+    grid-template-columns:1.4fr .8fr;
+    gap:12px;
+}
+
+.project{
+    min-height:480px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:7px;
+    background:#101010;
+    cursor:pointer;
+}
+
+.project.small{min-height:230px}
+
+.project:first-child{
+    grid-row:span 2;
+}
+
+.project-bg{
+    position:absolute;
+    inset:0;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.project:hover .project-bg{
+    transform:scale(1.07);
+}
+
+.p1{
+    background:
+      radial-gradient(circle at 65% 40%,#65645f,#252522 20%,#080808 65%);
+}
+
+.p2{
+    background:
+      linear-gradient(125deg,#181817,#070707);
+}
+
+.p3{
+    background:
+      radial-gradient(circle at 40% 50%,#4c4b47,#111 42%,#050505);
+}
+
+.project-info{
+    position:absolute;
+    left:25px;
+    right:25px;
+    bottom:23px;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
+
+.project-info small{
+    display:block;
+    color:#888;
+    font-size:8px;
+    letter-spacing:2px;
+    margin-bottom:7px;
+}
+
+.project-info h3{
+    font-family:"Manrope";
+    font-size:27px;
+    font-weight:300;
+}
+
+.arrow{
+    width:38px;
+    height:38px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    transition:.3s;
+}
+
+.project:hover .arrow{
+    transform:rotate(45deg);
+    background:#fff;
+    color:#000;
+}
+
+.statement{
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+}
+
+.statement h2{
+    max-width:1050px;
+    font-family:"Manrope";
+    font-weight:300;
+    font-size:clamp(45px,7vw,100px);
+    line-height:.95;
+    letter-spacing:-6px;
+}
+
+.statement h2 span{color:#595854}
+
+.contact{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:110px 35px;
+}
+
+.contact-inner{
+    max-width:var(--max);
+    margin:auto;
+}
+
+.contact h2{
+    font-family:"Manrope";
+    font-size:clamp(50px,8vw,115px);
+    font-weight:300;
+    letter-spacing:-7px;
+    line-height:.9;
+}
+
+.contact h2 span{color:#60605c}
+
+.contact .button{margin-top:35px}
+
+.footer{
+    max-width:var(--max);
+    margin:auto;
+    padding:30px 35px;
+    display:flex;
+    justify-content:space-between;
+    color:#555;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:1s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+@media(max-width:800px){
+    .nav{padding:0 20px}
+    .navlinks{display:none}
+    .menu{display:block}
+
+    .hero{
+        padding:140px 20px 70px;
+        min-height:900px;
+    }
+
+    .hero h1{
+        font-size:70px;
+        letter-spacing:-5px;
+    }
+
+    .monolith{
+        opacity:.35;
+        right:-110px;
+        top:62%;
+    }
+
+    .section{padding:90px 20px}
+
+    .section-head{display:block}
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .project:first-child{
+        grid-row:auto;
+    }
+
+    .project,.project.small{
+        min-height:340px;
+    }
+
+    .statement{min-height:600px}
+
+    .contact{padding:90px 20px}
+
+    .contact h2{
+        font-size:57px;
+        letter-spacing:-4px;
+    }
+
+    .footer{
+        padding:25px 20px;
+        display:block;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header" id="header">
+<nav class="nav">
+    <a class="logo" href="#">OBSIDIAN</a>
+
+    <div class="navlinks">
+        <a href="#work">WORK</a>
+        <a href="#studio">STUDIO</a>
+        <a href="#contact">CONTACT</a>
+    </div>
+
+    <button class="menu">+</button>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="hero-copy reveal">
+        <div class="kicker">ARCHITECTURE / INTERIORS / DIGITAL</div>
+
+        <h1>
+            Spaces<br>
+            with <em>weight.</em>
+        </h1>
+
+        <p>
+            OBSIDIAN создаёт пространства и цифровые
+            системы, в которых архитектура встречается
+            с минимализмом, материалом и светом.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#work" class="button">
+                EXPLORE WORK ↓
+            </a>
+            <a href="#contact" class="button">
+                START A PROJECT
+            </a>
+        </div>
+    </div>
+
+    <div class="monolith"></div>
+</section>
+
+<section class="section" id="work">
+
+    <div class="section-head reveal">
+        <div>
+            <div class="label">SELECTED WORK / 2026</div>
+            <h2 class="title">Selected <span>spaces.</span></h2>
+        </div>
+    </div>
+
+    <div class="projects">
+
+        <article class="project reveal">
+            <div class="project-bg p1"></div>
+            <div class="project-info">
+                <div>
+                    <small>RESIDENTIAL / BERLIN</small>
+                    <h3>House No. 17</h3>
+                </div>
+                <div class="arrow">↗</div>
+            </div>
+        </article>
+
+        <article class="project small reveal">
+            <div class="project-bg p2"></div>
+            <div class="project-info">
+                <div>
+                    <small>INTERIOR / TOKYO</small>
+                    <h3>Kuro</h3>
+                </div>
+                <div class="arrow">↗</div>
+            </div>
+        </article>
+
+        <article class="project small reveal">
+            <div class="project-bg p3"></div>
+            <div class="project-info">
+                <div>
+                    <small>RETAIL / PARIS</small>
+                    <h3>Atelier 04</h3>
+                </div>
+                <div class="arrow">↗</div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="section statement" id="studio">
+    <h2 class="reveal">
+        We don't decorate spaces.
+        <span>We define how they feel.</span>
+    </h2>
+</section>
+
+<section class="contact" id="contact">
+    <div class="contact-inner reveal">
+        <div class="label">NEXT PROJECT</div>
+        <h2>
+            Let's make<br>
+            <span>something permanent.</span>
+        </h2>
+
+        <a
+            href="mailto:hello@example.com"
+            class="button"
+        >
+            WRITE TO US ↗
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <span>© 2026 OBSIDIAN</span>
+    <span>ARCHITECTURE / DIGITAL / SPACE</span>
+</footer>
+
+<script>
+const header=document.getElementById("header");
+
+window.addEventListener("scroll",()=>{
+    header.classList.toggle("active",scrollY>40);
+});
+
+const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
+```
